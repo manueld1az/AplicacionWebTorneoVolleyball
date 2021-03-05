@@ -1,0 +1,33 @@
+header {
+    padding-top: 3vh;
+    padding-bottom: 1vh;
+  }
+  
+  h1 {
+    color: #1d3557;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .main {
+    width: 70vh;
+  }
+  
+  .avatar {
+    font-size: 13vh;
+  }
+  
+  .buttonSubmit {
+    width: 25vh;
+    background-color: #fff;
+    color: #1d3557;
+    border: #1d3557 solid 1px;
+  }
+  
+  .buttonSubmit:hover {
+    background-color: #1d3557;
+    color: #fff;
+  }

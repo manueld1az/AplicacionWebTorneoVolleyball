@@ -1,0 +1,58 @@
+header {
+  padding-top: 3vh;
+  padding-bottom: 1vh;
+}
+
+h1 {
+  color: #1d3557;
+}
+
+a {
+  text-decoration: none;
+  color: #1d3557;
+}
+
+a:hover {
+  color: #f1faee;
+}
+
+.button1 {
+  background-color: #fff;
+  margin-right: 2vh;
+  color: #1d3557;
+  border: #1d3557 solid 1px;
+}
+
+.button1:hover {
+  background-color: #1d3557;
+  color: #fff;
+}
+
+.button2 {
+  background-color: #1d3557;
+  color: #fff;
+  margin-right: 2vh;
+}
+
+.button2:hover {
+  background-color: #fff;
+  color: #1d3557;
+  border: #1d3557 solid 1px;
+}
+
+main.row {
+  padding: 3vh;
+  margin: 2vh;
+}
+
+img {
+  width: 30vh;
+}
+
+article {
+  padding: 1vh;
+}
+
+article:hover {
+  background-color: #1d3557e1;
+}

@@ -1,0 +1,50 @@
+header {
+  padding-top: 3vh;
+  padding-bottom: 1vh;
+}
+
+.imgHeaderIcon {
+  width: 10vh;
+  height: 10vh;
+}
+
+.headerBody {
+  border-bottom: #1d3557 solid 1px;
+}
+
+.imgFormIcon {
+  width: 20vh;
+  height: 20vh;
+}
+
+section {
+  padding-top: 5vh;
+}
+
+a {
+  text-decoration: none;
+  color: #1d3557;
+}
+
+a:hover {
+  color: #1d3557;
+}
+
+.headerSection-content-main {
+  display: flex;
+  padding: 1vh;
+}
+
+h3.tittleHeaderSection {
+  color: #1d3557;
+  padding: 3vh;
+}
+
+article {
+  padding: 1vh;
+}
+
+article:hover {
+  background-color: #1d3557a9;
+  color: whitesmoke;
+}

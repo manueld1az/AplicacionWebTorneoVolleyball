@@ -17,8 +17,8 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="login.css" />
+    <title>Listados</title>
+    <link rel="stylesheet" href="listados.css" />
   </head>
   <body>
     <header class="container">
@@ -30,37 +30,72 @@
         </div>
       </a>
     </header>
-    <main class="container main">
-      <center><i class="fas fa-user-circle avatar"></i></center>
-      <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
-            Correo Electrónico</label
-          >
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label"
-            >Contraseña</label
-          >
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-          />
-        </div>
-        <center>
-          <button type="submit" class="btn buttonSubmit">
-            <b>Iniciar Sesión</b>
-          </button>
-        </center>
-      </form>
-    </main>
+    <div class="container headerBody">
+      <div class="headerSection-content-main">
+        <img
+          src="../../img/icon list.png"
+          alt="imgHeaderIcon"
+          class="imgHeaderIcon"
+        />
+        <h3 class="tittleHeaderSection">Listados</h3>
+      </div>
+    </div>
+    <div class="container main">
+      <section class="row container">
+        <article class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+          <a href="equipos/listaEquipos.php">
+            <center>
+              <img
+                src="../../img/icon team.png"
+                alt="imgFormIcon"
+                class="imgFormIcon"
+              /><br />
+              <h3>Equipos</h3>
+            </center>
+          </a>
+        </article>
+        <article class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+          <a href="cuerpoTecnico/listaCuerposTecnicos.html">
+            <center>
+              <img
+                src="../../img/tecnico icon.png"
+                alt=""
+                class="imgFormIcon"
+              />
+              <br />
+              <h3>Cuerpo Tecnico</h3>
+            </center>
+          </a>
+        </article>
+        <article class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+          <a href="jugadoras/listaJugadoras.html">
+            <center>
+              <img
+                src="../../img/jugadora icon.png"
+                alt=""
+                class="imgFormIcon"
+              />
+              <br />
+              <h3>Jugadoras</h3>
+            </center>
+          </a>
+        </article>
+        <article class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+          <a href="jueces/listaJueces.html">
+            <center>
+              <img
+                src="../../img/arbitro icon.png"
+                alt=""
+                class="imgFormIcon"
+              />
+              <br />
+              <h3>Jueces</h3>
+            </center>
+          </a>
+        </article>
+      </section>
+    </div>
+
     <!-- Scripts de boostrap-->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

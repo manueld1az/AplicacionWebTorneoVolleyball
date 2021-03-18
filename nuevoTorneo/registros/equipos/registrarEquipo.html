@@ -17,12 +17,12 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="login.css" />
+    <title>Registrar Equipos</title>
+    <link rel="stylesheet" href="../formulariosRegistro.css" />
   </head>
   <body>
     <header class="container">
-      <a href="../../index.html">
+      <a href="../../../index.html">
         <div class="row">
           <div class="col-auto me-auto">
             <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
@@ -30,37 +30,66 @@
         </div>
       </a>
     </header>
+
     <main class="container main">
-      <center><i class="fas fa-user-circle avatar"></i></center>
-      <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
-            Correo Electrónico</label
+      <center><i class="fas fa-users avatar"></i></center>
+      <form
+        class="row g-3 needs-validation"
+        novalidate
+        action="insert_equipos.php"
+        method="POST"
+      >
+        <div class="col-md-4">
+          <label for="validationCustom01" class="form-label"
+            >Código Equipo</label
           >
           <input
-            type="email"
+            type="number"
             class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            name="Codigo_Equipo"
+            id="validationCustom01"
+            min="0"
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label"
-            >Contraseña</label
+
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label"
+            >Nombre Colegio</label
           >
           <input
-            type="password"
+            type="text"
             class="form-control"
-            id="exampleInputPassword1"
+            name="Nombre_Colegio"
+            id="validationCustom02"
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
+        <div class="col-md-4">
+          <label for="validationCustom02" class="form-label"
+            >Nombre Equipo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="Nombre_Equipo"
+            id="validationCustom02"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
         <center>
           <button type="submit" class="btn buttonSubmit">
-            <b>Iniciar Sesión</b>
+            <b>Registrar</b>
           </button>
         </center>
       </form>
     </main>
+    <!-- Script validacion formulario-->
+    <script src="../validarDatos.js"></script>
     <!-- Scripts de boostrap-->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

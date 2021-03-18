@@ -1,30 +1,17 @@
 <?php
-    if (isset($_POST["submit"])){
-        $user="3500652_torneovoleibol";
-        $pass="programacion2021";
-        $server="fdb22.awardspace.net";
-        $db="3500652_torneovoleibol";
+    include("../../../ignore/conexionServer.php");
 
-        //crearte connection
-        $cone=mysqli_connect($server,$user,$pass,$db);
+    $codigoEquipo= $_POST["Codigo_Equipo"];
+    $nombreColegio= $_POST["Nombre_Colegio"];
+    $nombreEquipo= $_POST["Nombre_Equipo"];
 
-        //Check connection
-        if ($cone->connet_error){
-            die("Error en la conexion servidor: " . $cone->connect_error);
-        }
-        $sqle = "INSERT INTO equipo(Cod_Equipo, Nombre_Colegio, Nombre_Equipo, Ptos_Equipo) 
-        VALUES ('".$_POST["Cod_Equipo"]."', '".$_POST["Nombre_Colegio"]."', 
-        '".$_POST["Nombre_Equipo"]."', '".$_POST["Ptos_Equipo"]."')";
+    $sql = "INSERT INTO equipos(Cod_Equipo, Nombre_Colegio, Nombre_Equipo) 
+            VALUES ( $codigoEquipo, $nombreColegio, $nombreEquipo )";
 
-        if (mysqli_query($cone, $sqle)) {
-            echo "Nuevo registro guardado con exito";
-        }else {
-            echo "Error: " . $sqle . "" . mysqli_query($cone);
-        }
-        $cone->close();
+    $registrar=mysqli_query($conexion, $sql);
+    if ( $registrar ) {
+        header("location: ../../listados/equipos/listaEquipos.php");
+    } else {
+        echo "Error: ";
     }
 ?>
-<br>
-<br>
-<a href="equipo.php">Regresar a registros de Equipos</a><br><br>
-<a href="index.html">Inicio</a>

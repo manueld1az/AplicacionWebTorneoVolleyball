@@ -6,7 +6,7 @@
     $nombreEquipo= $_POST["Nombre_Equipo"];
 
     $sql = "INSERT INTO equipos(Cod_Equipo, Nombre_Colegio, Nombre_Equipo) 
-            VALUES ( $codigoEquipo, $nombreColegio, $nombreEquipo )";
+            VALUES ( $codigoEquipo, '$nombreColegio', '$nombreEquipo' )";
 
     $registrar=mysqli_query($conexion, $sql);
     if ( $registrar ) {

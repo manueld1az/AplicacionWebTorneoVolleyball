@@ -1,13 +1,13 @@
 <?php
 include("../../../ignore/conexionServer.php");
-$idEquipo = $_GET['idEquipo'];
+$NumeroRegistro = $_GET['NumeroRegistro'];
 
-$sql = "DELETE FROM equipos WHERE idEquipo='$idEquipo'";
+$sql = "DELETE FROM jugadoras WHERE NumeroRegistro='$NumeroRegistro'";
 
 $eliminar = mysqli_query($conexion, $sql);
 
 if ($eliminar) {
-    header("location: listaEquipos.php");
+    header("location: listaJugadoras.php");
 } else {
     echo "<script>alert('No se pudo eliminar');
          windows.history.go(-1);</script>";

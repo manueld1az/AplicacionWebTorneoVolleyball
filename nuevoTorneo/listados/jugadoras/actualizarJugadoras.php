@@ -17,7 +17,7 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
-    <title>Modificar Equipos</title>
+    <title>Modificar Jugadoras</title>
     <link rel="stylesheet" href="../listas.css" />
   </head>
 
@@ -33,31 +33,45 @@
     </header>
     <main class="container main">
       <div class="container">
-        <h3 class="tittleMain">Modificar Equipos</h3>
+        <h3 class="tittleMain">Modificar Jugadoras</h3>
       </div>
       <center><i class="fas fa-users avatar"></i><br /></center>
       <div class="table-responsive">
         <table class="table">
-          <thead>
+        <thead>
             <tr>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Código Equipo</center>
+                    <center>ID Jugadora</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Colegio</center>
+                    <center>Nombre</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Equipo</center>
+                    <center>Fecha Nacimiento</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Teléfono</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Equipo</center>
                   </b>
                 </p>
               </td>
@@ -73,8 +87,8 @@
           <?php
 
         include("../../../ignore/conexionServer.php");
-        $codigoEquipo=$_GET["codigoEquipo"];
-        $sql = "SELECT * FROM equipos where Cod_Equipo='$codigoEquipo'";
+        $NumeroRegistro=$_GET["NumeroRegistro"];
+        $sql = "SELECT * FROM jugadoras where NumeroRegistro='$NumeroRegistro'";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {
@@ -83,29 +97,29 @@
             <form
               class="row g-3 needs-validation"
               novalidate
-              action="registrarActualizarEquipos.php"
+              action="registrarActualizarJugadoras.php"
               method="POST"
             >
-              <tr>
-                <td>
-                  <center>
-                    <input
+            <input
                       type="hidden"
-                      name="codigoEquipo"
+                      name="NumeroRegistro"
                       class="form-control"
                       id="validationCustom01"
                       min="0"
-                      value="<?php echo $mostrar['Cod_Equipo'] ?>"
+                      value="<?php echo $mostrar['NumeroRegistro'] ?>"
                       required
-                    />
+                    />  
+              <tr>                    
+                <td>
+                  <center>
                     <input
                       type="number"
                       class="form-control"
+                      name="Id_Jugadora"
                       id="validationCustom01"
                       min="0"
-                      value="<?php echo $mostrar['Cod_Equipo'] ?>"
+                      value="<?php echo $mostrar['Id_Jugadora'] ?>"
                       required
-                      disabled
                     />
                   </center>
                 </td>
@@ -113,10 +127,10 @@
                   <center>
                     <input
                       type="text"
-                      name="Nombre_Colegio"
+                      name="Nombre"
                       class="form-control"
                       id="validationCustom01"
-                      value="<?php echo $mostrar['Nombre_Colegio'] ?>"
+                      value="<?php echo $mostrar['Nombre'] ?>"
                       required
                     />
                     <div class="valid-feedback">Looks good!</div>
@@ -125,14 +139,40 @@
                 <td>
                   <center>
                     <input
-                      type="text"
-                      name="Nombre_Equipo"
+                      type="date"
+                      name="FechaNacimiento"
                       class="form-control"
                       id="validationCustom01"
-                      value="<?php echo $mostrar['Nombre_Equipo'] ?>"
+                      value="<?php echo $mostrar['FechaNacimiento'] ?>"
                       required
                     />
                     <div class="valid-feedback">Looks good!</div>
+                  </center>
+                </td>
+                <td>
+                  <center>
+                <input
+                      type="number"
+                      class="form-control"
+                      name="Telefono"
+                      id="validationCustom01"
+                      min="0"
+                      value="<?php echo $mostrar['Telefono'] ?>"
+                      required
+                    />
+                  </center>
+                </td>
+                <td>
+                  <center>
+                <input
+                      type="number"
+                      class="form-control"
+                      name="Cod_equipo"
+                      id="validationCustom01"
+                      min="0"
+                      value="<?php echo $mostrar['Cod_equipo'] ?>"
+                      required
+                    />
                   </center>
                 </td>
                 <td>
@@ -147,7 +187,7 @@
                       <i class="far fa-check-square"></i>
                     </button>
                     <a
-                      href="listaEquipos.php"
+                      href="listaJugadoras.php"
                       title="Cancelar"
                       id="botonesLista"
                     >

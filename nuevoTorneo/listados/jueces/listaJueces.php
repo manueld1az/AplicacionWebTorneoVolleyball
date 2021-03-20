@@ -44,7 +44,7 @@
       </div>
       <center><i class="fas fa-users avatar"></i><br /></center>
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table">
           <thead>
             <tr>
               <td class="columnaCabecera">

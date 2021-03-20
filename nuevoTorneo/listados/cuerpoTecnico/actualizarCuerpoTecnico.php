@@ -17,7 +17,7 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
-    <title>Modificar Equipos</title>
+    <title>Modificar Cuerpo Técnico</title>
     <link rel="stylesheet" href="../listas.css" />
   </head>
 
@@ -33,31 +33,52 @@
     </header>
     <main class="container main">
       <div class="container">
-        <h3 class="tittleMain">Modificar Equipos</h3>
+        <h3 class="tittleMain">Modificar Cuerpo Técnico</h3>
       </div>
       <center><i class="fas fa-users avatar"></i><br /></center>
       <div class="table-responsive">
-        <table class="table">
+      <table class="table">
           <thead>
             <tr>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Código Equipo</center>
+                    <center>ID Técnico</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Colegio</center>
+                    <center>Nombre</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Equipo</center>
+                    <center>Cargo</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Fecha Nacimiento</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Teléfono</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Equipo</center>
                   </b>
                 </p>
               </td>
@@ -73,8 +94,8 @@
           <?php
 
         include("../../../ignore/conexionServer.php");
-        $codigoEquipo=$_GET["codigoEquipo"];
-        $sql = "SELECT * FROM equipos where Cod_Equipo='$codigoEquipo'";
+        $id_Cuerpotecnico=$_GET["id_Cuerpotecnico"];
+        $sql = "SELECT * FROM cuerpotecnico where id_Cuerpotecnico='$id_Cuerpotecnico'";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {
@@ -83,56 +104,88 @@
             <form
               class="row g-3 needs-validation"
               novalidate
-              action="registrarActualizarEquipos.php"
+              action="registrarActualizarCuerpoTecnico.php"
               method="POST"
             >
-              <tr>
-                <td>
-                  <center>
-                    <input
-                      type="hidden"
-                      name="codigoEquipo"
+            <tr>
+            <td>
+              <center>
+              <input
+                      type="number"
+                      name="id_Cuerpotecnico"
                       class="form-control"
                       id="validationCustom01"
                       min="0"
-                      value="<?php echo $mostrar['Cod_Equipo'] ?>"
+                      value="<?php echo $mostrar['id_Cuerpotecnico'] ?>"
+                      required
+                      disabled
+                    />
+                    </center>
+                </td>  
+                <td>
+                  <center>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom01"
+                      name="Nombre"
+                      value="<?php echo $mostrar['Nombre'] ?>"
                       required
                     />
+                  </center>
+                </td>
+                <td>
+                  <center>
+                    <input
+                      type="text"
+                      name="Cargo"
+                      class="form-control"
+                      id="validationCustom01"
+                      value="<?php echo $mostrar['Cargo'] ?>"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </center>
+                </td>
+                <td>
+                  <center>
+                    <input
+                      type="date"
+                      name="fechaNacimiento"
+                      class="form-control"
+                      id="validationCustom01"
+                      value="<?php echo $mostrar['fechaNacimiento'] ?>"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </center>
+                </td>
+                <td>
+                  <center>
                     <input
                       type="number"
                       class="form-control"
                       id="validationCustom01"
+                      name="Telefono"
                       min="0"
-                      value="<?php echo $mostrar['Cod_Equipo'] ?>"
+                      maxlength="13"
+                      value="<?php echo $mostrar['Telefono'] ?>"
                       required
-                      disabled
                     />
                   </center>
                 </td>
                 <td>
                   <center>
                     <input
-                      type="text"
-                      name="Nombre_Colegio"
+                      type="number"
                       class="form-control"
                       id="validationCustom01"
-                      value="<?php echo $mostrar['Nombre_Colegio'] ?>"
+                      name="Cod_equipo"
+                      min="0"
+                      maxlength="13"
+                      value="<?php echo $mostrar['Cod_equipo'] ?>"
                       required
                     />
-                    <div class="valid-feedback">Looks good!</div>
-                  </center>
-                </td>
-                <td>
-                  <center>
-                    <input
-                      type="text"
-                      name="Nombre_Equipo"
-                      class="form-control"
-                      id="validationCustom01"
-                      value="<?php echo $mostrar['Nombre_Equipo'] ?>"
-                      required
-                    />
-                    <div class="valid-feedback">Looks good!</div>
                   </center>
                 </td>
                 <td>
@@ -147,7 +200,7 @@
                       <i class="far fa-check-square"></i>
                     </button>
                     <a
-                      href="listaEquipos.php"
+                      href="listaCuerpoTecnico.php"
                       title="Cancelar"
                       id="botonesLista"
                     >

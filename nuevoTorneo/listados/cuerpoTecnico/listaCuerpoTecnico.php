@@ -17,7 +17,7 @@
       integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
       crossorigin="anonymous"
     />
-    <title>Lista de Equipos</title>
+    <title>Lista de Cuerpo Técnico</title>
     <link rel="stylesheet" href="../listas.css" />
   </head>
 
@@ -30,9 +30,9 @@
           </a>
         </div>
         <div class="col-auto">
-          <a href="../../registros/equipos/registrarEquipo.html">
+          <a href="../../registros/cuerpoTecnico/registrarCuerpoTecnico.html">
             <button class="btn button2" type="button">
-              <b><i class="fas fa-plus-circle"></i> Equipo</b>
+              <b><i class="fas fa-plus-circle"></i> Tecnico</b>
             </button>
           </a>
         </div>
@@ -40,7 +40,7 @@
     </header>
     <main class="container main">
       <div class="container">
-        <h3 class="tittleMain">Lista de Equipos</h3>
+        <h3 class="tittleMain">Lista de Cuerpo Técnico</h3>
       </div>
       <center><i class="fas fa-users avatar"></i><br /></center>
       <div class="table-responsive">
@@ -50,21 +50,42 @@
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Código Equipo</center>
+                    <center>ID</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Colegio</center>
+                    <center>Nombre</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Equipo</center>
+                    <center>Cargo</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Fecha Nacimiento</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Teléfono</center>
+                  </b>
+                </p>
+              </td>
+              <td class="columnaCabecera">
+                <p>
+                  <b>
+                    <center>Equipo</center>
                   </b>
                 </p>
               </td>
@@ -80,7 +101,7 @@
           <?php
 
         include("../../../ignore/conexionServer.php");
-        $sql = "SELECT * FROM equipos";
+        $sql = "SELECT * FROM cuerpotecnico";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {
@@ -88,26 +109,35 @@
           <tbody>
             <tr>
               <td>
-                <center><?php echo $mostrar['Cod_Equipo'] ?></center>
+                <center><?php echo $mostrar['id_Cuerpotecnico'] ?></center>
               </td>
               <td>
-                <center><?php echo $mostrar['Nombre_Colegio'] ?></center>
+                <center><?php echo $mostrar['Nombre'] ?></center>
               </td>
               <td>
-                <center><?php echo $mostrar['Nombre_Equipo'] ?></center>
+                <center><?php echo $mostrar['Cargo'] ?></center>
+              </td>
+              <td>
+                <center><?php echo $mostrar['fechaNacimiento'] ?></center>
+              </td>
+              <td>
+                <center><?php echo $mostrar['Telefono'] ?></center>
+              </td>
+              <td>
+                <center><?php echo $mostrar['Cod_equipo'] ?></center>
               </td>
               <td>
                 <center>
                   <a
-                    href="actualizarEquipos.php?codigoEquipo=<?php echo $mostrar['Cod_Equipo'] ?> "
+                    href="actualizarCuerpoTecnico.php?id_Cuerpotecnico=<?php echo $mostrar['id_Cuerpotecnico'] ?> "
                     title="Editar"
                     aria-hidden="true"
                     ><i class="fas fa-edit botonEditar"></i
                   ></a>
                   <a
-                    href="eliminarEquipos.php?idEquipo=<?php echo $mostrar['idEquipo'] ?>"
+                    href="eliminarCuerpoTecnico.php?id_Cuerpotecnico=<?php echo $mostrar['id_Cuerpotecnico'] ?>"
                     title="Eliminar"
-                    name="idEquipo"
+                    name="id_Cuerpotecnico"
                     aria-hidden="true"
                     class="botonEliminar"
                     ><i class="fas fa-trash-alt"></i>

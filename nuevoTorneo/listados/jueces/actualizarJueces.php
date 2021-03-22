@@ -33,7 +33,7 @@
     </header>
     <main class="container main">
       <div class="container">
-        <h3 class="tittleMain">Modificar Equipos</h3>
+        <h3 class="tittleMain">Modificar Jueces</h3>
       </div>
       <center><i class="fas fa-users avatar"></i><br /></center>
       <div class="table-responsive">
@@ -43,21 +43,21 @@
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Código Equipo</center>
+                    <center>ID. Juez</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Colegio</center>
+                    <center>Nombre Juez</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Equipo</center>
+                    <center>Telefono</center>
                   </b>
                 </p>
               </td>
@@ -72,9 +72,9 @@
           </thead>
           <?php
 
-        include("../../../ignore/conexionServer.php");
-        $codigoEquipo=$_GET["codigoEquipo"];
-        $sql = "SELECT * FROM equipos where Cod_Equipo='$codigoEquipo'";
+        include("../../../conexion/conexionServer.php");
+        $idJuez=$_GET["idJuez"];
+        $sql = "SELECT * FROM jueces where idJuez='$idJuez'";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {
@@ -83,7 +83,7 @@
             <form
               class="row g-3 needs-validation"
               novalidate
-              action="registrarActualizarEquipos.php"
+              action="registrarActualizarJueces.php"
               method="POST"
             >
               <tr>
@@ -91,11 +91,11 @@
                   <center>
                     <input
                       type="hidden"
-                      name="codigoEquipo"
+                      name="idJuez"
                       class="form-control"
                       id="validationCustom01"
                       min="0"
-                      value="<?php echo $mostrar['Cod_Equipo'] ?>"
+                      value="<?php echo $mostrar['idJuez'] ?>"
                       required
                     />
                     <input
@@ -103,7 +103,7 @@
                       class="form-control"
                       id="validationCustom01"
                       min="0"
-                      value="<?php echo $mostrar['Cod_Equipo'] ?>"
+                      value="<?php echo $mostrar['idJuez'] ?>"
                       required
                       disabled
                     />
@@ -113,10 +113,10 @@
                   <center>
                     <input
                       type="text"
-                      name="Nombre_Colegio"
+                      name="Nombre"
                       class="form-control"
                       id="validationCustom01"
-                      value="<?php echo $mostrar['Nombre_Colegio'] ?>"
+                      value="<?php echo $mostrar['Nombre'] ?>"
                       required
                     />
                     <div class="valid-feedback">Looks good!</div>
@@ -126,10 +126,10 @@
                   <center>
                     <input
                       type="text"
-                      name="Nombre_Equipo"
+                      name="Telefono"
                       class="form-control"
                       id="validationCustom01"
-                      value="<?php echo $mostrar['Nombre_Equipo'] ?>"
+                      value="<?php echo $mostrar['Telefono'] ?>"
                       required
                     />
                     <div class="valid-feedback">Looks good!</div>
@@ -147,7 +147,7 @@
                       <i class="far fa-check-square"></i>
                     </button>
                     <a
-                      href="listaEquipos.php"
+                      href="listaJueces.php"
                       title="Cancelar"
                       id="botonesLista"
                     >

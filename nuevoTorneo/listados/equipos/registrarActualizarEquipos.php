@@ -1,5 +1,5 @@
 <?php
-    include("../../../ignore/conexionServer.php");
+    include("../../../conexion/conexionServer.php");
     $codigoEquipo=$_POST["codigoEquipo"];
     $nombreColegio = $_POST["Nombre_Colegio"];
     $nombreEquipo = $_POST["Nombre_Equipo"];

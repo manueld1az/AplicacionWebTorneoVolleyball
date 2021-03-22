@@ -93,7 +93,7 @@
           </thead>
           <?php
 
-        include("../../../ignore/conexionServer.php");
+        include("../../../conexion/conexionServer.php");
         $id_Cuerpotecnico=$_GET["id_Cuerpotecnico"];
         $sql = "SELECT * FROM cuerpotecnico where id_Cuerpotecnico='$id_Cuerpotecnico'";
         $consulta = mysqli_query($conexion, $sql);

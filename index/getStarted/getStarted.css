@@ -11,6 +11,10 @@ header {
     text-decoration: none;
     color: black;
   }
+
+  .buttonBack{
+    border-right: #1d3557 solid 2px;
+  }
   
   .main {
     width: 50vh;

@@ -86,7 +86,7 @@
           </thead>
           <?php
 
-        include("../../../ignore/conexionServer.php");
+        include("../../../conexion/conexionServer.php");
         $NumeroRegistro=$_GET["NumeroRegistro"];
         $sql = "SELECT * FROM jugadoras where NumeroRegistro='$NumeroRegistro'";
         $consulta = mysqli_query($conexion, $sql);

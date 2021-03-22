@@ -1,19 +1,18 @@
 <?php
-if (isset($_POST["submit"])) {
-    include("../AplicacionWebTorneoVolleyball/ignore/conexionServer.php");
-    $sql = "INSERT INTO juez(Id_Juez, Nombre, Telefono, Direccion) 
-        VALUES ('" . $_POST["Id_Juez"] . "', '" . $_POST["Nombre"] . "', '" . $_POST["Telefono"] . "', 
-        '" . $_POST["Direccion"] . "')";
+    include("../../../conexion/conexionServer.php");
 
-    if (mysqli_query($conexion, $sql)) {
-        echo "Nuevo registro guardado con exito";
+    $Id_Juez= $_POST["Id_Juez"];
+    $Nombre= $_POST["Nombre"];
+    $Telefono= $_POST["Telefono"];
+
+    $sql = "INSERT INTO jueces ( idJuez, Nombre, Telefono ) 
+            VALUES ( $Id_Juez, '$Nombre', $Telefono )";
+
+    $registrar=mysqli_query($conexion, $sql);
+
+    if ( $registrar ) {
+        header("location: ../../listados/jueces/listaJueces.php");
     } else {
-        echo "Error: " . $sql . "" . mysqli_query($conexion);
+        echo "Error: ";
     }
-    $conjz->close();
-}
 ?>
-<br>
-<br>
-<a href="juez.php">Regresar a registros de Jueces</a><br><br>
-<a href="index.html">Inicio</a>

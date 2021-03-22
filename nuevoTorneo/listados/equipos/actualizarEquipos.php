@@ -72,7 +72,7 @@
           </thead>
           <?php
 
-        include("../../../ignore/conexionServer.php");
+        include("../../../conexion/conexionServer.php");
         $codigoEquipo=$_GET["codigoEquipo"];
         $sql = "SELECT * FROM equipos where Cod_Equipo='$codigoEquipo'";
         $consulta = mysqli_query($conexion, $sql);

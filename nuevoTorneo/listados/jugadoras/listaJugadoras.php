@@ -23,6 +23,11 @@
   <body>
     <header class="container">
       <div class="row">
+      <div class="col-auto">
+          <a href="../listados.html">
+            <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
+          </a>
+        </div>
         <div class="col-auto me-auto">
           <a href="../../../index.html">
             <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
@@ -92,7 +97,7 @@
           </thead>
           <?php
 
-        include("../../../ignore/conexionServer.php");
+        include("../../../conexion/conexionServer.php");
         $sql = "SELECT * FROM jugadoras";
         $consulta = mysqli_query($conexion, $sql);
 

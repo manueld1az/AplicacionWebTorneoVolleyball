@@ -1,17 +1,17 @@
 <?php
-    include("../../../ignore/conexionServer.php");
-    $codigoEquipo=$_POST["codigoEquipo"];
-    $nombreColegio = $_POST["Nombre_Colegio"];
-    $nombreEquipo = $_POST["Nombre_Equipo"];
+    include("../../../conexion/conexionServer.php");
+    $idJuez=$_POST["idJuez"];
+    $Nombre = $_POST["Nombre"];
+    $Telefono = $_POST["Telefono"];
 
-    $sql = "UPDATE equipos 
-    SET Nombre_Colegio='$nombreColegio', Nombre_Equipo='$nombreEquipo'
-    WHERE Cod_Equipo='$codigoEquipo'";
+    $sql = "UPDATE jueces 
+    SET Nombre='$Nombre', Telefono='$Telefono'
+    WHERE idJuez='$idJuez'";
 
 $actualizar = mysqli_query($conexion, $sql);
 
 if ($actualizar) {
-  header("location: listaEquipos.php");
+  header("location: listaJueces.php");
 } else {
   echo "Error al Ingresar datos ";
 }

@@ -24,15 +24,20 @@
   <body>
     <header class="container">
       <div class="row">
+      <div class="col-auto">
+          <a href="../listados.html">
+            <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
+          </a>
+        </div>
         <div class="col-auto me-auto">
           <a href="../../../index.html">
             <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
           </a>
         </div>
         <div class="col-auto">
-          <a href="../../registros/equipos/registrarEquipo.html">
+          <a href="../../registros/jueces/juez.html">
             <button class="btn button2" type="button">
-              <b><i class="fas fa-plus-circle"></i> Equipo</b>
+              <b><i class="fas fa-plus-circle"></i> Juez</b>
             </button>
           </a>
         </div>
@@ -40,7 +45,7 @@
     </header>
     <main class="container main">
       <div class="container">
-        <h3 class="tittleMain">Lista de Equipos</h3>
+        <h3 class="tittleMain">Lista de Jueces</h3>
       </div>
       <center><i class="fas fa-users avatar"></i><br /></center>
       <div class="table-responsive">
@@ -50,21 +55,21 @@
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Código Equipo</center>
+                    <center>ID Juez</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Colegio</center>
+                    <center>Nombre Juez</center>
                   </b>
                 </p>
               </td>
               <td class="columnaCabecera">
                 <p>
                   <b>
-                    <center>Nombre Equipo</center>
+                    <center>Teléfono</center>
                   </b>
                 </p>
               </td>
@@ -79,8 +84,8 @@
           </thead>
           <?php
 
-        include("../../../ignore/conexionServer.php");
-        $sql = "SELECT * FROM equipos";
+        include("../../../conexion/conexionServer.php");
+        $sql = "SELECT * FROM jueces";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {
@@ -88,26 +93,26 @@
           <tbody>
             <tr>
               <td>
-                <center><?php echo $mostrar['Cod_Equipo'] ?></center>
+                <center><?php echo $mostrar['idJuez'] ?></center>
               </td>
               <td>
-                <center><?php echo $mostrar['Nombre_Colegio'] ?></center>
+                <center><?php echo $mostrar['Nombre'] ?></center>
               </td>
               <td>
-                <center><?php echo $mostrar['Nombre_Equipo'] ?></center>
+                <center><?php echo $mostrar['Telefono'] ?></center>
               </td>
               <td>
                 <center>
                   <a
-                    href="actualizarEquipos.php?codigoEquipo=<?php echo $mostrar['Cod_Equipo'] ?> "
+                    href="actualizarJueces.php?idJuez=<?php echo $mostrar['idJuez'] ?> "
                     title="Editar"
                     aria-hidden="true"
                     ><i class="fas fa-edit botonEditar"></i
                   ></a>
                   <a
-                    href="eliminarEquipos.php?idEquipo=<?php echo $mostrar['idEquipo'] ?>"
+                    href="eliminarJueces.php?numeroRegistro=<?php echo $mostrar['numeroRegistro'] ?>"
                     title="Eliminar"
-                    name="idEquipo"
+                    name="numeroRegistro"
                     aria-hidden="true"
                     class="botonEliminar"
                     ><i class="fas fa-trash-alt"></i>

@@ -1,5 +1,5 @@
 <?php
-include("../../../ignore/conexionServer.php");
+include("../../../conexion/conexionServer.php");
 $NumeroRegistro = $_GET['NumeroRegistro'];
 
 $sql = "DELETE FROM jugadoras WHERE NumeroRegistro='$NumeroRegistro'";

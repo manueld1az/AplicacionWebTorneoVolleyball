@@ -1,5 +1,5 @@
 <?php
-    include("../../../ignore/conexionServer.php");
+    include("../../../conexion/conexionServer.php");
 
     $codigoEquipo= $_POST["Codigo_Equipo"];
     $nombreColegio= $_POST["Nombre_Colegio"];
@@ -9,6 +9,7 @@
             VALUES ( $codigoEquipo, '$nombreColegio', '$nombreEquipo' )";
 
     $registrar=mysqli_query($conexion, $sql);
+    
     if ( $registrar ) {
         header("location: ../../listados/equipos/listaEquipos.php");
     } else {

@@ -104,15 +104,15 @@
               <td>
                 <center>
                   <a
-                    href="actualizarEquipos.php?codigoEquipo=<?php echo $mostrar['Cod_Equipo'] ?> "
+                    href="actualizarEquipos.php?Cod_Equipo=<?php echo $mostrar['Cod_Equipo'] ?> "
                     title="Editar"
                     aria-hidden="true"
                     ><i class="fas fa-edit botonEditar"></i
                   ></a>
                   <a
-                    href="eliminarEquipos.php?idEquipo=<?php echo $mostrar['idEquipo'] ?>"
+                    href="eliminarEquipos.php?Cod_Equipo=<?php echo $mostrar['Cod_Equipo'] ?>"
                     title="Eliminar"
-                    name="idEquipo"
+                    name="Cod_Equipo"
                     aria-hidden="true"
                     class="botonEliminar"
                     ><i class="fas fa-trash-alt"></i>

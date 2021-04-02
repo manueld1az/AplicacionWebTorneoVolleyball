@@ -1,6 +1,6 @@
 <?php
     include("../../../conexion/conexionServer.php");
-    $codigoEquipo=$_POST["codigoEquipo"];
+    $codigoEquipo=$_POST["Cod_Equipo"];
     $nombreColegio = $_POST["Nombre_Colegio"];
     $nombreEquipo = $_POST["Nombre_Equipo"];
 

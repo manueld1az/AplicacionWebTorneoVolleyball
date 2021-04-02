@@ -1,0 +1,94 @@
+header {
+  padding-top: 3vh;
+  padding-bottom: 1vh;
+}
+
+h1 {
+  color: #1d3557;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.tittleMain {
+  padding: 1vh;
+  color: #1d3557;
+  border-bottom: #1d3557 1px solid;
+}
+
+.row {
+  min-width: 80vh;
+}
+
+.columnaOctavos {
+  max-width: 10vh;
+  float: left;
+}
+
+.columnaCuartos {
+  max-width: 10vh;
+  padding-left: 10vh;
+  padding-top: 3vh;
+  float: left;
+}
+
+.columnaSemis {
+  max-width: 10vh;
+  padding-left: 20vh;
+  padding-top: 10vh;
+  float: left;
+}
+
+.columnaFinal {
+  max-width: 10vh;
+  padding-left: 19vh;
+  padding-top: 25vh;
+  float: left;
+}
+
+.table {
+  border: #1d3557 1px solid;
+  width: 18vh;
+  background-color: #1d3557;
+  color: azure;
+}
+
+.tableCuartos {
+  margin-top: 8vh;
+}
+
+.tableSemis {
+  margin-top: 22.3vh;
+}
+
+.tableFinal {
+  margin-top: 50vh;
+}
+
+.columnaCabecera {
+  border: azure 1px solid;
+  height: 1px;
+}
+
+.columna-right{
+  margin-top: 10vh;
+}
+
+.tituloFinal{
+  margin-left: 19vh;
+}
+.iconoTrofeo{
+  width: 20vh;
+  margin-left: 12vh;
+}
+
+.tituloTercerPuesto{
+  margin-left: 13vh;
+}
+
+.Final{
+  margin-left: 3vh;
+  float: left;
+}

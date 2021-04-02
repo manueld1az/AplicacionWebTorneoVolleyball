@@ -18,69 +18,71 @@
       crossorigin="anonymous"
     />
     <title>SGTV</title>
-    <link rel="stylesheet" href="index/index.css" />
+    <link rel="stylesheet" href="../menuRondas.css" />
   </head>
   <body>
     <header class="container">
       <div class="row">
-        <div class="col-auto me-auto">
-          <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
+        <div class="col-auto">
+          <a href="../../index.html">
+            <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
+          </a>
         </div>
         <div class="col-auto">
-          <a href="index/login/login.html">
-            <button class="btn button1" type="button">
-              <b>Iniciar Sesión</b>
-            </button></a
-          ><a href="index/getStarted/getStarted.html">
-            <button class="btn button2" type="button">
-              <b>Crear Cuenta</b>
-            </button>
+          <a href="../../index.html">
+            <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
           </a>
         </div>
       </div>
     </header>
+    <div class="container headerBody">
+      <div class="headerSection-content-main">
+        <h3 class="tittleHeaderSection">Ronda 1</h3>
+      </div>
+    </div>
+    <div class="container">
+      <section class="row container">
+        <article class="col-xs-12 col-sm-4">
+          <a href="esquemaRonda1.php">
+            <center>
+              <img
+                src="../../img/torneo.svg"
+                alt="imgFormIcon"
+                class="imgFormIcon img-fluid"
+              /><br />
+              <h3>Esquema</h3>
+            </center>
+            </a>
+        </article>
 
-    <main class="row">
-      <article class="col-xs-12 col-sm-4">
-        <a href="nuevoTorneo/nuevoTorneo.html">
-          <center>
-            <img
-              src="img/icon trophy.png"
-              class="img-fluid"
-              alt="trophy icon"
-            />
-            <br />
-            <h3><i class="fas fa-plus-circle"></i> Nuevo Torneo</h3>
-          </center>
-        </a>
-      </article>
-      <article class="col-xs-12 col-sm-4">
-        <a href="torneo/verificarEquipos.php">
-          <center>
-            <img
-              src="img/icon trophy.png"
-              class="img-fluid"
-              alt="trophy icon"
-            />
-            <br />
-            <h3><i class="fas fa-arrow-circle-right"></i> Continuar Torneo</h3>
-          </center>
-        </a>
-      </article>
-      <article class="col-xs-12 col-sm-4">
-        <a href="nuevoTorneo/nuevoTorneo.html">
-          <center>
-            <img
-              src="img/rating.svg"
-              class="img-fluid"
-              alt="trophy icon"
-            />
-            <br />
-            <h3><i class="fas fa-arrow-circle-right"></i> Estadísticas Torneo</h3>
-          </center>
-        </a>
-      </article>
-    </main>
+        <article class="col-xs-12 col-sm-4">
+          <a href="listados/listados.html">
+            <center>
+              <img
+                src="../../img/calendar.svg"
+                alt="imgFormIcon"
+                class="imgFormIcon img-fluid"
+              />
+              <br />
+              <h3>Calendario</h3>
+            </center></a
+          >
+        </article>
+        <article class="col-xs-12 col-sm-4">
+          <a href="encuentrosRonda1.php">
+            <center>
+              <img
+                src="../../img"
+                alt="imgFormIcon"
+                class="imgFormIcon img-fluid"
+              />
+              <br />
+              <h3>Encuentros</h3>
+            </center></a
+          >
+        </article>
+      </section>
+    </div>
     <!-- Scripts de boostrap-->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

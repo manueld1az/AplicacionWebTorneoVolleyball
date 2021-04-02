@@ -73,7 +73,7 @@
           <?php
 
         include("../../../conexion/conexionServer.php");
-        $codigoEquipo=$_GET["codigoEquipo"];
+        $codigoEquipo=$_GET['Cod_Equipo'];
         $sql = "SELECT * FROM equipos where Cod_Equipo='$codigoEquipo'";
         $consulta = mysqli_query($conexion, $sql);
 
@@ -90,22 +90,13 @@
                 <td>
                   <center>
                     <input
-                      type="hidden"
-                      name="codigoEquipo"
-                      class="form-control"
-                      id="validationCustom01"
-                      min="0"
-                      value="<?php echo $mostrar['Cod_Equipo'] ?>"
-                      required
-                    />
-                    <input
                       type="number"
                       class="form-control"
                       id="validationCustom01"
                       min="0"
                       value="<?php echo $mostrar['Cod_Equipo'] ?>"
                       required
-                      disabled
+                      name="Cod_Equipo"
                     />
                   </center>
                 </td>

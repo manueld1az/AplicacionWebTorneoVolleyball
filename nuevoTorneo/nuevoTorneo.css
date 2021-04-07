@@ -23,3 +23,14 @@ a:hover {
 article:hover {
   background-color: #1d3557c7;
 }
+
+.botonGuardarDatosAlerta {
+  width: 18em ;
+  margin-top: 1em ;
+  background-color: #1d3557 ;
+  color: aliceblue ;
+}
+
+.botonGuardarDatosAlerta:hover {
+  color: aliceblue ;
+}

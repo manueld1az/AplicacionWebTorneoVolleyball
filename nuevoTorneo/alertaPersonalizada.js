@@ -4,11 +4,11 @@ function alertaInicioTorneo() {
         //text:
         html: '<form class="needs-validation" novalidate action="guardarDatosAlerta.php" method="POST"><label for="inicioTorneo"><b class="textoAlerta">Ingrese la fecha del primer partido</b></label>' +
             '<p> </p>' +
-            '<input type="date" name="fechaInicioTorneo" id="inicioTorneo" class="container form-control" requerid>' +
+            '<input type="date" name="fechaInicioTorneo" class="container form-control" required>' +
             '<p> </p>' +
             '<label for="inicioTorneo"><b class="textoAlerta">Ingrese la hora del primer partido</b></label>' +
             '<p> </p>' +
-            '<input type="time" name="horaInicioTorneo" id="inicioTorneo" class="container form-control" requerid>' +
+            '<input type="time" name="horaInicioTorneo" class="container form-control" required>' +
             '<button type="submit" name="botonGuardarDatosAlerta" class="btn botonGuardarDatosAlerta"><b>Registrar</b></button></form>',
         icon: 'warning',
         confirmButtonText: 'Guardar',

@@ -29,6 +29,7 @@
     <div class="container">
       <h3 class="tittleMain">Grupos</h3>
     </div>
+    <?php include("../../conexion/conexionServer.php"); ?>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-3">
         <table class="table table-hover">
@@ -45,7 +46,6 @@
           </thead>
           <?php
 
-          include("../../conexion/conexionServer.php");
           $sql = "SELECT MIN(Cod_Equipo) AS idMenor FROM equipos";
           $consulta = mysqli_query($conexion, $sql);
           $equipos = mysqli_fetch_array($consulta);

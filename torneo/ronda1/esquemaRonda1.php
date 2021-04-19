@@ -35,13 +35,21 @@
     <div class="row">
 
       <?php
+
+      //  CONSULTA CON LOS NOMBRES DE LOS EQUIPOS
+
       $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
       $sql = "SELECT Nombre_Equipo FROM equipos";
       $consulta = mysqli_query($conexion, $sql);
 
+      //  SE AGREGAN LOS EQUIPOS DE LA CONSULTA SQL EN EL ARRAY $equipo[]
+
       while ($equipos = mysqli_fetch_array($consulta)) {
         $equipo[] = $equipos["Nombre_Equipo"];
       }
+
+      //  SE CREA LA LISTA "listaTabla" DE NUMEROS ALEATORIOS, 
+      //  PARA ORDENAR LOS EUIPOS SEGUN ESTA LISTA
 
       $listaTabla = [];
 
@@ -59,6 +67,8 @@
       /*echo "<pre>";
       print_r($listaTabla);
       echo "</pre>";*/
+
+      // SE MUESTRAN LAS TABLAS CON LOS EQUIPOS ORDENADOS POR LA LISA ALEATORIA
 
       for ($i = 0; $i < 8; $i++) {
       ?>
@@ -84,21 +94,21 @@
                     <center>
                       <?php
                       if ($i == 0) {
-                        echo $listaTabla[$j];
+                        echo $equipo[$listaTabla[$j]];
                       } else if ($i == 1) {
-                        echo $listaTabla[$j + 4];
+                        echo $equipo[$listaTabla[$j + 4]];
                       } else if ($i == 2) {
-                        echo $listaTabla[$j + 8];
+                        echo $equipo[$listaTabla[$j + 8]];
                       } else if ($i == 3) {
-                        echo $listaTabla[$j + 12];
+                        echo $equipo[$listaTabla[$j + 12]];
                       } else if ($i == 4) {
-                        echo $listaTabla[$j + 16];
+                        echo $equipo[$listaTabla[$j + 16]];
                       } else if ($i == 5) {
-                        echo $listaTabla[$j + 20];
+                        echo $equipo[$listaTabla[$j + 20]];
                       } else if ($i == 6) {
-                        echo $listaTabla[$j + 24];
+                        echo $equipo[$listaTabla[$j + 24]];
                       } else if ($i == 7) {
-                        echo $listaTabla[$j + 28];
+                        echo $equipo[$listaTabla[$j + 28]];
                       }
                       ?>
                     </center>

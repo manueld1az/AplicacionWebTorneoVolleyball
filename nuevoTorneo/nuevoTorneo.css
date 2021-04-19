@@ -25,12 +25,14 @@ article:hover {
 }
 
 .botonGuardarDatosAlerta {
-  width: 18em ;
-  margin-top: 1em ;
-  background-color: #1d3557 ;
-  color: aliceblue ;
+  width: 100%;
+  margin-top: 1em;
+  background-color: #1d3557;
+  color: aliceblue;
+  border: #1d3557 solid 1px;
 }
 
 .botonGuardarDatosAlerta:hover {
-  color: aliceblue ;
+  color: #1d3557;
+  background-color: aliceblue;
 }

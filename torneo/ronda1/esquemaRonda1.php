@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,7 @@
   <title>Fase de grupos</title>
   <link rel="stylesheet" href="../../nuevoTorneo/listados/listas.css" />
 </head>
+
 <body>
   <header class="container">
     <div class="row">
@@ -31,285 +33,86 @@
     </div>
     <?php include("../../conexion/conexionServer.php"); ?>
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 1</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
 
-          $sql = "SELECT MIN(Cod_Equipo) AS idMenor FROM equipos";
-          $consulta = mysqli_query($conexion, $sql);
-          $equipos = mysqli_fetch_array($consulta);
-          $idMenor = $equipos['idMenor'];
-          $idMenor--;
+      <?php
+      $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
+      $sql = "SELECT Nombre_Equipo FROM equipos";
+      $consulta = mysqli_query($conexion, $sql);
 
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
-            <tbody>
+      while ($equipos = mysqli_fetch_array($consulta)) {
+        $equipo[] = $equipos["Nombre_Equipo"];
+      }
+
+      $listaTabla = [];
+
+      $x = 0;
+      $num = 32;
+
+      while ($x < $num) {
+        $num_aleatorio = rand(0, 31);
+        if (!in_array($num_aleatorio, $listaTabla)) {
+          array_push($listaTabla, $num_aleatorio);
+          $x++;
+        }
+      }
+
+      /*echo "<pre>";
+      print_r($listaTabla);
+      echo "</pre>";*/
+
+      for ($i = 0; $i < 8; $i++) {
+      ?>
+        <div class="col-xs-12 col-sm-12 col-md-3">
+          <table class="table table-hover">
+            <thead>
               <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>GRUPO <?php echo $nombreGrupos[$i]; ?></center>
+                    </b>
+                  </p>
                 </td>
               </tr>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 2</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
-
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
+            </thead>
             <tbody>
-              <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
-                </td>
-              </tr>
+              <?php
+              for ($j = 0; $j < 4; $j++) {
+              ?>
+                <tr>
+                  <td>
+                    <center>
+                      <?php
+                      if ($i == 0) {
+                        echo $listaTabla[$j];
+                      } else if ($i == 1) {
+                        echo $listaTabla[$j + 4];
+                      } else if ($i == 2) {
+                        echo $listaTabla[$j + 8];
+                      } else if ($i == 3) {
+                        echo $listaTabla[$j + 12];
+                      } else if ($i == 4) {
+                        echo $listaTabla[$j + 16];
+                      } else if ($i == 5) {
+                        echo $listaTabla[$j + 20];
+                      } else if ($i == 6) {
+                        echo $listaTabla[$j + 24];
+                      } else if ($i == 7) {
+                        echo $listaTabla[$j + 28];
+                      }
+                      ?>
+                    </center>
+                  </td>
+                </tr>
+              <?php
+              }
+              ?>
             </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 3</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
-
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
-            <tbody>
-              <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
-                </td>
-              </tr>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 4</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
-
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
-            <tbody>
-              <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
-                </td>
-              </tr>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 5</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
-
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
-            <tbody>
-              <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
-                </td>
-              </tr>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 6</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
-
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
-            <tbody>
-              <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
-                </td>
-              </tr>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 7</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
-
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
-            <tbody>
-              <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
-                </td>
-              </tr>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-
-      <div class="col-xs-12 col-sm-12 col-md-3">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <td class="columnaCabecera">
-                <p>
-                  <b>
-                    <center>GRUPO 8</center>
-                  </b>
-                </p>
-              </td>
-            </tr>
-          </thead>
-          <?php
-
-          for ($i = 0; $i < 4; $i++) {
-            $idMenor++;
-            $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo='$idMenor'";
-            $consulta = mysqli_query($conexion, $sql);
-            $equipos = mysqli_fetch_array($consulta);
-          ?>
-            <tbody>
-              <tr>
-                <td>
-                  <center><?php echo $equipos['Nombre_Equipo']; ?></center>
-                </td>
-              </tr>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
-      </div>
-    </div>
-
+          </table>
+        </div>
+      <?php
+      }
+      ?>
   </main>
 
   <!-- Scripts de boostrap-->

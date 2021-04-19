@@ -30,6 +30,26 @@
     name="botonGuardarDatosAlerta"
     class="btn botonGuardarDatosAlerta"
   >
+
+  <?php
+  $listaTabla = [];
+      
+      $x=0;
+      $num=8;
+
+      while ($x<$num) {
+        $num_aleatorio = rand(0,7);
+        if (!in_array($num_aleatorio,$listaTabla)) {
+          array_push($listaTabla,$num_aleatorio);
+          $x++;
+        }
+      }
+      
+      echo "<pre>";
+      print_r($listaTabla);
+      echo "</pre>";
+  ?>
     <b>Registrar</b>
   </button>
+  <button type="submit" (click)="validarInputs" name="botonGuardarDatosAlerta" class="btn botonGuardarDatosAlerta"><b>Registrar</b></button>
 </form>

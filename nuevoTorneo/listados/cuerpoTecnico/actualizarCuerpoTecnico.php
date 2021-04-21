@@ -107,6 +107,15 @@
               action="registrarActualizarCuerpoTecnico.php"
               method="POST"
             >
+            <input
+                      type="hidden"
+                      name="NumeroRegistro"
+                      class="form-control"
+                      id="validationCustom01"
+                      min="0"
+                      value="<?php echo $mostrar['NumeroRegistro'] ?>"
+                      required
+                    /> 
             <tr>
             <td>
               <center>
@@ -118,7 +127,6 @@
                       min="0"
                       value="<?php echo $mostrar['id_Cuerpotecnico'] ?>"
                       required
-                      disabled
                     />
                     </center>
                 </td>  

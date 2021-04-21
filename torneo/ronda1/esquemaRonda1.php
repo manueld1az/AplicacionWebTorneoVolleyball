@@ -39,7 +39,7 @@
       //  CONSULTA CON LOS NOMBRES DE LOS EQUIPOS
 
       $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
-      $sql = "SELECT Nombre_Equipo FROM equipos";
+      $sql = "SELECT Nombre_Equipo FROM equipos ORDER BY posicionSorteada";
       $consulta = mysqli_query($conexion, $sql);
 
       //  SE AGREGAN LOS EQUIPOS DE LA CONSULTA SQL EN EL ARRAY $equipo[]
@@ -47,6 +47,10 @@
       while ($equipos = mysqli_fetch_array($consulta)) {
         $equipo[] = $equipos["Nombre_Equipo"];
       }
+
+      /*echo "<pre>";
+      print_r($equipo);
+      echo "</pre>";*/
 
       //  SE CREA LA LISTA "listaTabla" DE NUMEROS ALEATORIOS, 
       //  PARA ORDENAR LOS EUIPOS SEGUN ESTA LISTA
@@ -64,13 +68,10 @@
         }
       }
 
-      /*echo "<pre>";
-      print_r($listaTabla);
-      echo "</pre>";*/
-
       // SE MUESTRAN LAS TABLAS CON LOS EQUIPOS ORDENADOS POR LA LISA ALEATORIA
 
       for ($i = 0; $i < 8; $i++) {
+
       ?>
         <div class="col-xs-12 col-sm-12 col-md-3">
           <table class="table table-hover">
@@ -94,21 +95,21 @@
                     <center>
                       <?php
                       if ($i == 0) {
-                        echo $equipo[$listaTabla[$j]];
+                        echo $equipo[$j];
                       } else if ($i == 1) {
-                        echo $equipo[$listaTabla[$j + 4]];
+                        echo $equipo[$j + 4];
                       } else if ($i == 2) {
-                        echo $equipo[$listaTabla[$j + 8]];
+                        echo $equipo[$j + 8];
                       } else if ($i == 3) {
-                        echo $equipo[$listaTabla[$j + 12]];
+                        echo $equipo[$j + 12];
                       } else if ($i == 4) {
-                        echo $equipo[$listaTabla[$j + 16]];
+                        echo $equipo[$j + 16];
                       } else if ($i == 5) {
-                        echo $equipo[$listaTabla[$j + 20]];
+                        echo $equipo[$j + 20];
                       } else if ($i == 6) {
-                        echo $equipo[$listaTabla[$j + 24]];
+                        echo $equipo[$j + 24];
                       } else if ($i == 7) {
-                        echo $equipo[$listaTabla[$j + 28]];
+                        echo $equipo[$j + 28];
                       }
                       ?>
                     </center>
@@ -122,6 +123,38 @@
         </div>
       <?php
       }
+
+      // Sorteo terminado, se guarda el nuevo orden de los equipos
+
+      
+
+      $sql = "ALTER TABLE `torneovoleibol`.`equipos` 
+              ADD COLUMN `posicionSorteada` INT AFTER `Ptos_Equipo`,
+              ADD UNIQUE INDEX `posicionSorteada_UNIQUE` (`posicionSorteada`)";
+      $resultado = mysqli_query($conexion, $sql);
+
+      $sql = "SELECT Cod_Equipo FROM `torneovoleibol`.`equipos`";
+      $consulta = mysqli_query($conexion, $sql);
+
+      while ($codigEequipos = mysqli_fetch_array($consulta)) {
+        $codigEequipo[] = $codigEequipos["Cod_Equipo"];
+      }
+
+
+      $posicion = 0;
+      for ($s = 0; $s <= 31; $s++) {
+        if ($posicion < 30) {
+          $posicion = $listaTabla[$s + 1];
+        }
+        $sql = "UPDATE `torneovoleibol`.`equipos` 
+                SET posicionSorteada = " . $posicion . "
+                WHERE ( Cod_Equipo = " . $codigEequipo[$s] . " )";
+        $resultado = mysqli_query($conexion, $sql);
+      }
+
+      /*echo "<pre>";
+      print_r($listaTabla);
+      echo "</pre>";*/
       ?>
   </main>
 

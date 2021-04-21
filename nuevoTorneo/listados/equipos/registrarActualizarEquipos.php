@@ -1,12 +1,14 @@
 <?php
     include("../../../conexion/conexionServer.php");
+    $NumeroRegistro=$_POST["NumeroRegistro"];
     $codigoEquipo=$_POST["Cod_Equipo"];
     $nombreColegio = $_POST["Nombre_Colegio"];
     $nombreEquipo = $_POST["Nombre_Equipo"];
 
     $sql = "UPDATE equipos 
-    SET Nombre_Colegio='$nombreColegio', Nombre_Equipo='$nombreEquipo'
-    WHERE Cod_Equipo='$codigoEquipo'";
+    SET Nombre_Colegio='$nombreColegio', Nombre_Equipo='$nombreEquipo',
+    Cod_Equipo='$codigoEquipo'
+    WHERE NumeroRegistro='$NumeroRegistro'";
 
 $actualizar = mysqli_query($conexion, $sql);
 

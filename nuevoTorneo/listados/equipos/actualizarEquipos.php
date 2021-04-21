@@ -86,6 +86,15 @@
               action="registrarActualizarEquipos.php"
               method="POST"
             >
+            <input
+                      type="hidden"
+                      name="NumeroRegistro"
+                      class="form-control"
+                      id="validationCustom01"
+                      min="0"
+                      value="<?php echo $mostrar['NumeroRegistro'] ?>"
+                      required
+                    />  
               <tr>
                 <td>
                   <center>

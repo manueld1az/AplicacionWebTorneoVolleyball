@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,7 @@
     <title>Fase de grupos</title>
     <link rel="stylesheet" href="../../nuevoTorneo/listados/listas.css" />
 </head>
+
 <body>
     <header class="container">
         <div class="row">
@@ -29,707 +31,305 @@
         <div class="container">
             <h3 class="tittleMain">Encuentros Fase de Grupos</h3>
         </div>
+        <?php include("../../conexion/conexionServer.php"); ?>
         <div class="row">
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO A</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <?php
+            <?php
+            for ($i = 0; $i < 8; $i++) {
+                $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
+            ?>
+                <div class="col-xs-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td class="columnaCabecera"></td>
+                                <td class="columnaCabecera">
+                                    <p>
+                                        <b>
+                                            <center>GRUPO <?php echo $nombreGrupos[$i]; ?>
+                                            </center>
+                                        </b>
+                                    </p>
+                                </td>
+                                <td class="columnaCabecera"></td>
+                            </tr>
+                        </thead>
+                        <?php
+                        $sql = "SELECT Nombre_Equipo FROM equipos ORDER BY posicionSorteada";
+                        $consulta = mysqli_query($conexion, $sql);
+                        $equipo = [];
 
-                    include("../../conexion/conexionServer.php");
+                        while ($equipos = mysqli_fetch_array($consulta)) {
+                            $equipo[] = $equipos["Nombre_Equipo"];
+                        }
+                        ?>
+                        <tbody>
+                            <?php
+                            for ($j = 0; $j < 6; $j++) {
+                            ?>
+                                <tr>
+                                    <td>
+                                        <center>
+                                            <?php
 
-                    $sql = "SELECT Cod_Equipo FROM equipos";
-                    $consulta = mysqli_query($conexion, $sql);
-                    $equipo = [];
+                                            /*  Esta variable se encarga de aumentar
+                                                la posicion del array equipo para 
+                                                hacer el salto de equipos entre tablas.*/
+                                            $aumentoPosicion = 4;
 
-                    while ($equipos = mysqli_fetch_array($consulta)) {
-                        $equipo[] = $equipos["Cod_Equipo"];
-                    }
-                    ?>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[0]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[1]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[0]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[2]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[0]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[3]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[1]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[2]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[1]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[3]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[2]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[3]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO B</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[4]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[5]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[4]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[6]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[4]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[7]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[5]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[6]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[5]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[7]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[6]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[7]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO C</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[8]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[9]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[8]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[10]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[8]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[11]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[9]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[10]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[9]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[11]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[10]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[11]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO D</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[12]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[13]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[12]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[14]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[12]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[15]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[13]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[14]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[13]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[15]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[14]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[15]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO E</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[16]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[17]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[16]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[18]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[16]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[19]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[17]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[18]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[17]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[19]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[18]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[19]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO F</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[20]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[21]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[20]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[22]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[20]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[23]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[21]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[22]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[21]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[23]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[22]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[23]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO G</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[24]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[25]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[24]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[26]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[24]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[27]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[25]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[26]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[25]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[27]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[26]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[27]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-xs-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <td class="columnaCabecera"></td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>GRUPO H</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[28]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[29]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[28]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[30]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[28]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[31]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[29]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[30]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[29]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[31]; ?></center>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <center><?php echo $equipo[30]; ?></center>
-                            </td>
-                            <td>
-                                <center>VS</center>
-                            </td>
-                            <td>
-                                <center><?php echo $equipo[31]; ?></center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+                                            if ($i == 0) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4];
+                                                }
+                                            } else if ($i == 1) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1 + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 2) {
+                                                $aumentoPosicion = 8;
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1 + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 3) {
+                                                $aumentoPosicion = 12;
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1 + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 4) {
+                                                $aumentoPosicion = 16;
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1 + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 5) {
+                                                $aumentoPosicion = 20;
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1 + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 6) {
+                                                $aumentoPosicion = 24;
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1 + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 7) {
+                                                $aumentoPosicion = 28;
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j - 1 + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 4 + $aumentoPosicion];
+                                                }
+                                            }
+                                            ?>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>VS</center>
+                                    </td>
+                                    <td>
+                                        <center>
+                                            <?php
+                                            if ($i == 0) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2];
+                                                }
+                                            } else if ($i == 1) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3 + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 2) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3 + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 3) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3 + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 4) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3 + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 5) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3 + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 6) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3 + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                }
+                                            } else if ($i == 7) {
+                                                if ($j == 0) {
+                                                    echo $equipo[$j + 1 + $aumentoPosicion];
+                                                } else if ($j == 1) {
+                                                    echo $equipo[$j + 2 + $aumentoPosicion];
+                                                } else if ($j == 2) {
+                                                    echo $equipo[$j + $aumentoPosicion];
+                                                } else if ($j == 3) {
+                                                    echo $equipo[$j - 3 + $aumentoPosicion];
+                                                } else if ($j == 4) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                } else if ($j == 5) {
+                                                    echo $equipo[$j - 2 + $aumentoPosicion];
+                                                }
+                                            }
+                                            ?>
+                                        </center>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php
+            }
+            ?>
     </main>
 
     <!-- Scripts de boostrap-->

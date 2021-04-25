@@ -12,6 +12,11 @@ h1 {
   height: 20vh;
   padding: 1vh;
 }
+.imgHeaderIcom {
+  width: 20vh;
+  height: 20vh;
+  padding: 1vh;
+}
 
 a {
   text-decoration: none;

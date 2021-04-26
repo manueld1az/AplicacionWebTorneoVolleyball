@@ -34,6 +34,8 @@
         <?php include("../../conexion/conexionServer.php"); ?>
         <div class="row">
             <?php
+            $equipo1 = [];
+            $equipo2 = [];
             for ($i = 0; $i < 8; $i++) {
                 $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
             ?>
@@ -79,120 +81,168 @@
                                             if ($i == 0) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j];
+                                                    array_push($equipo1, $equipo[$j]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1];
+                                                    array_push($equipo1, $equipo[$j + 1]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1];
+                                                    array_push($equipo1, $equipo[$j - 1]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j];
+                                                    array_push($equipo1, $equipo[$j]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4];
+                                                    array_push($equipo1, $equipo[$j - 4]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4];
+                                                    array_push($equipo1, $equipo[$j - 4]);
                                                 }
                                             } else if ($i == 1) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 1 + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 2) {
                                                 $aumentoPosicion = 8;
                                                 if ($j == 0) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 1 + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 3) {
                                                 $aumentoPosicion = 12;
                                                 if ($j == 0) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 1 + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 4) {
                                                 $aumentoPosicion = 16;
                                                 if ($j == 0) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 1 + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 5) {
                                                 $aumentoPosicion = 20;
                                                 if ($j == 0) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 1 + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 6) {
                                                 $aumentoPosicion = 24;
                                                 if ($j == 0) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 1 + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 7) {
                                                 $aumentoPosicion = 28;
                                                 if ($j == 0) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j - 1 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 1 + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 4 + $aumentoPosicion];
+                                                    array_push($equipo1, $equipo[$j - 4 + $aumentoPosicion]);
                                                 }
                                             }
                                             ?>
@@ -207,114 +257,162 @@
                                             if ($i == 0) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1];
+                                                    array_push($equipo2, $equipo[$j + 1]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2];
+                                                    array_push($equipo2, $equipo[$j + 2]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j];
+                                                    array_push($equipo2, $equipo[$j]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3];
+                                                    array_push($equipo2, $equipo[$j - 3]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2];
+                                                    array_push($equipo2, $equipo[$j - 2]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2];
+                                                    array_push($equipo2, $equipo[$j - 2]);
                                                 }
                                             } else if ($i == 1) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 2 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 3 + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 2) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 2 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 3 + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 3) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 2 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 3 + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 4) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 2 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 3 + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 5) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 2 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 3 + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 6) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 2 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 3 + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 }
                                             } else if ($i == 7) {
                                                 if ($j == 0) {
                                                     echo $equipo[$j + 1 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 1 + $aumentoPosicion]);
                                                 } else if ($j == 1) {
                                                     echo $equipo[$j + 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + 2 + $aumentoPosicion]);
                                                 } else if ($j == 2) {
                                                     echo $equipo[$j + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j + $aumentoPosicion]);
                                                 } else if ($j == 3) {
                                                     echo $equipo[$j - 3 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 3 + $aumentoPosicion]);
                                                 } else if ($j == 4) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 } else if ($j == 5) {
                                                     echo $equipo[$j - 2 + $aumentoPosicion];
+                                                    array_push($equipo2, $equipo[$j - 2 + $aumentoPosicion]);
                                                 }
                                             }
                                             ?>
@@ -331,6 +429,85 @@
             }
             ?>
     </main>
+
+    <?PHP
+
+    //  Se obtiene el codigo del ultimo encuentro
+
+    $sql = "SELECT MAX(Cod_Encuentro) as mayorCodigoEncuentro FROM encuentro";
+    $consulta = mysqli_query($conexion, $sql);
+    $mayorCodigoEncuentro = mysqli_fetch_array($consulta);
+    $codigoUltimoEncuentro = $mayorCodigoEncuentro["mayorCodigoEncuentro"] + 1;
+
+    //  Se verifica que no haya ningun encuentro creado
+
+    if ($codigoUltimoEncuentro != 1) {
+        echo "ya se han creado los encuentros";
+    } else {
+
+        //                  Se guardan los datos de cada encuentro en la base de datos.
+
+        //  Se obtienen los jueces de la DB
+
+        $sql = "SELECT idJuez FROM jueces";
+        $consulta = mysqli_query($conexion, $sql);
+        $juez = [];
+
+        while ($jueces = mysqli_fetch_array($consulta)) {
+            $juez[] = $jueces["idJuez"];
+        }
+
+        $sql = "SELECT COUNT(idJuez) AS cantidadJueces FROM jueces";
+        $consulta = mysqli_query($conexion, $sql);
+        $jueces = mysqli_fetch_array($consulta);
+        $cantidadJueces = $jueces["cantidadJueces"];
+
+        for ($e = 0; $e < 48; $e++) {
+            if ($e == 0) {
+                //  La primera vez del for no sumara por que ya viene con el valor = 1
+            } else {
+                $codigoUltimoEncuentro++;
+            }
+
+            //  Se crea un numero aleatorio para el sorteo que dira cuales juces estaran en cada partido
+
+            $numAleatorio1 = -1;
+            $numAleatorio2 = -2;
+            $numAleatorio3 = -3;
+            $numAleatorio = -4;
+            $f = 0;
+            $limite = 3;
+            do {
+                $numAleatorio = rand(0, $cantidadJueces - 1);
+                if ($f == 0 && $numAleatorio != $numAleatorio1 && $numAleatorio != $numAleatorio2 && $numAleatorio != $numAleatorio3) {
+                    $numAleatorio1 = $numAleatorio;
+                    $f++;
+                } else if ($f == 1 && $numAleatorio != $numAleatorio1 && $numAleatorio != $numAleatorio2 && $numAleatorio != $numAleatorio3) {
+                    $numAleatorio2 = $numAleatorio;
+                    $f++;
+                } else if ($f == 2 && $numAleatorio != $numAleatorio1 && $numAleatorio != $numAleatorio2 && $numAleatorio != $numAleatorio3) {
+                    $numAleatorio3 = $numAleatorio;
+                    $f++;
+                }
+            } while ($f < $limite);
+
+
+
+            //  Se guarda la informacion del nuevo encuentro
+
+            $sql = "INSERT INTO encuentro ( Cod_Encuentro , Num_ronda , Cod_Equipo1 , Cod_Equipo2 , Num_Cancha , Id_Juezuno , Id_Juezdos , Id_Jueztres )
+            VALUES ( " . $codigoUltimoEncuentro . ", 1, 
+            " . $equipo1[$e] . ",  
+            " . $equipo2[$e] . ", 
+            1,
+            " . $juez[$numAleatorio1] . ",
+            " . $juez[$numAleatorio2] . ",
+            " . $juez[$numAleatorio3] . " )";
+            $consulta = mysqli_query($conexion, $sql);
+        }
+    }
+    ?>
+
 
     <!-- Scripts de boostrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

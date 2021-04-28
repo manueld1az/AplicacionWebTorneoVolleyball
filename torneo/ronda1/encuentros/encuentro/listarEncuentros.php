@@ -75,6 +75,13 @@
                             <td class="columnaCabecera">
                                 <p>
                                     <b>
+                                        <center>Hora Encuentro</center>
+                                    </b>
+                                </p>
+                            </td>
+                            <td class="columnaCabecera">
+                                <p>
+                                    <b>
                                         <center>Equipo Uno</center>
                                     </b>
                                 </p>
@@ -153,6 +160,9 @@
                                 </td>
                                 <td>
                                     <center><?php echo $mostrar['Fecha'] ?></center>
+                                </td>
+                                <td>
+                                    <center><?php echo $mostrar['Hora'] ?></center>
                                 </td>
                                 <td>
                                     <center><?php echo $mostrar['Cod_Equipo1'] ?></center>

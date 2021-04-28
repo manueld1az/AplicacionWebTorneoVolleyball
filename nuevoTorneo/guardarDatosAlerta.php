@@ -1,20 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    if (isset($_POST["botonGuardarDatosAlerta"])) {
+<?php
 
+if (isset($_POST["botonGuardarDatosAlerta"])) {
+
+    include("../conexion/conexionServer.php");
+
+    //  Se obtiene la fecha del ultimo encuentro
+
+    $sql = "SELECT MAX(Fecha) as mayorFechaEncuentro FROM encuentro";
+    $consulta = mysqli_query($conexion, $sql);
+    $mayorFechaEncuentro = mysqli_fetch_array($consulta);
+    $ultimaFechaEncuentro = $mayorFechaEncuentro["mayorFechaEncuentro"];
+
+
+    if ($ultimaFechaEncuentro == 0) {
+
+        //  Obtengo la fecha, hora y cantidad de encuentros diarios para hacer el salto diario de fechas y hora.
+        //  Estos datos son ingresados por el usuario.
         $fechaInicioTorneo = $_POST['fechaInicioTorneo'];
-        $horaInicioTorneo = $_POST['horaInicioTorneo'];
+        //$horaInicioTorneo = $_POST['horaInicioTorneo'];
+        $cantidadEncuentrosDiarios = $_POST["cantidadEncuentrosSemana"];
+        //  Cambio los nimbres de las variables y les doy el mismo valor recibido del usuario
+        $ultimaFechaTorneo = $fechaInicioTorneo;
+        //$ultimaHoraTorneo = $horaInicioTorneo;
+        //  Esta variable se encarga de contar las filas modificadas para hacer el salto sumando un dia
+        $contador = 0;
 
-        echo "La fecha es: ".$fechaInicioTorneo."<br /> La hora es: ".$horaInicioTorneo;
+        for ($i = 1; $i <= 48; $i++) {
+            if ($contador == $cantidadEncuentrosDiarios) {
+                //  Si el contador se iguala a la cantidad de partidos diarios ingresados por el usuario 
+                //  se suma un dia a la ultima fecha y hora para hacer el salto diario.
+                $ultimaFechaTorneo = date("Y-m-j", strtotime($ultimaFechaTorneo . "+ 1 days"));
+
+                $sql = "UPDATE encuentro 
+                        SET Fecha = '$ultimaFechaTorneo'
+                        WHERE ( Cod_Encuentro = '$i' )";
+                $ingresar = mysqli_query($conexion, $sql);
+
+                echo "<br> Fecha if-'$i'" . $ultimaFechaTorneo;
+                //  Se reinicia el contador para que empiece denuevo el conteo de partidos diarios.
+                $contador = 1;
+            } else {
+                //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la 
+                //  cantidad de partidos diarios ingresados por el usuario
+                $sql = "UPDATE encuentro 
+                        SET Fecha = '$ultimaFechaTorneo'
+                        WHERE ( Cod_Encuentro = '$i' )";
+                $ingresar = mysqli_query($conexion, $sql);
+
+                echo "<br> Fecha else-'$i'" . $ultimaFechaTorneo;
+                $contador++;
+            }
+        }
+    } else {
+        for ($i = 1; $i <= 48; $i++) {
+            $sql = "UPDATE encuentro 
+                        SET Fecha = 0
+                        WHERE ( Cod_Encuentro = $i )";
+            $ingresar = mysqli_query($conexion, $sql);
+        }
     }
-    ?>
-</body>
-</html>
+}

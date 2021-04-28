@@ -43,11 +43,18 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <td class="columnaCabecera">
+                                    <p>
+                                        <b>
+                                            <center>Fechas</center>
+                                        </b>
+                                    </p>
+                                </td>
                                 <td class="columnaCabecera"></td>
                                 <td class="columnaCabecera">
                                     <p>
                                         <b>
-                                            <center>GRUPO <?php echo $nombreGrupos[$i]; ?>
+                                            <center>Grupo <?php echo $nombreGrupos[$i]; ?>
                                             </center>
                                         </b>
                                     </p>
@@ -69,6 +76,9 @@
                             for ($j = 0; $j < 6; $j++) {
                             ?>
                                 <tr>
+                                    <td>
+                                        <center>22/12/2222</center>
+                                    </td>
                                     <td>
                                         <center>
                                             <?php
@@ -442,7 +452,7 @@
     //  Se verifica que no haya ningun encuentro creado
 
     if ($codigoUltimoEncuentro != 1) {
-        echo "ya se han creado los encuentros";
+        //  ya se han creado los encuentros y guardado en la base de datos
     } else {
 
         //                  Se guardan los datos de cada encuentro en la base de datos.
@@ -490,8 +500,6 @@
                     $f++;
                 }
             } while ($f < $limite);
-
-
 
             //  Se guarda la informacion del nuevo encuentro
 

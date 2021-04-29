@@ -15,7 +15,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
             integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
             crossorigin="anonymous"/>
-        <title>Modificar Jugadoras</title>
+        <title>Modificar Set</title>
         <link rel="stylesheet" href="../../../../nuevoTorneo/listados/listas.css"/>
     </head>
 
@@ -31,7 +31,7 @@
         </header>
         <main class="container main">
             <div class="container">
-                <h3 class="tittleMain">Modificar Encuentros</h3>
+                <h3 class="tittleMain">Modificar Set</h3>
             </div>
             <center><i class="fas fa-users avatar"></i><br /></center>
             <div class="table-responsive">
@@ -41,35 +41,14 @@
                             <td class="columnaCabecera">
                                 <p>
                                     <b>
+                                        <center>Codigo Set</center>
+                                    </b>
+                                </p>
+                            </td>
+                            <td class="columnaCabecera">
+                                <p>
+                                    <b>
                                         <center>Codigo Encuentro</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Grupo</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Fecha</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Hora</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Codigo Equipo Uno</center>
                                     </b>
                                 </p>
                             </td>
@@ -83,42 +62,7 @@
                             <td class="columnaCabecera">
                                 <p>
                                     <b>
-                                        <center>Codigo Equipo Dos</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
                                         <center>Puntos Equipo Dos</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Cancha</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Juez Uno</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Juez Dos</center>
-                                    </b>
-                                </p>
-                            </td>
-                            <td class="columnaCabecera">
-                                <p>
-                                    <b>
-                                        <center>Juez Tres</center>
                                     </b>
                                 </p>
                             </td>
@@ -133,8 +77,8 @@
                     </thead>
                     <?php
                     include("../../../../conexion/conexionServer.php");
-                    $NumregistroEncuentro=$_GET["NumregistroEncuentro"];
-                    $sql = "SELECT * FROM encuentro where NumregistroEncuentro='$NumregistroEncuentro'";
+                    $NumregistroSet=$_GET["NumregistroSet"];
+                    $sql = "SELECT * FROM puntaje where NumregistroSet='$NumregistroSet'";
                     $consulta = mysqli_query($conexion, $sql);
                     while ($mostrar = mysqli_fetch_assoc($consulta)) {
                     ?>
@@ -142,15 +86,15 @@
                         <form
                             class="row g-3 needs-validation"
                             novalidate
-                            action="registrarActualizarEncuentros.php"
+                            action="registrarActualizarSet.php"
                             method="POST">
                             <input
                                 type="hidden"
-                                name="NumregistroEncuentro"
+                                name="NumregistroSet"
                                 class="form-control"
                                 id="validationCustom01"
                                 min="0"
-                                value="<?php echo $mostrar['NumregistroEncuentro'] ?>"
+                                value="<?php echo $mostrar['NumregistroSet'] ?>"
                                 required/>  
                             <tr>                    
                                 <td>
@@ -158,45 +102,33 @@
                                         <input
                                             type="number"
                                             class="form-control"
-                                            name="Cod_Encuentro"
+                                            name="Cod_Set"
                                             id="validationCustom01"
                                             min="0"
+                                            value="<?php echo $mostrar['Cod_Set'] ?>"
+                                            required/>
+                                    </center>
+                                </td>
+                                <td>
+                                    <center>
+                                        <input
+                                            type="number"
+                                            name="Cod_Encuentro"
+                                            class="form-control"
+                                            id="validationCustom01"
                                             value="<?php echo $mostrar['Cod_Encuentro'] ?>"
                                             required/>
+                                        <div class="valid-feedback">Looks good!</div>
                                     </center>
                                 </td>
                                 <td>
                                     <center>
                                         <input
                                             type="number"
-                                            name="Grupo"
+                                            name="codigoEquipo"
                                             class="form-control"
                                             id="validationCustom01"
-                                            value="<?php echo $mostrar['Grupo'] ?>"
-                                            required/>
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="date"
-                                            name="Fecha"
-                                            class="form-control"
-                                            id="validationCustom01"
-                                            value="<?php echo $mostrar['Fecha'] ?>"
-                                            required/>
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="time"
-                                            name="Hora"
-                                            class="form-control"
-                                            id="validationCustom01"
-                                            value="<?php echo $mostrar['Hora'] ?>"
+                                            value="<?php echo $mostrar['codigoEquipo'] ?>"
                                             required/>
                                         <div class="valid-feedback">Looks good!</div>
                                     </center>
@@ -205,36 +137,12 @@
                                     <center>
                                         <input
                                             type="number"
-                                            class="form-control"
-                                            name="Cod_Equipo1"
-                                            id="validationCustom01"
-                                            min="0"
-                                            value="<?php echo $mostrar['Cod_Equipo1'] ?>"
-                                            required/>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="number"
-                                            class="form-control"
                                             name="Ptos_Equipo1"
+                                            class="form-control"
                                             id="validationCustom01"
-                                            min="0"
                                             value="<?php echo $mostrar['Ptos_Equipo1'] ?>"
                                             required/>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            name="Cod_Equipo2"
-                                            id="validationCustom01"
-                                            min="0"
-                                            value="<?php echo $mostrar['Cod_Equipo2'] ?>"
-                                            required/>
+                                        <div class="valid-feedback">Looks good!</div>
                                     </center>
                                 </td>
                                 <td>
@@ -251,54 +159,6 @@
                                 </td>
                                 <td>
                                     <center>
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            name="idCancha"
-                                            id="validationCustom01"
-                                            min="0"
-                                            value="<?php echo $mostrar['idCancha'] ?>"
-                                            required/>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            name="Id_Juezuno"
-                                            id="validationCustom01"
-                                            min="0"
-                                            value="<?php echo $mostrar['Id_Juezuno'] ?>"
-                                            required/>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            name="Id_Juezdos"
-                                            id="validationCustom01"
-                                            min="0"
-                                            value="<?php echo $mostrar['Id_Juezdos'] ?>"
-                                            required/>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            name="Id_Jueztres"
-                                            id="validationCustom01"
-                                            min="0"
-                                            value="<?php echo $mostrar['Id_Jueztres'] ?>"
-                                            required/>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
                                         <button
                                             type="submit"
                                             name="submit"
@@ -308,7 +168,7 @@
                                         <i class="far fa-check-square"></i>
                                         </button>
                                         <a
-                                            href="listarEncuentros.php"
+                                            href="listarSet.php"
                                             title="Cancelar"
                                             id="botonesLista">
                                             <i class="far fa-window-close"></i>

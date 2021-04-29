@@ -51,12 +51,5 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
                 $contador++;
             }
         }
-    } else {
-        for ($i = 1; $i <= 48; $i++) {
-            $sql = "UPDATE encuentro 
-                        SET Fecha = 0
-                        WHERE ( Cod_Encuentro = $i )";
-            $ingresar = mysqli_query($conexion, $sql);
-        }
     }
 }

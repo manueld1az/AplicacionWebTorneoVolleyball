@@ -34,7 +34,7 @@
                     </a>
                 </div>
                 <div class="col-auto">
-                    <a href="../registroEncuentros/encuentro/encuentros.html">
+                    <a href="../registroEncuentros/set/set.html">
                     <button class="btn button2" type="button">
                         <b><i class="fas fa-plus-circle"></i> Set</b>
                     </button>

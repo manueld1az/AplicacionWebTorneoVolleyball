@@ -189,17 +189,17 @@
                                     <center><?php echo $mostrar['Id_Jueztres'] ?></center>
                                 </td>
                                 <td>
-                                    <center>
+                                <center>
                                         <a
-                                        href="actualizarEncuentros.php?NumeroRegistro=<?php echo $mostrar['NumeroRegistro'] ?> "
+                                        href="actualizarEncuentros.php?NumRegistroEncuentros=<?php echo $mostrar['NumRegistroEncuentros'] ?> "
                                         title="Editar"
                                         aria-hidden="true">
                                         <i class="fas fa-edit botonEditar"></i>
                                         </a>
                                         <a
-                                        href="eliminarEncuentros.php?NumeroRegistro=<?php echo $mostrar['NumeroRegistro'] ?>"
+                                        href="eliminarEncuentros.php?NumRegistroEncuentros=<?php echo $mostrar['NumRegistroencuentros'] ?>"
                                         title="Eliminar"
-                                        name="NumeroRegistro"
+                                        name="NumRegistroEncuentros"
                                         aria-hidden="true"
                                         class="botonEliminar">
                                         <i class="fas fa-trash-alt"></i>

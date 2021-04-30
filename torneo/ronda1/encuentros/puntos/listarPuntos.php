@@ -97,7 +97,7 @@
                     </thead>
                     <?php
                     include("../../../../conexion/conexionServer.php");
-                    $sql = "SELECT * FROM zet";
+                    $sql = "SELECT * FROM puntaje";
                     $consulta = mysqli_query($conexion, $sql);
                     while ($mostrar = mysqli_fetch_assoc($consulta)) {
                     ?>

@@ -190,9 +190,8 @@
                                 </td>
                                 <td>
                                 <center>
-                                        <a
-                                        href="actualizarEncuentros.php?NumRegistroEncuentros=<?php echo $mostrar['NumRegistroEncuentros'] ?> "
-                                        title="Editar"
+                                        <a href="actualizarEncuentros.php?NumRegistroEncuentros=<?php echo $mostrar['NumRegistroEncuentros'] ?>" 
+                                        title="Editar" 
                                         aria-hidden="true">
                                         <i class="fas fa-edit botonEditar"></i>
                                         </a>

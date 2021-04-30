@@ -34,8 +34,25 @@
         <?php include("../../conexion/conexionServer.php"); ?>
         <div class="row">
             <?php
+            $sql = "SELECT Nombre_Equipo FROM equipos ORDER BY posicionSorteada";
+            $consulta = mysqli_query($conexion, $sql);
+            $equipo = [];
+
+            while ($equipos = mysqli_fetch_array($consulta)) {
+                $equipo[] = $equipos["Nombre_Equipo"];
+            }
+
+            $sql = "SELECT Fecha FROM encuentro ORDER BY Cod_Encuentro";
+            $consulta = mysqli_query($conexion, $sql);
+            $fecha = [];
+
+            while ($fechas = mysqli_fetch_array($consulta)) {
+                $fecha[] = $fechas["Fecha"];
+            }
+
             $equipo1 = [];
             $equipo2 = [];
+
             for ($i = 0; $i < 8; $i++) {
                 $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
             ?>
@@ -62,22 +79,33 @@
                                 <td class="columnaCabecera"></td>
                             </tr>
                         </thead>
-                        <?php
-                        $sql = "SELECT Nombre_Equipo FROM equipos ORDER BY posicionSorteada";
-                        $consulta = mysqli_query($conexion, $sql);
-                        $equipo = [];
-
-                        while ($equipos = mysqli_fetch_array($consulta)) {
-                            $equipo[] = $equipos["Nombre_Equipo"];
-                        }
-                        ?>
                         <tbody>
                             <?php
                             for ($j = 0; $j < 6; $j++) {
                             ?>
                                 <tr>
                                     <td>
-                                        <center>22/12/2222</center>
+                                        <center>
+                                            <?PHP
+                                            if ($i == 0) {
+                                                echo $fecha[$j];
+                                            } else if ($i == 1) {
+                                                echo $fecha[$j + 6];
+                                            } else if ($i == 2) {
+                                                echo $fecha[$j + 12];
+                                            } else if ($i == 3) {
+                                                echo $fecha[$j + 18];
+                                            } else if ($i == 4) {
+                                                echo $fecha[$j + 24];
+                                            } else if ($i == 5) {
+                                                echo $fecha[$j + 30];
+                                            } else if ($i == 6) {
+                                                echo $fecha[$j + 36];
+                                            } else if ($i == 7) {
+                                                echo $fecha[$j + 42];
+                                            }
+                                            ?>
+                                        </center>
                                     </td>
                                     <td>
                                         <center>

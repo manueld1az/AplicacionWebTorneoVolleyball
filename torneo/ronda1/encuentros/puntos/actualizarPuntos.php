@@ -84,8 +84,8 @@
                     </thead>
                     <?php
                     include("../../../../conexion/conexionServer.php");
-                    $NumregistroPuntos=$_GET["NumregistroPuntos"];
-                    $sql = "SELECT * FROM puntaje where NumregistroPuntos='$NumregistroPuntos'";
+                    $NumeroRegistro=$_GET["NumeroRegistro"];
+                    $sql = "SELECT * FROM puntaje WHERE NumeroRegistro='$NumeroRegistro'";
                     $consulta = mysqli_query($conexion, $sql);
                     while ($mostrar = mysqli_fetch_assoc($consulta)) {
                     ?>
@@ -97,11 +97,11 @@
                             method="POST">
                             <input
                                 type="hidden"
-                                name="NumregistroPuntos"
+                                name="NumeroRegistro"
                                 class="form-control"
                                 id="validationCustom01"
                                 min="0"
-                                value="<?php echo $mostrar['NumregistroPuntos'] ?>"
+                                value="<?php echo $mostrar['NumeroRegistro'] ?>"
                                 required/>  
                             <tr>                    
                                 <td>
@@ -186,7 +186,6 @@
                         </form>
                     </tbody>
                     <?php
-                    
                     }
                     ?>
                 </table>

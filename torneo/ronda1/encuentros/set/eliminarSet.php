@@ -1,8 +1,8 @@
 <?php
 include("../../../../conexion/conexionServer.php");
-$NumregistroSet = $_GET['NumregistroSet'];
+$NumeroRegistro = $_GET['NumeroRegistro'];
 
-$sql = "DELETE FROM zet WHERE NumregistroSet='$NumregistroSet'";
+$sql = "DELETE FROM zet WHERE NumeroRegistro='$NumeroRegistro'";
 
 $eliminar = mysqli_query($conexion, $sql);
 
@@ -12,5 +12,3 @@ if ($eliminar) {
     echo "<script>alert('No se pudo eliminar');
         windows.history.go(-1);</script>";
 }
-
-?>

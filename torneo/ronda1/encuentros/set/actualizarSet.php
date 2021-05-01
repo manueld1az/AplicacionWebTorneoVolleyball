@@ -77,8 +77,8 @@
                     </thead>
                     <?php
                     include("../../../../conexion/conexionServer.php");
-                    $NumregistroSet=$_GET["NumregistroSet"];
-                    $sql = "SELECT * FROM puntaje where NumregistroSet='$NumregistroSet'";
+                    $NumeroRegistro=$_GET["NumeroRegistro"];
+                    $sql = "SELECT * FROM zet WHERE NumeroRegistro='$NumeroRegistro'";
                     $consulta = mysqli_query($conexion, $sql);
                     while ($mostrar = mysqli_fetch_assoc($consulta)) {
                     ?>
@@ -90,11 +90,11 @@
                             method="POST">
                             <input
                                 type="hidden"
-                                name="NumregistroSet"
+                                name="NumeroRegistro"
                                 class="form-control"
                                 id="validationCustom01"
                                 min="0"
-                                value="<?php echo $mostrar['NumregistroSet'] ?>"
+                                value="<?php echo $mostrar['NumeroRegistro'] ?>"
                                 required/>  
                             <tr>                    
                                 <td>
@@ -117,18 +117,6 @@
                                             class="form-control"
                                             id="validationCustom01"
                                             value="<?php echo $mostrar['Cod_Encuentro'] ?>"
-                                            required/>
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <input
-                                            type="number"
-                                            name="codigoEquipo"
-                                            class="form-control"
-                                            id="validationCustom01"
-                                            value="<?php echo $mostrar['codigoEquipo'] ?>"
                                             required/>
                                         <div class="valid-feedback">Looks good!</div>
                                     </center>
@@ -179,7 +167,6 @@
                         </form>
                     </tbody>
                     <?php
-                    
                     }
                     ?>
                 </table>

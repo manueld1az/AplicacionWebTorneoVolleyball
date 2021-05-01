@@ -1,6 +1,6 @@
 <?php
     include("../../../../conexion/conexionServer.php");
-    $NumregistroEncuentro=$_POST["NumregistroEncuentro"];
+    $Cod_Encuentro=$_POST["Cod_Encuentro"];
     $Grupo= $_POST["Grupo"];
     $Fecha= $_POST["Fecha"];
     $Hora= $_POST["Hora"];
@@ -14,11 +14,11 @@
     $idJueztres= $_POST["Id_Jueztres"];
 
     $sql = "UPDATE encuentro 
-    SET Grupo='$Grupo', Fecha='".$_POST["Fecha"]."', Hora='".$_POST["Hora"]."',
-        Cod_Equipo1='$codigoEquipo1', Ptos_Equipo1='$ptosEquipo1', Cod_equipo2='$codigoEquipo2', 
-        Ptos_Equipo2='$ptosEquipo2', idCancha='$idCancha', Id_Juezuno='$idJuezuno', 
-        Id_Juezdos='$idJuezdos', Id_Jueztres='$idJueztres'
-    WHERE NumregistroEncuentro='$NumregistroEncuentro'";
+            SET Grupo='$Grupo', Fecha='".$_POST["Fecha"]."', Hora='".$_POST["Hora"]."',
+            Cod_Equipo1='$codigoEquipo1', Ptos_Equipo1='$ptosEquipo1', Cod_equipo2='$codigoEquipo2', 
+            Ptos_Equipo2='$ptosEquipo2', idCancha='$idCancha', Id_Juezuno='$idJuezuno', 
+            Id_Juezdos='$idJuezdos', Id_Jueztres='$idJueztres'
+            WHERE Cod_Encuentro='$Cod_Encuentro'";
 
 $actualizar = mysqli_query($conexion, $sql);
 

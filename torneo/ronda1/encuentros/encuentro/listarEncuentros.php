@@ -190,15 +190,15 @@
                                 </td>
                                 <td>
                                 <center>
-                                        <a href="actualizarEncuentros.php?NumRegistroEncuentros=<?php echo $mostrar['NumRegistroEncuentros'] ?>" 
+                                        <a href="actualizarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
                                         title="Editar" 
                                         aria-hidden="true">
                                         <i class="fas fa-edit botonEditar"></i>
                                         </a>
                                         <a
-                                        href="eliminarEncuentros.php?NumRegistroEncuentros=<?php echo $mostrar['NumRegistroencuentros'] ?>"
+                                        href="eliminarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>"
                                         title="Eliminar"
-                                        name="NumRegistroEncuentros"
+                                        name="Cod_Encuentro"
                                         aria-hidden="true"
                                         class="botonEliminar">
                                         <i class="fas fa-trash-alt"></i>

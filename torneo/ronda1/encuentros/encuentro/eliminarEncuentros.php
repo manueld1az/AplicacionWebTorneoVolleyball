@@ -1,8 +1,8 @@
 <?php
 include("../../../../conexion/conexionServer.php");
-$NumregistroEncuentro = $_GET['NumregistroEncuentro'];
+$Cod_Encuentro = $_GET['Cod_Encuentro'];
 
-$sql = "DELETE FROM encuentro WHERE NumregistroEncuentro='$NumregistroEncuentro'";
+$sql = "DELETE FROM encuentro WHERE Cod_Encuentro='$Cod_Encuentro'";
 
 $eliminar = mysqli_query($conexion, $sql);
 

@@ -133,8 +133,8 @@
                     </thead>
                     <?php
                     include("../../../../conexion/conexionServer.php");
-                    $NumregistroEncuentro=$_GET["NumregistroEncuentro"];
-                    $sql = "SELECT * FROM encuentro where NumregistroEncuentro='$NumregistroEncuentro'";
+                    $Cod_Encuentro=$_GET["Cod_Encuentro"];
+                    $sql = "SELECT * FROM encuentro WHERE Cod_Encuentro='$Cod_Encuentro'";
                     $consulta = mysqli_query($conexion, $sql);
                     while ($mostrar = mysqli_fetch_assoc($consulta)) {
                     ?>
@@ -143,20 +143,12 @@
                             class="row g-3 needs-validation"
                             novalidate
                             action="registrarActualizarEncuentros.php"
-                            method="POST">
-                            <input
-                                type="hidden"
-                                name="NumregistroEncuentro"
-                                class="form-control"
-                                id="validationCustom01"
-                                min="0"
-                                value="<?php echo $mostrar['NumregistroEncuentro'] ?>"
-                                required/>  
+                            method="POST">  
                             <tr>                    
                                 <td>
                                     <center>
                                         <input
-                                            type="number"
+                                            type="hidden"
                                             class="form-control"
                                             name="Cod_Encuentro"
                                             id="validationCustom01"

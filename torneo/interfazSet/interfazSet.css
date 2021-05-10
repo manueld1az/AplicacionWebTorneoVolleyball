@@ -1,0 +1,44 @@
+header {
+    padding-top: 3vh;
+    padding-bottom: 1vh;
+  }
+  
+  h1 {
+    color: #1d3557;
+  }
+  
+  .imgFormIcon {
+    width: 20vh;
+    height: 20vh;
+    padding: 1vh;
+  }
+  .imgHeaderIcom {
+    width: 20vh;
+    height: 20vh;
+    padding: 1vh;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  a:hover {
+    color: whitesmoke;
+  }
+  article:hover {
+    background-color: #1d3557c7;
+  }
+  
+  .botonGuardarDatosAlerta {
+    width: 100%;
+    margin-top: 1em;
+    background-color: #1d3557;
+    color: aliceblue;
+    border: #1d3557 solid 1px;
+  }
+  
+  .botonGuardarDatosAlerta:hover {
+    color: #1d3557;
+    background-color: aliceblue;
+  }
+        

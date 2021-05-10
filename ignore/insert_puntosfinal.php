@@ -16,7 +16,7 @@
     // en puntaje anotados a la jugadora y se los sumamos ya en la tabla jugadoras para tener la 
     //estadistica de cuantos puntos lleva anotados en su interfaz. nota aqui solo estoy modificando 
     //pero se debe modificar el codigo para en vez de modificar sumarle esos puntos, por cada set. 
-    $sqlm= "UPDATE jugadoras SET Puntos_Anotados = '$puntosConsultados' WHERE 
+    $sqlm= "UPDATE jugadoras SET Puntos_Anotados = 'Puntos_Anotados + $puntosConsultados' WHERE 
     jugadoras.Id_Jugadora = $idJugadora;";
     // $sql = "INSERT INTO puntaje(puntos, idJugadora, codigoEquipo, codigoEncuentro, codigoSet) 
     //         VALUES ( $puntos, $idJugadora, $codigoEquipo, $codigoEncuentro, $codigoSet)";

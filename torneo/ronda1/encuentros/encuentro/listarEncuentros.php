@@ -182,28 +182,15 @@
                             </td>
                             <td>
                                 <center>
-<<<<<<< HEAD
                                         <a href="actualizarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
                                         title="Editar" 
                                         aria-hidden="true">
                                         <i class="fas fa-edit botonEditar"></i>
                                         </a>
-                                        <a
-                                        href="eliminarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>"
-                                        title="Eliminar"
-                                        name="Cod_Encuentro"
-                                        aria-hidden="true"
-                                        class="botonEliminar">
-=======
-                                    <a href="actualizarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
-                                    title="Editar" aria-hidden="true">
-                                        <i class="fas fa-edit botonEditar"></i>
-                                    </a>
-                                    <a href="eliminarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
-                                    title="Eliminar" name="Cod_Encuentro" aria-hidden="true" class="botonEliminar">
->>>>>>> fe58a1a7fc1f34d817b4ce3188359105e098e241
+                                        <a href="eliminarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
+                                        title="Eliminar" name="Cod_Encuentro" aria-hidden="true" class="botonEliminar">
                                         <i class="fas fa-trash-alt"></i>
-                                    </a>
+                                        </a>
                                 </center>
                             </td>
                         </tr>

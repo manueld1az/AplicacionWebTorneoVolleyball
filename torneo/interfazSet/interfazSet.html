@@ -43,23 +43,141 @@
         action="insert_puntosfinal.php"
         method="POST">
             <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">ID Jugadora</label>
+                <label for="validationCustom02" class="form-label">Equipo 1</label>
                 <input
                     type="number"
                    class="form-control"
-                    name="idJugadora"
+                    name="Equipo1"
                     id="validationCustom02"
                     min="0"
                     maxlength="11"
                     required/>
                 <div class="valid-feedback">Looks good!</div>
             </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <label for="validationCustom02" class="form-label">Equipo 2</label>
+              <input
+                  type="number"
+                 class="form-control"
+                  name="Equipo2"
+                  id="validationCustom02"
+                  min="0"
+                  maxlength="11"
+                  required/>
+              <div class="valid-feedback">Looks good!</div>
+          </div>
             <center>
                 <button type="submit" class="btn buttonSubmit">
                     <b>Registrar Puntos</b>
                 </button>
             </center>
         </form>
+        <div class="container">
+          <h3 class="tittleMain">Lista de Jugadoras</h3>
+        </div>
+        <center><i class="fas fa-users avatar"></i><br /></center>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>ID Jugadora</center>
+                    </b>
+                  </p>
+                </td>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>Nombre</center>
+                    </b>
+                  </p>
+                </td>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>Fecha Nacimiento</center>
+                    </b>
+                  </p>
+                </td>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>Teléfono</center>
+                    </b>
+                  </p>
+                </td>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>Equipo</center>
+                    </b>
+                  </p>
+                </td>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>Opciones</center>
+                    </b>
+                  </p>
+                </td>
+              </tr>
+            </thead>
+            <?php
+  
+          include("../../../conexion/conexionServer.php");
+          $sql = "SELECT * FROM jugadoras";
+          $consulta = mysqli_query($conexion, $sql);
+  
+          while ($mostrar = mysqli_fetch_assoc($consulta)) {
+          ?>
+            <tbody>
+              <tr>
+                <td>
+                  <center><?php echo $mostrar['Id_Jugadora'] ?></center>
+                </td>
+                <td>
+                  <center><?php echo $mostrar['Nombre'] ?></center>
+                </td>
+                <td>
+                  <center><?php echo $mostrar['FechaNacimiento'] ?></center>
+                </td>
+                <td>
+                  <center><?php echo $mostrar['Telefono'] ?></center>
+                </td>
+                <td>
+                  <center><?php echo $mostrar['Cod_equipo'] ?></center>
+                </td>
+                <td>
+                  <center>
+                    <a
+                      href="actualizarJugadoras.php?NumeroRegistro=<?php echo $mostrar['NumeroRegistro'] ?> "
+                      title="Editar"
+                      aria-hidden="true"
+                      ><i class="fas fa-edit botonEditar"></i
+                    ></a>
+                    <a
+                      href="eliminarJugadoras.php?NumeroRegistro=<?php echo $mostrar['NumeroRegistro'] ?>"
+                      title="Eliminar"
+                      name="NumeroRegistro"
+                      aria-hidden="true"
+                      class="botonEliminar"
+                      ><i class="fas fa-trash-alt"></i>
+                    </a>
+                  </center>
+                </td>
+              </tr>
+            </tbody>
+            <?php
+  
+          }
+  
+          ?>
+          </table>
+        </div>
     </main>
 
       <!-- Scripts de boostrap-->

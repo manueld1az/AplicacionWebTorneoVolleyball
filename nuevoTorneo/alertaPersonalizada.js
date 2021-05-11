@@ -1,18 +1,22 @@
 function alertaInicioTorneo() {
     Swal.fire({
         // title: 
-        //text:
+        // text:
         html: '<form class="needs-validation" novalidate action="guardarDatosAlerta.php" method="POST"><label for="inicioTorneo"><b class="textoAlerta">Ingrese la fecha del primer partido</b></label>' +
             '<p> </p>' +
             '<input type="date" name="fechaInicioTorneo" class="container form-control" required>' +
+            '<p> </p>' +
+            '<label for="inicioTorneo"><b class="textoAlerta">Ingrese la cantidad de partidos que se jugaran diariamente</b></label>' +
+            '<p> </p>' +
+            '<input type="number" name="cantidadEncuentrosSemana" class="container form-control" min="0" required >' +
             '<p> </p>' +
             '<label for="inicioTorneo"><b class="textoAlerta">Ingrese la hora del primer partido</b></label>' +
             '<p> </p>' +
             '<input type="time" name="horaInicioTorneo" class="container form-control" required>' +
             '<p> </p>' +
-            '<label for="inicioTorneo"><b class="textoAlerta">Ingrese la cantidad de partidos que se jugaran cada semana</b></label>' +
+            '<label for="inicioTorneo"><b class="textoAlerta">Ingrese el intervalo en horas aproximado que debe haber entre cada partido diario</b></label>' +
             '<p> </p>' +
-            '<input type="number" name="cantidadEncuentrosSemana" class="container form-control" min="0" required >' +
+            '<input type="number" name="intervaloEntrePartidos" class="container form-control" min="0" required>' +
             '<p> </p>' +
             '<label for="inicioTorneo" class="textoAlerta">Estos datos pueden ser modificados despues de este registro, pero debe ser antes de que se llegue al dia y hora aqui ingresado!</label>' +
             '<p> </p>' +

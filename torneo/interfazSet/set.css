@@ -39,21 +39,36 @@ thead {
 }
 
 td {
+  padding: 5px;
   border: #1d3557 1px solid;
 }
-<<<<<<< HEAD
 
-input {
-  width: 3em;
+#yellowCard{
+  display: inline;
+  width: 1%;
+  max-height: 2%;
+  border-top: #e2e60b solid 1px;
+  border-left: #e2e60b solid 8px;
+  border-right: #e2e60b solid 8px;
+  border-bottom: #e2e60b solid 1px;
+  margin-left: 1px;
+  padding: 0;
 }
 
-/*@media screen and (max-width: 800px){
-	.selectbox {
-		width: 100%;
-	}
-}*/
-=======
-.contador {
-	padding: 1em;
+#redCard{
+  display: inline;
+  width: 1%;
+  max-height: 2%;
+  border-top: #e6490b solid 1px;
+  border-left: #e6490b solid 8px;
+  border-right: #e6490b solid 8px;
+  border-bottom: #e6490b solid 1px;
+  margin-left: 3px;
+  padding: 0;
 }
->>>>>>> a405af9e78eab1620de97a126e9eebc0321a36e8
+
+.contador{
+  border: #1d3557 solid 1px;
+  padding: 0 3%;
+  margin: 0 1%;
+}

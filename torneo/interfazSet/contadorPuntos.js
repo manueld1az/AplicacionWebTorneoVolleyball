@@ -1,6 +1,11 @@
 let counter = 0;
 let counterb = 0;
 
+if (counter == 0 || counterb == 0){
+    document.getElementById("counting").innerHTML = 0;
+    document.getElementById("countingb").innerHTML = 0;
+}
+
 function countingClicks(){
     document.getElementById("counting").innerHTML = ++counter;
 }

@@ -34,11 +34,7 @@
           </a>
         </div>
         <div class="col-auto">
-          <button
-            class="btn button"
-            name="guardarPuntos"
-            type="submit"
-          >
+          <button class="btn button" name="guardarPuntos" type="submit">
             <b>Guardar</b>
           </button>
         </div>
@@ -55,7 +51,6 @@
       </center>
       <br />
       <div class="row">
-
         <section class="col-xs-12 col-sm-6">
           <table class="table table-hover">
             <thead>
@@ -86,7 +81,10 @@
                       <option value="1">Tarjeta Amarilla</option>
                       <option value="2">Tarjeta Roja</option>
                     </select>
-                    <input type="number" min="0" disabled />
+                    <div id="yellowCard"></div>
+                    <text id="contadorEquipo2Amarillas" class="contador"> 00 </text>
+                    <div id="redCard"></div>
+                    <text id="contadorEquipo2Rojas" class="contador"> 00 </text>
                   </center>
                 </td>
               </tr>
@@ -115,16 +113,18 @@
                 <td>
                   <center>
                     <select
-                    name="tarjetasEquipo2"
-                    id="tarjetaSeleccionadaEquipo2"
-                    onchange="alertaConfirmarTarjeta()"
+                      name="tarjetasEquipo2"
+                      id="tarjetaSeleccionadaEquipo2"
+                      onchange="alertaConfirmarTarjeta()"
                     >
                       <option value="0">Seleccione...</option>
                       <option value="1">Tarjeta Amarilla</option>
                       <option value="2">Tarjeta Roja</option>
                     </select>
-
-                    <input type="number" min="0" disabled />
+                    <div id="yellowCard"></div>
+                    <text id="contadorEquipo2Amarillas" class="contador"> 00 </text>
+                    <div id="redCard"></div>
+                    <text id="contadorEquipo2Rojas" class="contador"> 00 </text>
                   </center>
                 </td>
               </tr>

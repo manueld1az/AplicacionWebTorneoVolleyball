@@ -55,13 +55,14 @@
       </center>
       <br />
       <div class="row">
+
         <section class="col-xs-12 col-sm-6">
-          <!--<table class="table table-hover">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <td class="columnaCabecera">
                   <b>
-                    <center>Equip 1</center>
+                    <center>Equipo 1</center>
                   </b>
                 </td>
                 <td>
@@ -75,55 +76,22 @@
               <tr>
                 <td>jugadora equipo 1</td>
                 <td>
-                  <center>-->
-                    <form action="">
-                      <div class="selectbox">
-                        <div class="select" id="select">
-                          <div class="contenido-select">
-                            <h1 class="titulo">Seleccione la tarjeta</h1>
-                            <p class="descripcion">Lorem ipsum dolor sit.</p>
-                          </div>
-                          <i class="fas fa-angle-down"></i>
-                        </div>
-
-                        <div class="opciones" id="opciones">
-                          <a href="#" class="opcion">
-                            <div class="contenido-opcion">
-                              <img src="../../img/cards.svg" alt="" />
-                              <div class="textos">
-                                <h1 class="titulo">Mexico</h1>
-                                <p class="descripcion">
-                                  Lorem ipsum dolor sit.
-                                </p>
-                              </div>
-                            </div>
-                          </a>
-                          <a href="#" class="opcion">
-                            <div class="contenido-opcion">
-                              <img src="../../img/cards.svg" alt="" />
-                              <div class="textos">
-                                <h1 class="titulo">España</h1>
-                                <p class="descripcion">
-                                  Consectetur adipiscing elit.
-                                </p>
-                              </div>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-
-                      <input
-                        type="hidden"
-                        name="pais"
-                        id="inputSelect"
-                        value=""
-                      />
-                    </form><!--
+                  <center>
+                    <select
+                      name="tarjetasEquipo1"
+                      id="tarjetaSeleccionadaEquipo1"
+                      onchange="alertaConfirmarTarjeta()"
+                    >
+                      <option value="0">Seleccione...</option>
+                      <option value="1">Tarjeta Amarilla</option>
+                      <option value="2">Tarjeta Roja</option>
+                    </select>
+                    <input type="number" min="0" disabled />
                   </center>
                 </td>
               </tr>
             </tbody>
-          </table>-->
+          </table>
         </section>
         <section class="col-xs-12 col-sm-6">
           <table class="table table-hover">
@@ -147,13 +115,13 @@
                 <td>
                   <center>
                     <select
-                      name=""
-                      id="tarjetaSeleccionada"
-                      onchange="alertaConfirmarTarjeta()"
+                    name="tarjetasEquipo2"
+                    id="tarjetaSeleccionadaEquipo2"
+                    onchange="alertaConfirmarTarjeta()"
                     >
-                      <option value="">Seleccione...</option>
-                      <option value="tarjetaAmarila">Tarjeta Amarilla</option>
-                      <option value="tarjetaRoja">Tarjeta Roja</option>
+                      <option value="0">Seleccione...</option>
+                      <option value="1">Tarjeta Amarilla</option>
+                      <option value="2">Tarjeta Roja</option>
                     </select>
 
                     <input type="number" min="0" disabled />
@@ -193,6 +161,8 @@
       integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
       crossorigin="anonymous"
     ></script>
-    <script src="selectPersonalizado.js"></script>
+    <!--Scripts cdn de sweetAlert2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="alertaPersonalizada.js"></script>
   </body>
 </html>

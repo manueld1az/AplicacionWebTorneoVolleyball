@@ -26,7 +26,9 @@ header a {
 }
 
 table {
+  width: 100%;
   border: #1d3557 1px solid;
+  margin-bottom: 1em;
 }
 
 thead {
@@ -34,14 +36,19 @@ thead {
   color: azure;
 }
 
+th {
+  padding: 1%;
+}
+
 .columnaCabecera {
   border: azure 1px solid;
 }
 
 td {
-  padding: 5px;
+  padding: 1% 2%;
   border: #1d3557 1px solid;
 }
+
 
 #yellowCard{
   display: inline;
@@ -55,16 +62,15 @@ td {
   padding: 0;
 }
 
-#redCard{
+#redCard{ 
   display: inline;
-  width: 1%;
+  max-width: 1%;
   max-height: 2%;
   border-top: #e6490b solid 1px;
   border-left: #e6490b solid 8px;
   border-right: #e6490b solid 8px;
   border-bottom: #e6490b solid 1px;
   margin-left: 3px;
-  padding: 0;
 }
 
 .contador{

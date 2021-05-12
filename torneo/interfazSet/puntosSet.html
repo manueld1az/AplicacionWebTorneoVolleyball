@@ -72,11 +72,11 @@
                 <td>jugadora equipo 1</td>
                 <td>
                   <center>
-                    <button>
+                    <button onclick="deductClicks()">
                       <i class="fas fa-minus"></i>
                     </button>
-                    <input type="number" min="0" disabled />
-                    <button>
+                    <text id="counting" class="contador py-5"></text>
+                    <button onclick="countingClicks()">
                       <i class="fas fa-plus"></i>
                     </button>
                   </center>
@@ -106,11 +106,11 @@
                 <td>jugadora equipo 2</td>
                 <td>
                   <center>
-                    <button>
+                    <button onclick="deductClicksb()">
                       <i class="fas fa-minus"></i>
                     </button>
-                    <input type="number" min="0" disabled />
-                    <button>
+                    <text id="countingb" class="contador py-5"></text>
+                    <button onclick="countingClicksb()">
                       <i class="fas fa-plus"></i>
                     </button>
                   </center>
@@ -123,6 +123,7 @@
     </main>
 
     <!-- Scripts de bootstrap-->
+    <script src="contadorPuntos.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

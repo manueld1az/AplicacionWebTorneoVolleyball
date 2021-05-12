@@ -41,6 +41,7 @@ thead {
 td {
   border: #1d3557 1px solid;
 }
+<<<<<<< HEAD
 
 input {
   width: 3em;
@@ -51,3 +52,8 @@ input {
 		width: 100%;
 	}
 }*/
+=======
+.contador {
+	padding: 1em;
+}
+>>>>>>> a405af9e78eab1620de97a126e9eebc0321a36e8

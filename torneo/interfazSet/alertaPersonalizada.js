@@ -148,19 +148,5 @@ async function  alertaConfirmarTarjeta() {
     tarjetaSeleccionadaEquipo1 = "0";
     tarjetaSeleccionadaEquipo2 = "0";
     tarjetaSeleccionada=0;
-
-    //  CONTADOR
-
-    let contadorEquipo1 = 0;
-    let contadorEquipo2 = 0;
-
-    if (counter == 0 || counterb == 0){
-        document.getElementById("contadorEquipo1").innerHTML = 0;
-        document.getElementById("contadorEquipo2").innerHTML = 0;
-    }
-
-    if (){
-    document.getElementById("contadorEquipo1").innerHTML = ++counter;
-    }
   }
 }

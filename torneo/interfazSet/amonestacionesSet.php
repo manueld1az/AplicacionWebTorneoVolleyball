@@ -39,9 +39,9 @@
           </button>
         </div>
         <center>
-          <ul>
-            <a href="puntosSet.html"><button class="btn button" type="button"><b>Puntos</b></button></a>
-            <a href="amonestacionesSet.html"><button class="btn button" type="button"><b>Amonestaciones</b></button></a>
+          <ul class="">
+            <a href="puntosSet.php"><button class="btn button" type="button"><b>Puntos</b></button></a>
+            <a href="amonestacionesSet.php"><button class="btn button" type="button"><b>Amonestaciones</b></button></a>
           </ul>
         </center>
       </div>
@@ -49,28 +49,28 @@
     <main class="container">
       <center>
         <img
-          src="../../img/mallaVolleyball.svg"
-          alt="icono malla voleibol"
+          src="../../img/cards.svg"
+          alt="icono tarjetas voleibol"
           width="130px"
         />
-        <h2>Puntos Set 1</h2>
+        <h2>Amonestaciones Set 1</h2>
       </center>
       <br />
       <div class="row">
         <section class="col-xs-12 col-sm-6">
-          <table class="table table-hover">
+          <table class="table-hover">
             <thead>
               <tr>
-                <td class="columnaCabecera">
+                <th class="columnaCabecera">
                   <b>
-                    <center>Equip 1</center>
+                    <center>Equipo 1</center>
                   </b>
-                </td>
-                <td>
+                </th>
+                <th>
                   <b>
                     <center>Contador</center>
                   </b>
-                </td>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -78,13 +78,19 @@
                 <td>jugadora equipo 1</td>
                 <td>
                   <center>
-                    <button onclick="deductClicks()">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <text id="counting" class="contador"></text>
-                    <button onclick="countingClicks()">
-                      <i class="fas fa-plus"></i>
-                    </button>
+                    <select
+                      name="tarjetasEquipo1"
+                      id="tarjetaSeleccionadaEquipo1"
+                      onchange="alertaConfirmarTarjeta()"
+                    >
+                      <option value="0">Seleccione...</option>
+                      <option value="1">Tarjeta Amarilla</option>
+                      <option value="2">Tarjeta Roja</option>
+                    </select>
+                    <div id="yellowCard"></div>
+                    <text id="contadorEquipo1Amarillas" class="contador"></text>
+                    <div id="redCard"></div>
+                    <text id="contadorEquipo1Rojas" class="contador"></text>
                   </center>
                 </td>
               </tr>
@@ -92,19 +98,19 @@
           </table>
         </section>
         <section class="col-xs-12 col-sm-6">
-          <table class="table table-hover">
+          <table class="table-hover">
             <thead>
               <tr>
-                <td class="columnaCabecera">
+                <th class="columnaCabecera">
                   <b>
-                    <center>Equip 2</center>
+                    <center>Equipo 2</center>
                   </b>
-                </td>
-                <td>
+                </th>
+                <th>
                   <b>
                     <center>Contador</center>
                   </b>
-                </td>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -112,13 +118,19 @@
                 <td>jugadora equipo 2</td>
                 <td>
                   <center>
-                    <button onclick="deductClicksb()">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <text id="countingb" class="contador"></text>
-                    <button onclick="countingClicksb()">
-                      <i class="fas fa-plus"></i>
-                    </button>
+                    <select
+                      name="tarjetasEquipo2"
+                      id="tarjetaSeleccionadaEquipo2"
+                      onchange="alertaConfirmarTarjeta()"
+                    >
+                      <option value="0">Seleccione...</option>
+                      <option value="1">Tarjeta Amarilla</option>
+                      <option value="2">Tarjeta Roja</option>
+                    </select>
+                    <div id="yellowCard"></div>
+                    <text id="contadorEquipo2Amarillas" class="contador"></text>
+                    <div id="redCard"></div>
+                    <text id="contadorEquipo2Rojas" class="contador"></text>
                   </center>
                 </td>
               </tr>
@@ -129,7 +141,6 @@
     </main>
 
     <!-- Scripts de bootstrap-->
-    <script src="contadorPuntos.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

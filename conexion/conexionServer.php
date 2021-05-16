@@ -11,8 +11,6 @@ $conexion = mysqli_connect($server, $user, $pass, $db);
 //Check connection
 if (!$conexion) {
     echo "Error en la conexion servidor: ";
-}else{
-    echo "conexion establecida";
 }
 
 ?>

@@ -21,6 +21,25 @@
     <link rel="stylesheet" href="set.css" />
   </head>
   <body>
+  <?php
+  include "contadorPuntos.php";
+  include "../../conexion/conexionServer.php";
+  $codigoEncuentro = $_GET["Cod_Encuentro"];
+  $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
+                                                                        FROM encuentro
+                                                                        WHERE Cod_Encuentro = $codigoEncuentro )";
+  $consulta = mysqli_query($conexion, $sql);
+  $mostrar = mysqli_fetch_assoc($consulta);
+  $nombreEquipo1 = $mostrar["Nombre_Equipo"];
+  
+  $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
+                                                                        FROM encuentro
+                                                                        WHERE Cod_Encuentro = $codigoEncuentro )";
+  $consulta = mysqli_query($conexion, $sql);
+  $mostrar = mysqli_fetch_assoc($consulta);
+  $nombreEquipo2 = $mostrar["Nombre_Equipo"];
+
+?>
     <header class="container">
       <div class="row">
         <div class="col-auto">
@@ -29,7 +48,7 @@
           </a>
         </div>
         <div class="col-auto me-auto">
-          <a href="encuentrosDiarios.php">
+          <a href="">
             <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
           </a>
         </div>
@@ -40,8 +59,16 @@
         </div>
         <center>
           <ul>
-            <a href="puntosSet.php"><button class="btn button" type="button"><b>Puntos</b></button></a>
-            <a href="amonestacionesSet.php"><button class="btn button" type="button"><b>Amonestaciones</b></button></a>
+            <a href="#">
+              <button class="btn button" type="button">
+                <b>Puntos</b>
+              </button>
+            </a>
+            <a href="amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
+              <button class="btn button" type="button">
+                <b>Amonestaciones</b>
+              </button>
+            </a>
           </ul>
         </center>
       </div>
@@ -56,7 +83,6 @@
         <h2>Puntos Set 1</h2>
       </center>
       <br />
-      <?php include("contadorPuntos.php"); ?>
       <div class="row">
         <section class="col-xs-12 col-sm-6">
           <table class="table table-hover">
@@ -64,7 +90,7 @@
               <tr>
                 <td class="columnaCabecera">
                   <b>
-                    <center>Equip 1</center>
+                    <center><?php echo $nombreEquipo1; ?></center>
                   </b>
                 </td>
                 <td>
@@ -98,7 +124,7 @@
               <tr>
                 <td class="columnaCabecera">
                   <b>
-                    <center>Equip 2</center>
+                    <center><?php echo $nombreEquipo2; ?></center>
                   </b>
                 </td>
                 <td>

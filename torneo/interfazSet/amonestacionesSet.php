@@ -21,6 +21,24 @@
     <link rel="stylesheet" href="set.css" />
   </head>
   <body>
+    <?php 
+    $codigoEncuentro = $_GET["Cod_Encuentro"];
+    include "../../conexion/conexionServer.php";
+    $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
+                                                                      FROM encuentro
+                                                                      WHERE Cod_Encuentro = $codigoEncuentro )";
+    $consulta = mysqli_query($conexion, $sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $nombreEquipo1 = $mostrar["Nombre_Equipo"];
+
+    $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
+                                                                          FROM encuentro
+                                                                          WHERE Cod_Encuentro = $codigoEncuentro )";
+    $consulta = mysqli_query($conexion, $sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $nombreEquipo2 = $mostrar["Nombre_Equipo"];
+    
+    ?>
     <header class="container">
       <div class="row">
         <div class="col-auto">
@@ -40,8 +58,16 @@
         </div>
         <center>
           <ul class="">
-            <a href="puntosSet.php"><button class="btn button" type="button"><b>Puntos</b></button></a>
-            <a href="amonestacionesSet.php"><button class="btn button" type="button"><b>Amonestaciones</b></button></a>
+            <a href="puntosSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
+            <button class="btn button" type="button">
+              <b>Puntos</b>
+            </button>
+            </a>
+            <a href="#">
+              <button class="btn button" type="button">
+                <b>Amonestaciones</b>
+              </button>
+            </a>
           </ul>
         </center>
       </div>
@@ -63,7 +89,7 @@
               <tr>
                 <th class="columnaCabecera">
                   <b>
-                    <center>Equipo 1</center>
+                    <center><?php echo $nombreEquipo1; ?></center>
                   </b>
                 </th>
                 <th>
@@ -103,7 +129,7 @@
               <tr>
                 <th class="columnaCabecera">
                   <b>
-                    <center>Equipo 2</center>
+                    <center><?php echo $nombreEquipo2; ?></center>
                   </b>
                 </th>
                 <th>

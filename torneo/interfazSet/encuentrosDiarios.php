@@ -25,45 +25,22 @@
                     <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
                 </a>
             </div>
-            <div class="col-auto">
-                <a href="puntosSet.php">
-                    <button class="btn button2" type="button">
-                        <b><i class="fas fa-plus-circle"></i>Ingresar Puntos</b>
-                    </button>
-                </a>
-            </div>
         </div>
     </header>
     <main class="container main">
         <div class="container">
-            <h3 class="tittleMain">Lista de Encuentros</h3>
+            <?php
+            //  SE OBTIENE LA FECHA ACTUAL DEL SISTEMA PARA HACER LA CONSULTA A LA BASE DE DATOS
+                //  Y ASI OBTENER SOLO LOS ENCUENTROS DEL DIA.
+                date_default_timezone_set("America/Bogota");
+                $fechaDeHoy=date('Y-m-j');
+            ?>
+            <h3 class="tittleMain">Lista de Encuentros del dia de hoy<?php echo "<center>".date('j-m-Y')."</center>";?></h3>
         </div>
-        <center><i class="fas fa-users avatar"></i><br /></center>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <!-- <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Cod Encuentro</center>
-                                </b>
-                            </p>
-                        </td>
-                        <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Grupo</center>
-                                </b>
-                            </p>
-                        </td> -->
-                        <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Fecha Encuentro</center>
-                                </b>
-                            </p>
-                        </td>
                         <td class="columnaCabecera">
                             <p>
                                 <b>
@@ -78,13 +55,6 @@
                                 </b>
                             </p>
                         </td>
-                        <!-- <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Ptos Equipo Uno</center>
-                                </b>
-                            </p>
-                        </td> -->
                         <td class="columnaCabecera">
                             <p>
                                 <b>
@@ -92,41 +62,6 @@
                                 </b>
                             </p>
                         </td>
-                        <!-- <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Ptos Equipo Dos</center>
-                                </b>
-                            </p>
-                        </td>
-                        <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Cancha</center>
-                                </b>
-                            </p>
-                        </td>
-                        <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Juez Uno</center>
-                                </b>
-                            </p>
-                        </td>
-                        <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Juez Dos</center>
-                                </b>
-                            </p>
-                        </td>
-                        <td class="columnaCabecera">
-                            <p>
-                                <b>
-                                    <center>Juez Tres</center>
-                                </b>
-                            </p>
-                        </td> -->
                         <td class="columnaCabecera">
                             <p>
                                 <b>
@@ -137,60 +72,35 @@
                     </tr>
                 </thead>
                 <?php
-                include("../../../../conexion/conexionServer.php");
-                $sql = "SELECT * FROM encuentro";
+                include("../../conexion/conexionServer.php");
+                $sql = "SELECT Cod_Encuentro, Hora, Cod_Equipo1, Cod_Equipo2 FROM encuentro ";
                 $consulta = mysqli_query($conexion, $sql);
                 while ($mostrar = mysqli_fetch_assoc($consulta)) {
                 ?>
                     <tbody>
                         <tr>
                             <td>
-                                <center><?php echo $mostrar['Cod_Encuentro'] ?></center>
-                            </td>
-                            <td>
-                                <center><?php echo $mostrar['Grupo'] ?></center>
-                            </td>
-                            <td>
-                                <center><?php echo $mostrar['Fecha'] ?></center>
-                            </td>
-                            <td>
+                            <a href="puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
                                 <center><?php echo $mostrar['Hora'] ?></center>
+                            </a>
                             </td>
                             <td>
+                            <a href="puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
                                 <center><?php echo $mostrar['Cod_Equipo1'] ?></center>
+                            </a>
                             </td>
                             <td>
-                                <center><?php echo $mostrar['Ptos_Equipo1'] ?></center>
-                            </td>
-                            <td>
+                            <a href="puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
                                 <center><?php echo $mostrar['Cod_Equipo2'] ?></center>
-                            </td>
-                            <td>
-                                <center><?php echo $mostrar['Ptos_Equipo2'] ?></center>
-                            </td>
-                            <td>
-                                <center><?php echo $mostrar['idCancha'] ?></center>
-                            </td>
-                            <td>
-                                <center><?php echo $mostrar['Id_Juezuno'] ?></center>
-                            </td>
-                            <td>
-                                <center><?php echo $mostrar['Id_Juezdos'] ?></center>
-                            </td>
-                            <td>
-                                <center><?php echo $mostrar['Id_Jueztres'] ?></center>
+                            </a>
                             </td>
                             <td>
                                 <center>
-                                        <a href="actualizarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
-                                        title="Editar" 
-                                        aria-hidden="true">
-                                        <i class="fas fa-edit botonEditar"></i>
-                                        </a>
-                                        <a href="eliminarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
-                                        title="Eliminar" name="Cod_Encuentro" aria-hidden="true" class="botonEliminar">
-                                        <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                    <a href="../ronda1/encuentros/encuentro/actualizarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
+                                    title="Editar" 
+                                    aria-hidden="true">
+                                    <i class="fas fa-edit botonEditar"></i>
+                                    </a>
                                 </center>
                             </td>
                         </tr>

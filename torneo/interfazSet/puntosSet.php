@@ -100,9 +100,19 @@
                 </td>
               </tr>
             </thead>
+            <?php
+            include "contadorPuntos.php";
+            include "../../conexion/conexionServer.php";
+            $codigoEncuentro = $_GET["Cod_Encuentro"];
+            $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo1
+                                                                                FROM encuentro
+                                                                                WHERE Cod_Encuentro = $codigoEncuentro )";
+            $consulta = mysqli_query($conexion,$sql);
+            while ($mostrar = mysqli_fetch_assoc($consulta)) {
+            ?>
             <tbody>
               <tr>
-                <td>jugadora equipo 1</td>
+                <td><?php echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
                     <button onclick="deductClicks()">
@@ -116,6 +126,9 @@
                 </td>
               </tr>
             </tbody>
+            <?php
+            }
+            ?>
           </table>
         </section>
         <section class="col-xs-12 col-sm-6">
@@ -134,9 +147,19 @@
                 </td>
               </tr>
             </thead>
+            <?php
+            include "contadorPuntos.php";
+            include "../../conexion/conexionServer.php";
+            $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo2
+                                                                                FROM encuentro
+                                                                                WHERE Cod_Encuentro = $codigoEncuentro )";
+            $codigoEncuentro = $_GET["Cod_Encuentro"];
+            $consulta = mysqli_query($conexion,$sql);
+            while ($mostrar = mysqli_fetch_assoc($consulta)) {
+            ?>
             <tbody>
               <tr>
-                <td>jugadora equipo 2</td>
+                <td><?php $mostrar['Id_Jugadora']; echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
                     <button onclick="deductClicksb()">
@@ -150,6 +173,9 @@
                 </td>
               </tr>
             </tbody>
+            <?php
+            }
+            ?>
           </table>
         </section>
       </div>

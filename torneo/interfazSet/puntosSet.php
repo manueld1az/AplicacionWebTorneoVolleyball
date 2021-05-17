@@ -112,7 +112,7 @@
             ?>
             <tbody>
               <tr>
-                <td><?php echo $mostrar['Nombre'] ?></td>
+                <td><?php $mostrar['Id_Jugadora']; echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
                     <button onclick="deductClicks()">

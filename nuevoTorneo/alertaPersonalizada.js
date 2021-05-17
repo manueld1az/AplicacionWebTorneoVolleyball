@@ -8,7 +8,7 @@ function alertaInicioTorneo() {
             '<p> </p>' +
             '<label for="inicioTorneo"><b class="textoAlerta">Ingrese la cantidad de partidos que se jugaran diariamente</b></label>' +
             '<p> </p>' +
-            '<input type="number" name="cantidadEncuentrosSemana" class="container form-control" min="0" required >' +
+            '<input type="number" name="cantidadEncuentrosDiarios" class="container form-control" min="2" step="2" required >' +
             '<p> </p>' +
             '<label for="inicioTorneo"><b class="textoAlerta">Ingrese la hora del primer partido</b></label>' +
             '<p> </p>' +

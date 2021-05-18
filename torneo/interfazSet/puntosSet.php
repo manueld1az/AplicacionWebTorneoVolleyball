@@ -43,7 +43,7 @@
     <header class="container">
       <div class="row">
         <div class="col-auto">
-          <a href="../ronda1/encuentrosRonda1.php">
+          <a href="encuentrosDiarios.php">
             <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
           </a>
         </div>

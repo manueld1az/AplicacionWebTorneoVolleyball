@@ -10,31 +10,56 @@
     <!--   CONTADOR DE LA INTERFAZ DE PUNTOS     -->
     <script type="text/javascript">
         //  VARIABLES DEL FRONTEND
-        let counter = 0;
-        let counterb = 0;
+        let guardarPuntos = new Array();
         //  VARIABLES DEL BACKEND
-        let contadorJugadoraEquipo1 = 0;
-        let contadorJugadoraEquipo2 = 0;
+        let contadorEquipo1 = 0;
+        let contadorEquipo2 = 0;
 
-        function countingClicks(){
-            document.getElementById("counting").innerHTML = ++counter;
-            document.getElementById("puntosEquipo1").innerHTML = ++contadorJugadoraEquipo1;
+        function countingClicks(id){
+            puntos = parseInt(document.getElementById(id).textContent);
+            document.getElementById(id).innerHTML = ++puntos;
+            contadorEquipo1++;
+            console.log("equipo1 -"+contadorEquipo1);
+            guardarPuntos[id]=puntos;
+            console.log(guardarPuntos);
+
+            /* document.getElementById("puntosEquipo").innerHTML = ++contador; */
         }
-        function deductClicks(){
-            if (counter >= 1) {
-                document.getElementById("counting").innerHTML= --counter;
-                document.getElementById("puntosEquipo1").innerHTML = --contadorJugadoraEquipo1;
+        function deductClicks(id){
+            puntos = parseInt(document.getElementById(id).textContent);
+            if (puntos >= 1) {
+                document.getElementById(id).innerHTML= --puntos;
+                contadorEquipo1--;
+                console.log("equipo1 -"+contadorEquipo1);
+                /* document.getElementById("puntosEquipo").innerHTML = --contador; */
             }
+            if (puntos >= 0){
+                guardarPuntos[id]=puntos;//arreglo que guarda el puntaje de cada jugadora
+                console.log(guardarPuntos);
+            } 
         }
 
-        function countingClicksb(){
-            document.getElementById("countingb").innerHTML = ++counterb;
-            document.getElementById("puntosEquipo2").innerHTML = ++contadorJugadoraEquipo2;
+        function countingClicksb(id){
+            puntos = parseInt(document.getElementById(id).textContent);
+            document.getElementById(id).innerHTML = ++puntos;
+            contadorEquipo2++;
+            console.log("equipo2 -"+contadorEquipo2);
+            guardarPuntos[id]=puntos;//arreglo que guarda el puntaje de cada jugadora del equipo 2
+            console.log(guardarPuntos);
+
+            /* document.getElementById("puntosEquipo").innerHTML = ++contador; */
         }
-        function deductClicksb(){
-            if (counterb >= 1) {
-                document.getElementById("countingb").innerHTML= --counterb;
-                document.getElementById("puntosEquipo2").innerHTML = --contadorJugadoraEquipo2;
+        function deductClicksb(id){
+            puntos = parseInt(document.getElementById(id).textContent);
+            if (puntos >= 1) {
+                document.getElementById(id).innerHTML= --puntos;
+                contadorEquipo2--;
+                console.log("equipo2 -"+contadorEquipo2);
+                /* document.getElementById("puntosEquipo").innerHTML = --contador; */
+            }
+            if (puntos >= 0){
+                guardarPuntos[id]=puntos;//arreglo que guarda el puntaje de cada jugadora
+                console.log(guardarPuntos);
             }
         }
     </script>

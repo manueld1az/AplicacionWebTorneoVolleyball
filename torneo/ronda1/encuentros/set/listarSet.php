@@ -68,7 +68,7 @@
                             <td class="columnaCabecera">
                                 <p>
                                     <b>
-                                        <center>Ptos Equipo Dos</center>
+                                        <center>Ptos Equipo Uno</center>
                                     </b>
                                 </p>
                             </td>

@@ -115,11 +115,11 @@
                 <td><?php $mostrar['Id_Jugadora']; echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
-                    <button onclick="deductClicks()">
+                    <button onclick="deductClicks('<?php echo $mostrar['Id_Jugadora'] ?>')">
                       <i class="fas fa-minus"></i>
                     </button>
-                    <text id="counting" class="contador">0</text>
-                    <button onclick="countingClicks()">
+                    <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
+                    <button onclick="countingClicks('<?php echo $mostrar['Id_Jugadora'] ?>')">
                       <i class="fas fa-plus"></i>
                     </button>
                   </center>
@@ -162,11 +162,11 @@
                 <td><?php $mostrar['Id_Jugadora']; echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
-                    <button onclick="deductClicksb()">
+                    <button onclick="deductClicksb('<?php echo $mostrar['Id_Jugadora'] ?>')">
                       <i class="fas fa-minus"></i>
                     </button>
-                    <text id="countingb" class="contador">0</text>
-                    <button onclick="countingClicksb()">
+                    <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
+                    <button onclick="countingClicksb('<?php echo $mostrar['Id_Jugadora'] ?>')">
                       <i class="fas fa-plus"></i>
                     </button>
                   </center>

@@ -25,13 +25,6 @@
                     <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
                 </a>
             </div>
-            <div class="col-auto">
-                <a href="../registroEncuentros/encuentro/encuentros.html">
-                    <button class="btn button2" type="button">
-                        <b><i class="fas fa-plus-circle"></i> Encuentros</b>
-                    </button>
-                </a>
-            </div>
         </div>
     </header>
     <main class="container main">
@@ -186,10 +179,6 @@
                                         title="Editar" 
                                         aria-hidden="true">
                                         <i class="fas fa-edit botonEditar"></i>
-                                        </a>
-                                        <a href="eliminarEncuentros.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>" 
-                                        title="Eliminar" name="Cod_Encuentro" aria-hidden="true" class="botonEliminar">
-                                        <i class="fas fa-trash-alt"></i>
                                         </a>
                                 </center>
                             </td>

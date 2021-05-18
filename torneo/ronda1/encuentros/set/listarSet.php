@@ -17,7 +17,7 @@
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous"
         />
-        <title>Lista de Encuentros</title>
+        <title>Lista de Set</title>
         <link rel="stylesheet" href="../../../../nuevoTorneo/listados/listas.css" />
     </head>
     <body>
@@ -31,13 +31,6 @@
                 <div class="col-auto me-auto">
                     <a href="../../../../index.html">
                     <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
-                    </a>
-                </div>
-                <div class="col-auto">
-                    <a href="../registroEncuentros/set/set.html">
-                    <button class="btn button2" type="button">
-                        <b><i class="fas fa-plus-circle"></i> Set</b>
-                    </button>
                     </a>
                 </div>
             </div>
@@ -115,14 +108,6 @@
                                         title="Editar"
                                         aria-hidden="true">
                                         <i class="fas fa-edit botonEditar"></i>
-                                        </a>
-                                        <a
-                                        href="eliminarSet.php?NumeroRegistro=<?php echo $mostrar['NumeroRegistro'] ?>"
-                                        title="Eliminar"
-                                        name="NumeroRegistro"
-                                        aria-hidden="true"
-                                        class="botonEliminar">
-                                        <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </center>
                                 </td>

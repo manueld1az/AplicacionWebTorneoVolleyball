@@ -123,9 +123,9 @@
                       <option value="2">Tarjeta Roja</option>
                     </select>
                     <div id="yellowCard"></div>
-                    <text id="contadorEquipo1Amarillas" class="contador"></text>
+                    <text id="contadorEquipo1Amarillas" class="contador">0</text>
                     <div id="redCard"></div>
-                    <text id="contadorEquipo1Rojas" class="contador"></text>
+                    <text id="contadorEquipo1Rojas" class="contador">0</text>
                   </center>
                 </td>
               </tr>
@@ -176,9 +176,9 @@
                       <option value="2">Tarjeta Roja</option>
                     </select>
                     <div id="yellowCard"></div>
-                    <text id="contadorEquipo2Amarillas" class="contador"></text>
+                    <text id="contadorEquipo2Amarillas" class="contador">0</text>
                     <div id="redCard"></div>
-                    <text id="contadorEquipo2Rojas" class="contador"></text>
+                    <text id="contadorEquipo2Rojas" class="contador">0</text>
                   </center>
                 </td>
               </tr>

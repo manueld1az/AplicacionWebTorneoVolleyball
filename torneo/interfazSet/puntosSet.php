@@ -39,7 +39,7 @@
   $mostrar = mysqli_fetch_assoc($consulta);
   $nombreEquipo2 = $mostrar["Nombre_Equipo"];
 
-?>
+  ?>
     <header class="container">
       <div class="row">
         <div class="col-auto">
@@ -53,7 +53,7 @@
           </a>
         </div>
         <div class="col-auto">
-          <button class="btn button" name="guardarPuntos" type="submit">
+          <button class="btn button" name="enviarPuntos" type="submit">
             <b>Guardar</b>
           </button>
         </div>
@@ -148,12 +148,9 @@
               </tr>
             </thead>
             <?php
-            include "contadorPuntos.php";
-            include "../../conexion/conexionServer.php";
             $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo2
                                                                                 FROM encuentro
                                                                                 WHERE Cod_Encuentro = $codigoEncuentro )";
-            $codigoEncuentro = $_GET["Cod_Encuentro"];
             $consulta = mysqli_query($conexion,$sql);
             while ($mostrar = mysqli_fetch_assoc($consulta)) {
             ?>
@@ -208,8 +205,5 @@
       integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
       crossorigin="anonymous"
     ></script>
-    <!--Scripts cdn de sweetAlert2-->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="alertaPersonalizada.js"></script>
   </body>
 </html>

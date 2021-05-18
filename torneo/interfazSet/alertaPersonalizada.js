@@ -2,6 +2,7 @@ let contadorTarjetasAmarillasEquipo1 = 0;
 let contadorTarjetasRojasEquipo1 = 0;
 let contadorTarjetasAmarillasEquipo2 = 0;
 let contadorTarjetasRojasEquipo2 = 0;
+
 document.getElementById("contadorEquipo1Amarillas").innerHTML = 0;
 document.getElementById("contadorEquipo2Amarillas").innerHTML = 0;
 document.getElementById("contadorEquipo1Rojas").innerHTML = 0;

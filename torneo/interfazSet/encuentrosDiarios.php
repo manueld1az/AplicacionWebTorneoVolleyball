@@ -33,10 +33,11 @@
             //  SE OBTIENE LA FECHA ACTUAL DEL SISTEMA PARA HACER LA CONSULTA A LA BASE DE DATOS
                 //  Y ASI OBTENER SOLO LOS ENCUENTROS DEL DIA.
                 date_default_timezone_set("America/Bogota");
-                $fechaDeHoy=date('Y-m-j');
+                $fechaDelServidor=date('Y-m-j');
             ?>
             <h3 class="tittleMain">Lista de Encuentros del dia de hoy<?php echo "<center>".date('j-m-Y')."</center>";?></h3>
         </div>
+        <h4 class="my-5"><center>Elija un encuentro dando un click en cualquier lugar de las filas para entrar a sumar puntos y amonestaciones</center></h4>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -73,7 +74,9 @@
                 </thead>
                 <?php
                 include("../../conexion/conexionServer.php");
-                $sql = "SELECT Cod_Encuentro, Hora, Cod_Equipo1, Cod_Equipo2 FROM encuentro ";
+                $sql = "SELECT Cod_Encuentro, Hora, Cod_Equipo1, Cod_Equipo2 
+                        FROM encuentro
+                        WHERE Fecha = '$fechaDelServidor' ";
                 $consulta = mysqli_query($conexion, $sql);
                 while ($mostrar = mysqli_fetch_assoc($consulta)) {
                 ?>

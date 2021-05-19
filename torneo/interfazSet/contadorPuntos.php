@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+
     <!--   CONTADOR DE LA INTERFAZ DE PUNTOS     -->
     <script type="text/javascript">
         //  VARIABLES DEL FRONTEND
@@ -22,21 +23,23 @@
             console.log("equipo1 -"+contadorEquipo1);
             guardarPuntos[id]=puntos;
             console.log(guardarPuntos);
-
-            /* document.getElementById("puntosEquipo").innerHTML = ++contador; */
+            document.getElementById("puntosEquipo1").setAttribute('value', contadorEquipo1);
+            document.getElementById("puntosEquipo2").setAttribute('value', contadorEquipo2);
         }
+
         function deductClicks(id){
             puntos = parseInt(document.getElementById(id).textContent);
             if (puntos >= 1) {
                 document.getElementById(id).innerHTML= --puntos;
                 contadorEquipo1--;
                 console.log("equipo1 -"+contadorEquipo1);
-                /* document.getElementById("puntosEquipo").innerHTML = --contador; */
             }
             if (puntos >= 0){
                 guardarPuntos[id]=puntos;//arreglo que guarda el puntaje de cada jugadora
                 console.log(guardarPuntos);
-            } 
+            }
+            document.getElementById("puntosEquipo1").setAttribute('value', contadorEquipo1);
+            document.getElementById("puntosEquipo2").setAttribute('value', contadorEquipo2);
         }
 
         function countingClicksb(id){
@@ -46,28 +49,26 @@
             console.log("equipo2 -"+contadorEquipo2);
             guardarPuntos[id]=puntos;//arreglo que guarda el puntaje de cada jugadora del equipo 2
             console.log(guardarPuntos);
-
-            /* document.getElementById("puntosEquipo").innerHTML = ++contador; */
+            document.getElementById("puntosEquipo1").setAttribute('value', contadorEquipo1);
+            document.getElementById("puntosEquipo2").setAttribute('value', contadorEquipo2);
         }
+
         function deductClicksb(id){
             puntos = parseInt(document.getElementById(id).textContent);
             if (puntos >= 1) {
                 document.getElementById(id).innerHTML= --puntos;
                 contadorEquipo2--;
                 console.log("equipo2 -"+contadorEquipo2);
-                /* document.getElementById("puntosEquipo").innerHTML = --contador; */
             }
             if (puntos >= 0){
                 guardarPuntos[id]=puntos;//arreglo que guarda el puntaje de cada jugadora
                 console.log(guardarPuntos);
             }
+            document.getElementById("puntosEquipo1").setAttribute('value', contadorEquipo1);
+            document.getElementById("puntosEquipo2").setAttribute('value', contadorEquipo2);
         }
+        
     </script>
-    <form action="recibirPuntos.php" method="post">
-    <input type="hidden" name="puntosEquipo1" id="puntosEquipo1">
-    <input type="hidden" name="puntosEquipo2" id="puntosEquipo2">
-    </form>
-    <!--    CONTADOR PARA INSRTAR NUMEROS EN LOS INPUT PARA MANDAR A LA BASE DE DATOS   -->
-    
+
 </body>
 </html>

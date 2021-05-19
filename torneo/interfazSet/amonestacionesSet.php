@@ -163,7 +163,7 @@
             ?>
             <tbody>
               <tr>
-                <td><?php $mostrar['Id_Jugadora']; echo $mostrar['Nombre'] ?></td>
+                <td><?php echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
                     <select

@@ -3,10 +3,14 @@ let contadorTarjetasRojasEquipo1 = 0;
 let contadorTarjetasAmarillasEquipo2 = 0;
 let contadorTarjetasRojasEquipo2 = 0;
 
+
 document.getElementById("contadorEquipo1Amarillas").innerHTML = 0;
 document.getElementById("contadorEquipo2Amarillas").innerHTML = 0;
 document.getElementById("contadorEquipo1Rojas").innerHTML = 0;
 document.getElementById("contadorEquipo2Rojas").innerHTML = 0;
+
+let jugadoraA = document.getElementById("jugadoraA").innerHTML;
+let equipoA = document.getElementById("equipoA").innerHTML;
 
 async function alertaConfirmarTarjeta() {
   let tarjetaSeleccionada = 0;
@@ -51,8 +55,8 @@ async function alertaConfirmarTarjeta() {
       const { value: confirmacionAmarilla } = await Swal.fire({
         // title:
         text:
-          "Esta segur@ de sumar la tarjeta amarilla a la jugadora (1) del equipo " +
-          equipo,
+          "Esta segur@ de sumar la tarjeta amarilla a la jugadora " + jugadoraA + " del equipo " +
+          equipoA,
         // html:
         // icon: 'warning',
         confirmButtonText: "Aceptar",
@@ -157,8 +161,8 @@ async function alertaConfirmarTarjeta() {
       const { value: confirmacionRoja } = await Swal.fire({
         // title:
         text:
-          "Esta segur@ de sumar la tarjeta roja a la jugadora (1) del equipo " +
-          equipo,
+          "Esta segur@ de sumar la tarjeta roja a la jugadora " + jugadoraA + " del equipo " +
+          equipoA,
         // html:
         // icon: 'warning',
         confirmButtonText: "Aceptar",

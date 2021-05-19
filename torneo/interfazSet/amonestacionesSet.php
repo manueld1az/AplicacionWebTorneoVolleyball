@@ -87,9 +87,9 @@
           <table class="table-hover">
             <thead>
               <tr>
-                <th class="columnaCabecera">
+                <th class="columnaCabecera" >
                   <b>
-                    <center><?php echo $nombreEquipo1; ?></center>
+                    <center id="equipoA"><?php echo $nombreEquipo1; ?></center>
                   </b>
                 </th>
                 <th>
@@ -110,7 +110,7 @@
             ?>
             <tbody>
               <tr>
-                <td><?php $mostrar['Id_Jugadora']; echo $mostrar['Nombre'] ?></td>
+                <td id="jugadoraA"><?php $mostrar['Id_Jugadora']; echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
                     <select

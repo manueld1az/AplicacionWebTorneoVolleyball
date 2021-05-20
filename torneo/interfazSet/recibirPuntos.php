@@ -8,8 +8,8 @@ if (isset($_POST['enviarPuntos'])) {
     $puntosEquipo2 = $_POST["puntosEquipo2"];
     $codigoEncuentro = $_POST['codigoEncuentro'];
     $codigoSet = $_POST['codigoSet'];
-    $codigoEquipo1 = $mostrar["codigoEquipo1"];
-    $codigoEquipo2 = $mostrar["codigoEquipo2"];
+    $codigoEquipo1 = $_POST["codigoEquipo1"];
+    $codigoEquipo2 = $_POST["codigoEquipo2"];
 
     //  SE GUARDAN LOS PUNTOS EN LA TABLA ZET
     $sql = "UPDATE zet

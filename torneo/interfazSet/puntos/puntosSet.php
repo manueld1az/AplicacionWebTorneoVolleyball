@@ -55,29 +55,26 @@
           </a>
         </div>
         <div class="col-auto">
+        
           <!--    FORMULARIO PARA ENVIAR LOS PUNTOS Y AMONESTACIONES A LA BASE DE DATOS   -->
           <form action="recibirPuntos.php" method="POST">
-          <input type="hidden" name="codigoEncuentro" value="<?php $codigoEncuentro; ?>">
-          <input type="hidden" name="codigoEquipo1" value="<?php $codigoEquipo1; ?>">
-          <input type="hidden" name="codigoEquipo2" value="<?php $codigoEquipo2; ?>">
           <button class="btn button" name="enviarPuntos" type="submit">
             <b>Guardar</b>
           </button>
         </div>
         <!--  BOTONES DE NAVEGACION   -->
         <center>
-          <ul>
-            <a href="#">
-              <button class="btn button" type="button">
+        <a href="#">
+              <button class="btn botonNav BN1" type="button">
                 <b>Puntos</b>
               </button>
             </a>
+            <form action="" method="post"></form>
             <a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
-              <button class="btn button" type="button">
+              <button class="btn botonNav" type="button">
                 <b>Amonestaciones</b>
               </button>
             </a>
-          </ul>
         </center>
       </div>
     </header>
@@ -97,15 +94,12 @@
             $mostrar = mysqli_fetch_assoc($consulta);
             $codigoSet = $mostrar['mayorCodigoSet'];
             $numeroRegistro = $mostrar['mayorNumeroRegistro'];
-
-            if ($codigoSet == 0 || $codigoSet == null){
-              $sql = "INSERT INTO zet (NumeroRegistro, Cod_Set, Cod_Encuentro)
-                      VALUES ( $numeroRegistro + 1, $codigoSet + 1, $codigoEncuentro )";
-              $consulta = mysqli_query($conexion,$sql);
-              echo $codigoSet + 1;
-            }else{
-              echo $codigoSet;
-            }
+            $codigoSet ++;
+            if ($codigoSet <= 3){
+            echo $codigoSet;            
+            $sql = "INSERT INTO zet (NumeroRegistro, Cod_Set, Cod_Encuentro)
+                    VALUES ( $numeroRegistro + 1, $codigoSet, $codigoEncuentro )";
+            $consulta = mysqli_query($conexion,$sql);
           ?>
         </h2>
       </center>
@@ -201,10 +195,26 @@
         </section>
       </div>
     </main>
-    <input type="hidden" name="codigoSet" value="<?php $codigoSet; ?>">
+    <input type="hidden" name="numeroRegistro" value="<?php echo $numeroRegistro; ?>">
+    <input type="hidden" name="codigoSet" value="<?php echo $codigoSet; ?>">
+    <input type="hidden" name="codigoEncuentro" value="<?php echo $codigoEncuentro; ?>">
+    <input type="hidden" name="codigoEquipo1" value="<?php echo $codigoEquipo1; ?>">
+    <input type="hidden" name="codigoEquipo2" value="<?php echo $codigoEquipo2; ?>">
     <input type="hidden" name="puntosEquipo1" id="puntosEquipo1" value="0">
     <input type="hidden" name="puntosEquipo2" id="puntosEquipo2" value="0">
     </form>
+    <?php
+            }else{
+              ?>
+              <center><h3><b>Este encuentro ya ha sido disputado los resultados podra
+                              encontrarlos en la seccion de resultados</b></h3>
+                              <p>
+                              presione la flecha que esta en la parte superior izquierda para 
+                              escoger un encuentro distinto
+                              </p></center>
+              <?php
+            }
+    ?>
 
     <!-- Scripts de bootstrap-->
     <script

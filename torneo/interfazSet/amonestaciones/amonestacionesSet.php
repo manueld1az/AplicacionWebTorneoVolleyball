@@ -18,61 +18,52 @@
       crossorigin="anonymous"
     />
     <title>SGTV</title>
-    <link rel="stylesheet" href="set.css" />
+    <link rel="stylesheet" href="../set.css" />
   </head>
   <body>
-  <?php
-  include "contadorPuntos.php";
-  include "../../conexion/conexionServer.php";
-  $codigoEncuentro = $_GET["Cod_Encuentro"];
-  $sql = "SELECT Nombre_Equipo, Cod_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
-                                                                        FROM encuentro
-                                                                        WHERE Cod_Encuentro = $codigoEncuentro )";
-  $consulta = mysqli_query($conexion, $sql);
-  $mostrar = mysqli_fetch_assoc($consulta);
-  $nombreEquipo1 = $mostrar["Nombre_Equipo"];
-  $codigoEquipo1 = $mostrar["Cod_Equipo"];
-  
-  $sql = "SELECT Nombre_Equipo, Cod_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
-                                                                        FROM encuentro
-                                                                        WHERE Cod_Encuentro = $codigoEncuentro )";
-  $consulta = mysqli_query($conexion, $sql);
-  $mostrar = mysqli_fetch_assoc($consulta);
-  $nombreEquipo2 = $mostrar["Nombre_Equipo"];
-  $codigoEquipo2 = $mostrar["Cod_Equipo"];
+    <?php 
+    $codigoEncuentro = $_GET["Cod_Encuentro"];
+    include "../../../conexion/conexionServer.php";
+    $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
+                                                                      FROM encuentro
+                                                                      WHERE Cod_Encuentro = $codigoEncuentro )";
+    $consulta = mysqli_query($conexion, $sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $nombreEquipo1 = $mostrar["Nombre_Equipo"];
 
-  ?>
+    $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
+                                                                          FROM encuentro
+                                                                          WHERE Cod_Encuentro = $codigoEncuentro )";
+    $consulta = mysqli_query($conexion, $sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $nombreEquipo2 = $mostrar["Nombre_Equipo"];
+    
+    ?>
     <header class="container">
       <div class="row">
         <div class="col-auto">
-          <a href="encuentrosDiarios.php">
+        <a href="../encuentrosDiarios.php">
             <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
           </a>
         </div>
         <div class="col-auto me-auto">
-          <a href="../../index.html">
+          <a href="../../../index.html">
             <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
           </a>
         </div>
         <div class="col-auto">
-          <!--    FORMULARIO PARA ENVIAR LOS PUNTOS Y AMONESTACIONES A LA BASE DE DATOS   -->
-          <form action="recibirPuntos.php" method="POST">
-          <input type="hidden" name="codigoEncuentro" value=<?php $codigoEncuentro; ?>>
-          <input type="hidden" name="codigoEquipo1" value=<?php $codigoEquipo1; ?>>
-          <input type="hidden" name="codigoEquipo2" value=<?php $codigoEquipo2; ?>>
-          <button class="btn button" name="enviarPuntos" type="submit">
+          <button class="btn button" name="guardarPuntos" type="submit">
             <b>Guardar</b>
           </button>
         </div>
-        <!--  BOTONES DE NAVEGACION   -->
         <center>
-          <ul>
-            <a href="#">
-              <button class="btn button" type="button">
-                <b>Puntos</b>
-              </button>
+          <ul class="">
+            <a href="../puntos/puntosSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
+            <button class="btn button" type="button">
+              <b>Puntos</b>
+            </button>
             </a>
-            <a href="amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
+            <a href="#">
               <button class="btn button" type="button">
                 <b>Amonestaciones</b>
               </button>
@@ -84,47 +75,28 @@
     <main class="container">
       <center>
         <img
-          src="../../img/mallaVolleyball.svg"
-          alt="icono malla voleibol"
+          src="../../../img/cards.svg"
+          alt="icono tarjetas voleibol"
           width="130px"
         />
-        <h2>Puntos Set 
-          <?php 
-            $sql = "SELECT MAX(Cod_Set) AS mayorCodigoSet,
-                    MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet 
-                    WHERE Cod_Encuentro = $codigoEncuentro";
-            $consulta = mysqli_query($conexion,$sql);
-            $mostrar = mysqli_fetch_assoc($consulta);
-            $codigoSet = $mostrar['mayorCodigoSet'];
-            $numeroRegistro = $mostrar['mayorNumeroRegistro'];
-
-            if ($codigoSet == 0 || $codigoSet == null){
-              $sql = "INSERT INTO zet (NumeroRegistro, Cod_Set, Cod_Encuentro)
-                      VALUES ( $numeroRegistro + 1, $codigoSet + 1, $codigoEncuentro )";
-              $consulta = mysqli_query($conexion,$sql);
-              echo $codigoSet + 1;
-            }else{
-              echo $codigoSet;
-            }
-          ?>
-        </h2>
+        <h2>Amonestaciones Set 1</h2>
       </center>
       <br />
       <div class="row">
         <section class="col-xs-12 col-sm-6">
-          <table class="table table-hover">
+          <table class="table-hover">
             <thead>
               <tr>
-                <td class="columnaCabecera">
+                <th class="columnaCabecera">
                   <b>
-                    <center><?php echo $nombreEquipo1; ?></center>
+                    <center id="equipoA"><?php echo $nombreEquipo1; ?></center>
                   </b>
-                </td>
-                <td>
+                </th>
+                <th>
                   <b>
                     <center>Contador</center>
                   </b>
-                </td>
+                </th>
               </tr>
             </thead>
             <?php
@@ -136,16 +108,22 @@
             ?>
             <tbody>
               <tr>
-                <td><?php echo $mostrar['Nombre'] ?></td>
+                <td id="jugadoraA"><?php echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
-                    <div class="btn contadores" onclick="deductClicks('<?php echo $mostrar['Id_Jugadora'] ?>')">
-                      <i class="fas fa-minus"></i>
-                    </div>
-                    <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
-                    <div class="btn contadores" onclick="countingClicks('<?php echo $mostrar['Id_Jugadora'] ?>')">
-                      <i class="fas fa-plus"></i>
-                    </div>
+                    <select
+                      name="tarjetasEquipo1"
+                      id="tarjetaSeleccionadaEquipo1"
+                      onchange="alertaConfirmarTarjeta()"
+                    >
+                      <option value="0">Seleccione...</option>
+                      <option value="1">Tarjeta Amarilla</option>
+                      <option value="2">Tarjeta Roja</option>
+                    </select>
+                    <div id="yellowCard"></div>
+                    <text id="contadorEquipo1Amarillas" class="contador">0</text>
+                    <div id="redCard"></div>
+                    <text id="contadorEquipo1Rojas" class="contador">0</text>
                   </center>
                 </td>
               </tr>
@@ -156,19 +134,19 @@
           </table>
         </section>
         <section class="col-xs-12 col-sm-6">
-          <table class="table table-hover">
+          <table class="table-hover">
             <thead>
               <tr>
-                <td class="columnaCabecera">
+                <th class="columnaCabecera">
                   <b>
                     <center><?php echo $nombreEquipo2; ?></center>
                   </b>
-                </td>
-                <td>
+                </th>
+                <th>
                   <b>
                     <center>Contador</center>
                   </b>
-                </td>
+                </th>
               </tr>
             </thead>
             <?php
@@ -183,13 +161,19 @@
                 <td><?php echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
-                    <div class="btn contadores" onclick="deductClicksb('<?php echo $mostrar['Id_Jugadora'] ?>')">
-                      <i class="fas fa-minus"></i>
-                    </div>
-                    <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
-                    <div class="btn contadores" onclick="countingClicksb('<?php echo $mostrar['Id_Jugadora'] ?>')">
-                      <i class="fas fa-plus"></i>
-                    </div>
+                    <select
+                      name="tarjetasEquipo2"
+                      id="tarjetaSeleccionadaEquipo2"
+                      onchange="alertaConfirmarTarjeta()"
+                    >
+                      <option value="0">Seleccione...</option>
+                      <option value="1">Tarjeta Amarilla</option>
+                      <option value="2">Tarjeta Roja</option>
+                    </select>
+                    <div id="yellowCard"></div>
+                    <text id="contadorEquipo2Amarillas" class="contador">0</text>
+                    <div id="redCard"></div>
+                    <text id="contadorEquipo2Rojas" class="contador">0</text>
                   </center>
                 </td>
               </tr>
@@ -201,10 +185,6 @@
         </section>
       </div>
     </main>
-    <input type="hidden" name="codigoSet" value=<?php $codigoSet; ?>>
-    <input type="hidden" name="puntosEquipo1" id="puntosEquipo1" value="0">
-    <input type="hidden" name="puntosEquipo2" id="puntosEquipo2" value="0">
-    </form>
 
     <!-- Scripts de bootstrap-->
     <script
@@ -233,5 +213,8 @@
       integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
       crossorigin="anonymous"
     ></script>
+    <!--Scripts cdn de sweetAlert2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="alertaPersonalizada.js"></script>
   </body>
 </html>

@@ -83,17 +83,17 @@
                     <tbody>
                         <tr>
                             <td>
-                            <a href="puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
+                            <a href="puntos/puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
                                 <center><?php echo $mostrar['Hora'] ?></center>
                             </a>
                             </td>
                             <td>
-                            <a href="puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
+                            <a href="puntos/puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
                                 <center><?php echo $mostrar['Cod_Equipo1'] ?></center>
                             </a>
                             </td>
                             <td>
-                            <a href="puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
+                            <a href="puntos/puntosSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
                                 <center><?php echo $mostrar['Cod_Equipo2'] ?></center>
                             </a>
                             </td>

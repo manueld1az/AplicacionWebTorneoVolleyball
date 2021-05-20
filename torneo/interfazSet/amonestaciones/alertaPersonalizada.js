@@ -3,7 +3,6 @@ let contadorTarjetasRojasEquipo1 = 0;
 let contadorTarjetasAmarillasEquipo2 = 0;
 let contadorTarjetasRojasEquipo2 = 0;
 
-
 document.getElementById("contadorEquipo1Amarillas").innerHTML = 0;
 document.getElementById("contadorEquipo2Amarillas").innerHTML = 0;
 document.getElementById("contadorEquipo1Rojas").innerHTML = 0;
@@ -55,8 +54,8 @@ async function alertaConfirmarTarjeta() {
       const { value: confirmacionAmarilla } = await Swal.fire({
         // title:
         text:
-          "Esta segur@ de sumar la tarjeta amarilla a la jugadora " + jugadoraA + " del equipo " +
-          equipoA,
+        "Esta segur@ de sumar la tarjeta amarilla a la jugadora " + jugadoraA + " del equipo " +
+        equipoA,
         // html:
         // icon: 'warning',
         confirmButtonText: "Aceptar",
@@ -109,7 +108,7 @@ async function alertaConfirmarTarjeta() {
         showCloseButton: true,
         closeButtonAriaLabel: "Cerrar",
 
-        imageUrl: "../../img/yellowCard.svg",
+        imageUrl: "../../../img/yellowCard.svg",
         imageWidth: "7em",
         imageHeight: "8em",
         imageAlt: "imgAlertaTarjeta",
@@ -161,8 +160,8 @@ async function alertaConfirmarTarjeta() {
       const { value: confirmacionRoja } = await Swal.fire({
         // title:
         text:
-          "Esta segur@ de sumar la tarjeta roja a la jugadora " + jugadoraA + " del equipo " +
-          equipoA,
+          "Esta segur@ de sumar la tarjeta roja a la jugadora (1) del equipo " +
+          equipo,
         // html:
         // icon: 'warning',
         confirmButtonText: "Aceptar",
@@ -215,7 +214,7 @@ async function alertaConfirmarTarjeta() {
         showCloseButton: true,
         closeButtonAriaLabel: "Cerrar",
 
-        imageUrl: "../../img/redCard.svg",
+        imageUrl: "../../../img/redCard.svg",
         imageWidth: "7em",
         imageHeight: "8em",
         imageAlt: "imgAlertaTarjeta",

@@ -6,13 +6,27 @@ header {
 .button {
   background-color: #1d3557;
   color: #fff;
-  margin-right: 2vh;
-  border: #1d3557 solid 1px;
 }
 
 .button:hover {
   background-color: #fff;
   color: #1d3557;
+  border: #1d3557 solid 1px;
+}
+
+.botonNav{
+  background-color: #fff;
+  color: #1d3557;
+  border: #1d3557 solid 1px;
+}
+
+.botonNav:hover {
+  background-color: #1d3557;
+  color: #fff;
+}
+
+.BN1 {
+  margin-right: 3%;
 }
 
 header h1 {

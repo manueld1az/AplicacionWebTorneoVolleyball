@@ -64,18 +64,17 @@
         </div>
         <!--  BOTONES DE NAVEGACION   -->
         <center>
-          <ul>
-            <a href="#">
-              <button class="btn button" type="button">
+        <a href="#">
+              <button class="btn botonNav BN1" type="button">
                 <b>Puntos</b>
               </button>
             </a>
+            <form action="" method="post"></form>
             <a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
-              <button class="btn button" type="button">
+              <button class="btn botonNav" type="button">
                 <b>Amonestaciones</b>
               </button>
             </a>
-          </ul>
         </center>
       </div>
     </header>

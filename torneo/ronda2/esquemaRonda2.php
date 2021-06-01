@@ -39,12 +39,15 @@
       /* $sql1 = "SELECT posicionSorteada,Cod_Equipo FROM `equipos` ORDER BY posicionSorteada ASC";
       $consulta1 = mysqli_query($conexion, $sql1); */
 
-      $sql = "SELECT Nombre_Equipo FROM `equipos` INNER JOIN `encuentros_ganados` ON equipos.Cod_Equipo = encuentros_ganados.Cod_Equipo ORDER BY Puntos_Ronda1 DESC";
+      $sql = "SELECT Puntos_Ronda1, equipos.Nombre_Equipo FROM `encuentros_ganados` 
+      INNER JOIN `equipos` ON equipos.Cod_Equipo = encuentros_ganados.Cod_Equipo 
+      ORDER BY encuentros_ganados.posicionSorteada ASC";
       $consulta = mysqli_query($conexion, $sql);
       
 
-      while ($puntosRonda1 = mysqli_fetch_array($consulta)) {
-        $maxPuntaje1[] = $puntosRonda1["Nombre_Equipo"];
+      while ($equipoRonda1 = mysqli_fetch_array($consulta)) {
+        $maxPuntaje1[] = $equipoRonda1["Nombre_Equipo"];
+        $clasificados[] = $equipoRonda1["Puntos_Ronda1"];
       }
 
       //  SE CREA LA LISTA "listaTabla" DE de los puestos que ocupan los equipos, 
@@ -52,6 +55,7 @@
 
       $listaTabla = [];
       $nombreGrupos = ["LLAVE UNO", "LLAVE DOS", "LLAVE TRES", "LLAVE CUATRO", "LLAVE CINCO", "LLAVE SEIS", "LLAVE SIETE", "LLAVE OCHO"];
+      $puntosCabecera = ["PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS"];
       for ($i = 0; $i < 8; $i++) {
       ?>
       <div class="col-xs-12 col-sm-12 col-md-3">
@@ -62,6 +66,15 @@
                   <p>
                     <b>
                       <center> <?php echo $nombreGrupos[$i]; ?></center>
+                    </b>
+                  </p>
+                </td>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>
+                      <?php echo $puntosCabecera[$i]; ?>
+                      </center>
                     </b>
                   </p>
                 </td>
@@ -91,6 +104,17 @@
                         echo $maxPuntaje1[$j + 24];
                       } else if ($i == 7) {
                         echo $maxPuntaje1[$j + 28];
+                      }
+                      ?>
+                    </center>
+                  </td>
+                  <td>
+                    <center>
+                    <?php
+                      if ($i == 0) {
+                        echo $clasificados[$j];
+                      } else if ($i == 1) {
+                        echo $clasificados[$j + 4];
                       }
                       ?>
                     </center>

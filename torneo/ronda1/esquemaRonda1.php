@@ -90,13 +90,17 @@
       echo "</pre>";*/
       $resultado = mysqli_query($conexion, $sql);
       $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
-      $sql = "SELECT Nombre_Equipo FROM equipos ORDER BY posicionSorteada";
+      $puntosCabecera = ["PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS"];
+      $sql = "SELECT Puntos_Ronda1, equipos.Nombre_Equipo FROM `encuentros_ganados` 
+      INNER JOIN `equipos` ON equipos.Cod_Equipo = encuentros_ganados.Cod_Equipo 
+      ORDER BY encuentros_ganados.posicionSorteada ASC";
       $consulta = mysqli_query($conexion, $sql);
 
       //  SE AGREGAN LOS EQUIPOS DE LA CONSULTA SQL EN EL ARRAY $equipo[]
 
       while ($equipos = mysqli_fetch_array($consulta)) {
         $equipo[] = $equipos["Nombre_Equipo"];
+        $clasificados[] = $equipos["Puntos_Ronda1"];
       }
 
       /*echo "<pre>";
@@ -117,6 +121,15 @@
                   <p>
                     <b>
                       <center>GRUPO <?php echo $nombreGrupos[$i]; ?></center>
+                    </b>
+                  </p>
+                </td>
+                <td class="columnaCabecera">
+                  <p>
+                    <b>
+                      <center>
+                      <?php echo $puntosCabecera[$i]; ?>
+                      </center>
                     </b>
                   </p>
                 </td>
@@ -146,6 +159,29 @@
                         echo $equipo[$j + 24];
                       } else if ($i == 7) {
                         echo $equipo[$j + 28];
+                      }
+                      ?>
+                    </center>
+                  </td>
+                  <td>
+                    <center>
+                    <?php
+                      if ($i == 0) {
+                        echo $clasificados[$j];
+                      } else if ($i == 1) {
+                        echo $clasificados[$j + 4];
+                      } else if ($i == 2) {
+                        echo $clasificados[$j + 8];
+                      } else if ($i == 3) {
+                        echo $clasificados[$j + 12];
+                      } else if ($i == 4) {
+                        echo $clasificados[$j + 16];
+                      } else if ($i == 5) {
+                        echo $clasificados[$j + 20];
+                      } else if ($i == 6) {
+                        echo $clasificados[$j + 24];
+                      } else if ($i == 7) {
+                        echo $clasificados[$j + 28];
                       }
                       ?>
                     </center>

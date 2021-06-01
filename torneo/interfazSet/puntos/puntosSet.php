@@ -21,26 +21,27 @@
     <link rel="stylesheet" href="../set.css" />
   </head>
   <body>
+  <!--  SE CONSULTA LA INFORMACION ESCENCIAL PARA LA REALIZACION DEL SET  -->
   <?php
-  include "contadorPuntos.php";
-  include "../../../conexion/conexionServer.php";
-  $codigoEncuentro = $_GET["Cod_Encuentro"];
-  $sql = "SELECT Nombre_Equipo, Cod_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
-                                                                        FROM encuentro
-                                                                        WHERE Cod_Encuentro = $codigoEncuentro )";
-  $consulta = mysqli_query($conexion, $sql);
-  $mostrar = mysqli_fetch_assoc($consulta);
-  $nombreEquipo1 = $mostrar["Nombre_Equipo"];
-  $codigoEquipo1 = $mostrar["Cod_Equipo"];
-  
-  $sql = "SELECT Nombre_Equipo, Cod_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
-                                                                        FROM encuentro
-                                                                        WHERE Cod_Encuentro = $codigoEncuentro )";
-  $consulta = mysqli_query($conexion, $sql);
-  $mostrar = mysqli_fetch_assoc($consulta);
-  $nombreEquipo2 = $mostrar["Nombre_Equipo"];
-  $codigoEquipo2 = $mostrar["Cod_Equipo"];
+    //  SE ENCARGA DE VALIDAR SI EL JUEGO YA TERMINO
+    $ganador = false;
+    include "../../../conexion/conexionServer.php";
+    $codigoEncuentro = $_GET["Cod_Encuentro"];
+    $sql = "SELECT Nombre_Equipo, Cod_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
+                                                                          FROM encuentro
+                                                                          WHERE Cod_Encuentro = $codigoEncuentro )";
+    $consulta = mysqli_query($conexion, $sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $nombreEquipo1 = $mostrar["Nombre_Equipo"];
+    $codigoEquipo1 = $mostrar["Cod_Equipo"];
 
+    $sql = "SELECT Nombre_Equipo, Cod_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
+                                                                          FROM encuentro
+                                                                          WHERE Cod_Encuentro = $codigoEncuentro )";
+    $consulta = mysqli_query($conexion, $sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $nombreEquipo2 = $mostrar["Nombre_Equipo"];
+    $codigoEquipo2 = $mostrar["Cod_Equipo"];
   ?>
     <header class="container">
       <div class="row">
@@ -55,23 +56,26 @@
           </a>
         </div>
         <div class="col-auto">
-        
           <!--    FORMULARIO PARA ENVIAR LOS PUNTOS Y AMONESTACIONES A LA BASE DE DATOS   -->
           <form action="recibirPuntos.php" method="POST">
-          <button class="btn button" name="enviarPuntos" type="submit">
-            <b>Guardar</b>
-          </button>
+            <input type="hidden" name="codigoEncuentro" value="<?php echo $codigoEncuentro; ?>">
+            <input type="hidden" name="codigoEquipo1" value="<?php echo $codigoEquipo1; ?>">
+            <input type="hidden" name="codigoEquipo2" value="<?php echo $codigoEquipo2; ?>">
+            <input type="hidden" name="puntosEquipo1" id="puntosEquipo1" value="0">
+            <input type="hidden" name="puntosEquipo2" id="puntosEquipo2" value="0">
+            <button class="btn button" name="guardarPuntos" type="submit">
+              <b>Guardar</b>
+            </button>
         </div>
         <!--  BOTONES DE NAVEGACION   -->
         <center>
-        <a href="#">
+          <a href="#">
               <button class="btn botonNav BN1" type="button">
                 <b>Puntos</b>
               </button>
             </a>
-            <form action="" method="post"></form>
-            <a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
-              <button class="btn botonNav" type="button">
+            <!--<a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">-->
+              <button class="btn botonNav" id="botonAmonestaciones" type="button">
                 <b>Amonestaciones</b>
               </button>
             </a>
@@ -87,6 +91,7 @@
         />
         <h2>Puntos Set 
           <?php 
+            //  SE CONSULTA SI YA EXISTE UN SET ANTERIOR EN ESTE ENCUENTRO Y SI NO ES ASI SE CREAN
             $sql = "SELECT MAX(Cod_Set) AS mayorCodigoSet,
                     MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet 
                     WHERE Cod_Encuentro = $codigoEncuentro";
@@ -94,12 +99,21 @@
             $mostrar = mysqli_fetch_assoc($consulta);
             $codigoSet = $mostrar['mayorCodigoSet'];
             $numeroRegistro = $mostrar['mayorNumeroRegistro'];
+            //  SE SUMA 1 PARA AUMENTAR CADA VEZ QUE INICIA UN NUEVO SET
+            $numeroRegistro ++;
+            if ($numeroRegistro == 1){
+              //  SE CONSULTA EL ULTIMO NUMEROREGISTRO DE LA TABLA POR QUE SE CONSULTO ANTERIORMENTE SOLO EL NUMERO REGISTRO
+              //  POR ENCUENTRO Y PARA EL PRIMER REGISTRO DEL ENCUENTRO SE NECESITA EL ULTIMO REGISTRO DEL ENCUENTRO ANTERIOR
+              $sql = "SELECT MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet ";
+              $consulta = mysqli_query($conexion,$sql);
+              $mostrar = mysqli_fetch_assoc($consulta);
+              $numeroRegistro += $mostrar['mayorNumeroRegistro'];
+            }
             $codigoSet ++;
+            //  SE EVALUA SI EL ENCUENTRO YA CUMPLIO LOS 3 SETS Y YA TERMINO
             if ($codigoSet <= 3){
-            echo $codigoSet;            
-            $sql = "INSERT INTO zet (NumeroRegistro, Cod_Set, Cod_Encuentro)
-                    VALUES ( $numeroRegistro + 1, $codigoSet, $codigoEncuentro )";
-            $consulta = mysqli_query($conexion,$sql);
+            //  SE IMPRIME EL SET ACTUAL
+            echo $codigoSet;
           ?>
         </h2>
       </center>
@@ -111,7 +125,7 @@
               <tr>
                 <td class="columnaCabecera">
                   <b>
-                    <center><?php echo $nombreEquipo1; ?></center>
+                    <center id="nombreEquipo1"><?php echo $nombreEquipo1; ?></center>
                   </b>
                 </td>
                 <td>
@@ -122,22 +136,23 @@
               </tr>
             </thead>
             <?php
-            $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo1
+              $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo1
                                                                                 FROM encuentro
                                                                                 WHERE Cod_Encuentro = $codigoEncuentro )";
-            $consulta = mysqli_query($conexion,$sql);
-            while ($mostrar = mysqli_fetch_assoc($consulta)) {
+              $consulta = mysqli_query($conexion,$sql);
+              while ($mostrar = mysqli_fetch_assoc($consulta)) {
+                $jugadorasEquipo1[] = $mostrar['Id_Jugadora'];
             ?>
             <tbody>
               <tr>
                 <td><center><?php echo $mostrar['Nombre'] ?></center></td>
                 <td>
                   <center>
-                    <div class="btn contadores" onclick="deductClicks('<?php echo $mostrar['Id_Jugadora'] ?>')">
+                    <div class="btn contadores" onclick="deductClicks('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo1; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-minus"></i>
                     </div>
                     <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
-                    <div class="btn contadores" onclick="countingClicks('<?php echo $mostrar['Id_Jugadora'] ?>')">
+                    <div class="btn contadores" onclick="countingClicks('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo1; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-plus"></i>
                     </div>
                   </center>
@@ -155,7 +170,7 @@
               <tr>
                 <td class="columnaCabecera">
                   <b>
-                    <center><?php echo $nombreEquipo2; ?></center>
+                    <center id="nombreEquipo2"><?php echo $nombreEquipo2; ?></center>
                   </b>
                 </td>
                 <td>
@@ -166,22 +181,23 @@
               </tr>
             </thead>
             <?php
-            $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo2
+              $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo2
                                                                                 FROM encuentro
                                                                                 WHERE Cod_Encuentro = $codigoEncuentro )";
-            $consulta = mysqli_query($conexion,$sql);
-            while ($mostrar = mysqli_fetch_assoc($consulta)) {
+              $consulta = mysqli_query($conexion,$sql);
+              while ($mostrar = mysqli_fetch_assoc($consulta)) {
+                $jugadorasEquipo2[] = $mostrar['Id_Jugadora'];
             ?>
             <tbody>
               <tr>
                 <td><center><?php echo $mostrar['Nombre'] ?></center></td>
                 <td>
                   <center>
-                    <div class="btn contadores" onclick="deductClicksb('<?php echo $mostrar['Id_Jugadora'] ?>')">
+                    <div class="btn contadores" onclick="deductClicksb('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo2; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-minus"></i>
                     </div>
                     <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
-                    <div class="btn contadores" onclick="countingClicksb('<?php echo $mostrar['Id_Jugadora'] ?>')">
+                    <div class="btn contadores" onclick="countingClicksb('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo2; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-plus"></i>
                     </div>
                   </center>
@@ -195,14 +211,40 @@
         </section>
       </div>
     </main>
-    <input type="hidden" name="numeroRegistro" value="<?php echo $numeroRegistro; ?>">
-    <input type="hidden" name="codigoSet" value="<?php echo $codigoSet; ?>">
-    <input type="hidden" name="codigoEncuentro" value="<?php echo $codigoEncuentro; ?>">
-    <input type="hidden" name="codigoEquipo1" value="<?php echo $codigoEquipo1; ?>">
-    <input type="hidden" name="codigoEquipo2" value="<?php echo $codigoEquipo2; ?>">
-    <input type="hidden" name="puntosEquipo1" id="puntosEquipo1" value="0">
-    <input type="hidden" name="puntosEquipo2" id="puntosEquipo2" value="0">
+    <!--  SE ENCAPSULAN LOS PUNTOS DE CADA JUGADORA EN UN ARRAY POR EQUIPO Y SE ENVIA A PHP  -->
+    <?php 
+      //  INPUTS PARA ENVIAR LOS PUNTOS POR CADA JUGADORA
+      //  1 - SE CONSULTA LA CANTIDAD DE JUGADORAS DEL EQUIPO 1
+      $sql = "SELECT COUNT(Id_Jugadora) AS cantidadJugadorasEquipo1 FROM jugadoras WHERE (Cod_equipo = $codigoEquipo1)";
+      $consulta = mysqli_query($conexion,$sql);
+      $mostrar=mysqli_fetch_assoc($consulta);
+      $cantidadJugadorasEquipo1=$mostrar['cantidadJugadorasEquipo1'];
+      ?>
+      <input type="hidden" name="cantidadJugadorasEquipo1" id="cantidadJugadorasEquipo1" value="<?php echo $cantidadJugadorasEquipo1; ?>">
+      <?php
+      for ($i=0; $i < $cantidadJugadorasEquipo1; $i++){
+        ?>
+        <input type="hidden" name="puntosJugadorasEquipo1[]" id="puntosJugadorasEquipo1[<?php echo $jugadorasEquipo1[$i]; ?>]" value="">
+      <?php
+      }
+      //  2 - SE CONSULTA LA CANTIDAD DE JUGADORAS DEL EQUIPO 2
+      $sql = "SELECT COUNT(Id_Jugadora) AS cantidadJugadorasEquipo2 FROM jugadoras WHERE (Cod_equipo = $codigoEquipo2)";
+      $consulta = mysqli_query($conexion,$sql);
+      $mostrar=mysqli_fetch_assoc($consulta);
+      $cantidadJugadorasEquipo2=$mostrar['cantidadJugadorasEquipo2'];
+      ?>
+      <input type="hidden" name="cantidadJugadorasEquipo2" id="cantidadJugadorasEquipo2" value="<?php echo $cantidadJugadorasEquipo2; ?>">
+      <?php
+      for ($i=0; $i < $cantidadJugadorasEquipo2; $i++){
+        ?>
+        <input type="hidden" name="puntosJugadorasEquipo2[]" id="puntosJugadorasEquipo2[<?php echo $jugadorasEquipo2[$i]; ?>]" value="">
+      <?php
+      }
+    ?>
+      <input type="hidden" name="numeroRegistro" value="<?php echo $numeroRegistro; ?>">
+      <input type="hidden" name="codigoSet" value="<?php echo $codigoSet; ?>">
     </form>
+    <!--  SE MUESTRA LA ADVERTENCIA SI EL CODIGO DEL SET ES MAYOR A 3  -->
     <?php
             }else{
               ?>
@@ -216,6 +258,15 @@
             }
     ?>
 
+    <!--<script src="recuperaVariables.js"></script>-->
+    <!--  SCRIPT PARA HACER LOS CONTEOS DE PUNTOS  -->
+    <script src="contadorPuntos.js"></script>
+    <!--Scripts cdn de font awesome-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
+      integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
+      crossorigin="anonymous"
+    ></script>
     <!-- Scripts de bootstrap-->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -237,11 +288,7 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
-    <!--Scripts cdn de font awesome-->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
-      integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
-      crossorigin="anonymous"
-    ></script>
+    <!--Scripts cdn de sweetAlert2-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   </body>
 </html>

@@ -1,19 +1,20 @@
-let contadorTarjetasAmarillasEquipo1 = 0;
-let contadorTarjetasRojasEquipo1 = 0;
-let contadorTarjetasAmarillasEquipo2 = 0;
-let contadorTarjetasRojasEquipo2 = 0;
+let contadorTarjetasAmarillasEquipo1 = [];
+let contadorTarjetasRojasEquipo1 = [];
+let contadorTarjetasAmarillasEquipo2 = [];
+let contadorTarjetasRojasEquipo2 = [];
 
-document.getElementById("contadorEquipo1Amarillas").innerHTML = 0;
-document.getElementById("contadorEquipo2Amarillas").innerHTML = 0;
-document.getElementById("contadorEquipo1Rojas").innerHTML = 0;
-document.getElementById("contadorEquipo2Rojas").innerHTML = 0;
+async function alertaConfirmarTarjeta(nombreJugadora, idJugadora) {
+  contadorTarjetasAmarillasEquipo1 => 1 = 0;
+  contadorTarjetasRojasEquipo1 => 1 = 0;
+  contadorTarjetasAmarillasEquipo2 => 1 = 0;
+  contadorTarjetasRojasEquipo2 => 1 = 0;
 
-let jugadoraA = document.getElementById("jugadoraA").innerHTML;
-let equipoA = document.getElementById("equipoA").innerHTML;
-
-async function alertaConfirmarTarjeta() {
+  //  VARIABLES PARA MOSTRAR EL NOMBRE DE LOS EQUIPOS EN SU ALERTA PERSONALIZADA
+  let nombreEquipo1 = document.getElementById("nombreEquipo1").textContent;
+  let nombreEquipo2 = document.getElementById("nombreEquipo2").textContent;
   let tarjetaSeleccionada = 0;
   let equipo = 0;
+  let nombreEquipo = "";
 
   //  SE OPTIENE LA OPCION SELECCIONADA EN EL SELECT DEL HTML
   let tarjetaSeleccionadaEquipo1 = document.getElementById(
@@ -32,11 +33,13 @@ async function alertaConfirmarTarjeta() {
       tarjetaSeleccionadaEquipo1 == "2"
     ) {
       equipo = 1;
+      nombreEquipo = nombreEquipo1;
     } else if (
       tarjetaSeleccionadaEquipo2 == "1" ||
       tarjetaSeleccionadaEquipo2 == "2"
     ) {
       equipo = 2;
+      nombreEquipo = nombreEquipo2;
     }
 
     //  SE EVALUA SI SE RECIBIO UNA TARJETA AMARILLA O ROJA
@@ -54,8 +57,10 @@ async function alertaConfirmarTarjeta() {
       const { value: confirmacionAmarilla } = await Swal.fire({
         // title:
         text:
-        "Esta segur@ de sumar la tarjeta amarilla a la jugadora " + jugadoraA + " del equipo " +
-        equipoA,
+          "Esta segur@ de sumar la tarjeta amarilla a la jugadora " +
+          nombreJugadora +
+          " del equipo " +
+          nombreEquipo,
         // html:
         // icon: 'warning',
         confirmButtonText: "Aceptar",
@@ -118,38 +123,39 @@ async function alertaConfirmarTarjeta() {
       if (confirmacionAmarilla) {
         if (equipo == 1) {
           if (
-            contadorTarjetasAmarillasEquipo1 < 2 &&
-            contadorTarjetasRojasEquipo1 == 0
+            contadorTarjetasAmarillasEquipo1[idJugadora] < 2 &&
+            contadorTarjetasRojasEquipo1[idJugadora] == 0
           ) {
-            contadorTarjetasAmarillasEquipo1++;
+            contadorTarjetasAmarillasEquipo1[idJugadora]++;
           }
-          document.getElementById("contadorEquipo1Amarillas").innerHTML =
-            contadorTarjetasAmarillasEquipo1;
+          document.getElementById(idJugadora).innerHTML =
+            contadorTarjetasAmarillasEquipo1[idJugadora];
+          console.log(contadorTarjetasAmarillasEquipo1[idJugadora]);
 
           //    SE SUMA ROJA SI SE SUMAN 2 AMARILLAS
-          if (contadorTarjetasAmarillasEquipo1 == 2) {
-            if (contadorTarjetasRojasEquipo1 == 0) {
-              contadorTarjetasRojasEquipo1++;
-              document.getElementById("contadorEquipo1Rojas").innerHTML =
-                contadorTarjetasRojasEquipo1;
+          if (contadorTarjetasAmarillasEquipo1[idJugadora] == 2) {
+            if (contadorTarjetasRojasEquipo1[idJugadora] == 0) {
+              contadorTarjetasRojasEquipo1[idJugadora]++;
+              document.getElementById(idJugadora).innerHTML =
+                contadorTarjetasRojasEquipo1[idJugadora];
             }
           }
         } else if (equipo == 2) {
           if (
-            contadorTarjetasAmarillasEquipo2 < 2 &&
-            contadorTarjetasRojasEquipo2 == 0
+            contadorTarjetasAmarillasEquipo2[idJugadora] < 2 &&
+            contadorTarjetasRojasEquipo2[idJugadora] == 0
           ) {
-            contadorTarjetasAmarillasEquipo2++;
-            document.getElementById("contadorEquipo2Amarillas").innerHTML =
-              contadorTarjetasAmarillasEquipo2;
+            contadorTarjetasAmarillasEquipo2[idJugadora]++;
+            document.getElementById(idJugadora).innerHTML =
+              contadorTarjetasAmarillasEquipo2[idJugadora];
           }
 
           //    SE SUMA ROJA SI SE SUMAN 2 AMARILLAS
-          if (contadorTarjetasAmarillasEquipo2 == 2) {
-            if (contadorTarjetasRojasEquipo2 == 0) {
-              contadorTarjetasRojasEquipo2++;
-              document.getElementById("contadorEquipo2Rojas").innerHTML =
-                contadorTarjetasRojasEquipo2;
+          if (contadorTarjetasAmarillasEquipo2[idJugadora] == 2) {
+            if (contadorTarjetasRojasEquipo2[idJugadora] == 0) {
+              contadorTarjetasRojasEquipo2[idJugadora]++;
+              document.getElementById(idJugadora).innerHTML =
+                contadorTarjetasRojasEquipo2[idJugadora];
             }
           }
         }
@@ -160,8 +166,10 @@ async function alertaConfirmarTarjeta() {
       const { value: confirmacionRoja } = await Swal.fire({
         // title:
         text:
-          "Esta segur@ de sumar la tarjeta roja a la jugadora (1) del equipo " +
-          equipo,
+          "Esta segur@ de sumar la tarjeta roja a la jugadora " +
+          nombreJugadora +
+          " del equipo " +
+          nombreEquipo,
         // html:
         // icon: 'warning',
         confirmButtonText: "Aceptar",
@@ -223,16 +231,16 @@ async function alertaConfirmarTarjeta() {
       //  CONTADOR DE TARJETAS ROJAS
       if (confirmacionRoja) {
         if (equipo == 1) {
-          if (contadorTarjetasRojasEquipo1 == 0) {
-            contadorTarjetasRojasEquipo1++;
-            document.getElementById("contadorEquipo1Rojas").innerHTML =
-              contadorTarjetasRojasEquipo1;
+          if (contadorTarjetasRojasEquipo1[idJugadora] == 0) {
+            contadorTarjetasRojasEquipo1[idJugadora]++;
+            document.getElementById(idJugadora).innerHTML =
+              contadorTarjetasRojasEquipo1[idJugadora];
           }
         } else if (equipo == 2) {
-          if (contadorTarjetasRojasEquipo2 == 0) {
-            contadorTarjetasRojasEquipo2++;
-            document.getElementById("contadorEquipo2Rojas").innerHTML =
-              contadorTarjetasRojasEquipo2;
+          if (contadorTarjetasRojasEquipo2[idJugadora] == 0) {
+            contadorTarjetasRojasEquipo2[idJugadora]++;
+            document.getElementById(idJugadora).innerHTML =
+              contadorTarjetasRojasEquipo2[idJugadora];
           }
         }
       }
@@ -240,7 +248,6 @@ async function alertaConfirmarTarjeta() {
 
     //  SE RESTABLECEN LOS VALORES DE TODAS LAS VARIABLES
     //  AL QUE DEBEN TENER POR DEFECTO AL PRINCIPIO DE LA FUNCION
-    tarjetaSeleccionada = 0;
     equipo = 0;
     tarjetaSeleccionadaEquipo1 = "0";
     tarjetaSeleccionadaEquipo2 = "0";

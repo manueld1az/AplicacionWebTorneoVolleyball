@@ -152,7 +152,7 @@ async function verificarGanador(
 //-----------------------------------------------------------------------------------------------
 
 //  FUNCION PARA SUMAR UN PUNTO AL EQUIPO 1
-function countingClicks(idJugadora, codigoEquipo, ganador) {
+function countingClicks(idJugadora, ganador) {
   //  AQUI SE GUARDAN LOS PUNTOS TRANSITORIOS DE CADA EQUIPO
   let puntosEquipo1 = parseInt(document.getElementById(idJugadora).textContent);
   document.getElementById(idJugadora).innerHTML = ++puntosEquipo1;
@@ -171,6 +171,7 @@ function countingClicks(idJugadora, codigoEquipo, ganador) {
     document
       .getElementById("puntosJugadorasEquipo1[" + idJugadora + "]")
       .setAttribute("value", puntosJugadorasEquipo1[idJugadora]);
+    // compartirIdJugadora(idJugadora);
   }
   console.log(puntosJugadorasEquipo1);
 
@@ -184,47 +185,53 @@ function countingClicks(idJugadora, codigoEquipo, ganador) {
     nombreEquipo2,
     ganador
   );
-
+  obtenerContadores(idJugadora, cantidadJugadorasEquipo1);
   return contadorEquipo1;
 }
 
 //  FUNCION PARA RESTAR UN PUNTO AL EQUIPO 1
-function deductClicks(idJugadora, codigoEquipo, ganador) {
+function deductClicks(idJugadora, ganador) {
   //  AQUI SE GUARDAN LOS PUNTOS TRANSITORIOS DE CADA EQUIPO
   let puntosEquipo1 = parseInt(document.getElementById(idJugadora).textContent);
-  document.getElementById(idJugadora).innerHTML = --puntosEquipo1;
-  contadorEquipo1--;
-  console.log("equipo1 - " + contadorEquipo1);
-  puntosJugadorasEquipo1[idJugadora] = puntosEquipo1;
-  //console.log(codigoEquipo);
-  //console.log(puntosJugadorasEquipo1);
-  document
-    .getElementById("puntosEquipo1")
-    .setAttribute("value", contadorEquipo1);
-  let cantidadJugadorasEquipo1 = document
-    .getElementById("cantidadJugadorasEquipo1")
-    .getAttribute("value");
-  for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
+  //  CREAR EL IF PARA NO PERMITIR BAJAR DE 0 PUNTOS
+  if (puntosEquipo1 > 0) {
+    document.getElementById(idJugadora).innerHTML = --puntosEquipo1;
+    contadorEquipo1--;
+    console.log("equipo1 - " + contadorEquipo1);
+    puntosJugadorasEquipo1[idJugadora] = puntosEquipo1;
+    //console.log(codigoEquipo);
+    //console.log(puntosJugadorasEquipo1);
     document
-      .getElementById("puntosJugadorasEquipo1[" + idJugadora + "]")
-      .setAttribute("value", puntosJugadorasEquipo1[idJugadora]);
-  }
-  console.log(puntosJugadorasEquipo1);
+      .getElementById("puntosEquipo1")
+      .setAttribute("value", contadorEquipo1);
+    let cantidadJugadorasEquipo1 = document
+      .getElementById("cantidadJugadorasEquipo1")
+      .getAttribute("value");
+    for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
+      document
+        .getElementById("puntosJugadorasEquipo1[" + idJugadora + "]")
+        .setAttribute("value", puntosJugadorasEquipo1[idJugadora]);
+      // compartirIdJugadora(idJugadora);
+    }
+    console.log(puntosJugadorasEquipo1);
 
-  //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
-  let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
-  let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
-  verificarGanador(
-    contadorEquipo1,
-    contadorEquipo2,
-    nombreEquipo1,
-    nombreEquipo2,
-    ganador
-  );
+    //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
+    let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
+    let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
+    verificarGanador(
+      contadorEquipo1,
+      contadorEquipo2,
+      nombreEquipo1,
+      nombreEquipo2,
+      ganador
+    );
+    obtenerContadores(idJugadora, cantidadJugadorasEquipo1);
+  }
+  return contadorEquipo1;
 }
 
 //  FUNCION PARA SUMAR UN PUNTO AL EQUIPO 2
-function countingClicksb(idJugadora, codigoEquipo, ganador) {
+function countingClicksb(idJugadora, ganador) {
   //  AQUI SE GUARDAN LOS PUNTOS TRANSITORIOS DE CADA EQUIPO
   let puntosEquipo2 = parseInt(document.getElementById(idJugadora).textContent);
   document.getElementById(idJugadora).innerHTML = ++puntosEquipo2;
@@ -243,6 +250,7 @@ function countingClicksb(idJugadora, codigoEquipo, ganador) {
     document
       .getElementById("puntosJugadorasEquipo2[" + idJugadora + "]")
       .setAttribute("value", puntosJugadorasEquipo2[idJugadora]);
+    // compartirIdJugadora(idJugadora);
   }
   console.log(puntosJugadorasEquipo2);
 
@@ -256,39 +264,69 @@ function countingClicksb(idJugadora, codigoEquipo, ganador) {
     nombreEquipo2,
     ganador
   );
+  obtenerContadores(idJugadora, cantidadJugadorasEquipo2);
+  return contadorEquipo2;
 }
 
 //  FUNCION PARA RESTAR UN PUNTO AL EQUIPO 2
-function deductClicksb(idJugadora, codigoEquipo, ganador) {
+function deductClicksb(idJugadora, ganador) {
   //  AQUI SE GUARDAN LOS PUNTOS TRANSITORIOS DE CADA EQUIPO
   let puntosEquipo2 = parseInt(document.getElementById(idJugadora).textContent);
-  document.getElementById(idJugadora).innerHTML = --puntosEquipo2;
-  contadorEquipo2--;
-  console.log("equipo2 - " + contadorEquipo2);
-  puntosJugadorasEquipo2[idJugadora] = puntosEquipo2;
-  //console.log(codigoEquipo);
-  //console.log(puntosJugadorasEquipo2);
-  document
-    .getElementById("puntosEquipo2")
-    .setAttribute("value", contadorEquipo2);
-  let cantidadJugadorasEquipo2 = document
-    .getElementById("cantidadJugadorasEquipo2")
-    .getAttribute("value");
-  for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
+  //  CREAR EL IF PARA NO PERMITIR BAJAR DE 0 PUNTOS
+  if (puntosEquipo2 > 0) {
+    document.getElementById(idJugadora).innerHTML = --puntosEquipo2;
+    contadorEquipo2--;
+    console.log("equipo2 - " + contadorEquipo2);
+    puntosJugadorasEquipo2[idJugadora] = puntosEquipo2;
+    //console.log(codigoEquipo);
+    //console.log(puntosJugadorasEquipo2);
     document
-      .getElementById("puntosJugadorasEquipo2[" + idJugadora + "]")
-      .setAttribute("value", puntosJugadorasEquipo2[idJugadora]);
-  }
-  console.log(puntosJugadorasEquipo2);
+      .getElementById("puntosEquipo2")
+      .setAttribute("value", contadorEquipo2);
+    let cantidadJugadorasEquipo2 = document
+      .getElementById("cantidadJugadorasEquipo2")
+      .getAttribute("value");
+    for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
+      document
+        .getElementById("puntosJugadorasEquipo2[" + idJugadora + "]")
+        .setAttribute("value", puntosJugadorasEquipo2[idJugadora]);
+      // compartirIdJugadora(idJugadora);
+    }
+    console.log(puntosJugadorasEquipo2);
 
-  //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
-  let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
-  let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
-  verificarGanador(
-    contadorEquipo1,
-    contadorEquipo2,
-    nombreEquipo1,
-    nombreEquipo2,
-    ganador
-  );
+    //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
+    let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
+    let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
+    verificarGanador(
+      contadorEquipo1,
+      contadorEquipo2,
+      nombreEquipo1,
+      nombreEquipo2,
+      ganador
+    );
+    obtenerContadores(idJugadora, cantidadJugadorasEquipo2);
+  }
+  return contadorEquipo2;
+}
+
+//----------------------------------------------------------------------------------
+//  SE ENLAZA EL CLICK DEL BOTON Amonestaciones PARA ENVIAR EL PARAMETRO IDJUGADORA
+let botonAmonestaciones = document.getElementById("botonAmonestaciones");
+botonAmonestaciones.addEventListener("click", function (e) {
+  e.preventDefault();
+});
+
+function obtenerContadores(idJugadora, cantidadJugadorasEquipo1) {
+  for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
+    puntosJugadorasEquipo1[i] = document
+      .getElementById("puntosJugadorasEquipo1[" + idJugadora + "]")
+      .getAttribute("value");
+    console.log(
+      "El puntaje de la id " + idJugadora + " es: " + puntosJugadorasEquipo1[i]
+    );
+  }
+  fetch('puntosSet.php',{
+    method: 'POST',
+    body: datos
+  })
 }

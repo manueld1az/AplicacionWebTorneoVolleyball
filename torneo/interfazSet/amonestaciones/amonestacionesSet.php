@@ -22,27 +22,26 @@
   </head>
   <body>
     <?php 
-    $codigoEncuentro = $_GET["Cod_Encuentro"];
-    include "../../../conexion/conexionServer.php";
-    $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
-                                                                      FROM encuentro
-                                                                      WHERE Cod_Encuentro = $codigoEncuentro )";
-    $consulta = mysqli_query($conexion, $sql);
-    $mostrar = mysqli_fetch_assoc($consulta);
-    $nombreEquipo1 = $mostrar["Nombre_Equipo"];
+      $codigoEncuentro = $_GET["Cod_Encuentro"];
+      include "../../../conexion/conexionServer.php";
+      $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo1
+                                                                        FROM encuentro
+                                                                        WHERE Cod_Encuentro = $codigoEncuentro )";
+      $consulta = mysqli_query($conexion, $sql);
+      $mostrar = mysqli_fetch_assoc($consulta);
+      $nombreEquipo1 = $mostrar["Nombre_Equipo"];
 
-    $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
-                                                                          FROM encuentro
-                                                                          WHERE Cod_Encuentro = $codigoEncuentro )";
-    $consulta = mysqli_query($conexion, $sql);
-    $mostrar = mysqli_fetch_assoc($consulta);
-    $nombreEquipo2 = $mostrar["Nombre_Equipo"];
-    
+      $sql = "SELECT Nombre_Equipo FROM equipos WHERE Cod_Equipo = (  SELECT Cod_Equipo2
+                                                                            FROM encuentro
+                                                                            WHERE Cod_Encuentro = $codigoEncuentro )";
+      $consulta = mysqli_query($conexion, $sql);
+      $mostrar = mysqli_fetch_assoc($consulta);
+      $nombreEquipo2 = $mostrar["Nombre_Equipo"];
     ?>
     <header class="container">
       <div class="row">
         <div class="col-auto">
-        <a href="../encuentrosDiarios.php">
+          <a href="../encuentrosDiarios.php">
             <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
           </a>
         </div>
@@ -59,7 +58,7 @@
         <center>
           <ul class="">
             <a href="../puntos/puntosSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
-            <button class="btn button" type="button">
+            <button class="btn button BN1" type="button" id="botonNavegacionSet">
               <b>Puntos</b>
             </button>
             </a>
@@ -89,7 +88,7 @@
               <tr>
                 <th class="columnaCabecera">
                   <b>
-                    <center id="equipoA"><?php echo $nombreEquipo1; ?></center>
+                    <center id="nombreEquipo1"><?php echo $nombreEquipo1; ?></center>
                   </b>
                 </th>
                 <th>
@@ -105,25 +104,26 @@
                                                                                 WHERE Cod_Encuentro = $codigoEncuentro )";
             $consulta = mysqli_query($conexion,$sql);
             while ($mostrar = mysqli_fetch_assoc($consulta)) {
+              $idJugadora = $mostrar['Id_Jugadora'];
             ?>
             <tbody>
               <tr>
-                <td id="jugadoraA"><?php echo $mostrar['Nombre'] ?></td>
+                <td><?php echo $mostrar['Nombre'] ?></td>
                 <td>
                   <center>
                     <select
                       name="tarjetasEquipo1"
                       id="tarjetaSeleccionadaEquipo1"
-                      onchange="alertaConfirmarTarjeta()"
+                      onchange="alertaConfirmarTarjeta('<?php  echo $mostrar['Nombre'];  ?>', '<?php echo $idJugadora; ?>')"
                     >
                       <option value="0">Seleccione...</option>
                       <option value="1">Tarjeta Amarilla</option>
                       <option value="2">Tarjeta Roja</option>
                     </select>
                     <div id="yellowCard"></div>
-                    <text id="contadorEquipo1Amarillas" class="contador">0</text>
+                    <text id="<?php echo $idJugadora;  ?>" class="contador">0</text>
                     <div id="redCard"></div>
-                    <text id="contadorEquipo1Rojas" class="contador">0</text>
+                    <text id="<?php echo $idJugadora;  ?>" class="contador">0</text>
                   </center>
                 </td>
               </tr>
@@ -139,7 +139,7 @@
               <tr>
                 <th class="columnaCabecera">
                   <b>
-                    <center><?php echo $nombreEquipo2; ?></center>
+                    <center id="nombreEquipo2"><?php echo $nombreEquipo2; ?></center>
                   </b>
                 </th>
                 <th>
@@ -155,6 +155,7 @@
                                                                                 WHERE Cod_Encuentro = $codigoEncuentro )";
             $consulta = mysqli_query($conexion,$sql);
             while ($mostrar = mysqli_fetch_assoc($consulta)) {
+              $idJugadora = $mostrar['Id_Jugadora'];
             ?>
             <tbody>
               <tr>
@@ -164,16 +165,16 @@
                     <select
                       name="tarjetasEquipo2"
                       id="tarjetaSeleccionadaEquipo2"
-                      onchange="alertaConfirmarTarjeta()"
+                      onchange="alertaConfirmarTarjeta('<?php  echo $mostrar['Nombre'];  ?>', '<?php echo $idJugadora; ?>')"
                     >
                       <option value="0">Seleccione...</option>
                       <option value="1">Tarjeta Amarilla</option>
                       <option value="2">Tarjeta Roja</option>
                     </select>
                     <div id="yellowCard"></div>
-                    <text id="contadorEquipo2Amarillas" class="contador">0</text>
+                    <text id='<?php echo $idJugadora;  ?>' class="contador">0</text>
                     <div id="redCard"></div>
-                    <text id="contadorEquipo2Rojas" class="contador">0</text>
+                    <text id='<?php echo $idJugadora;  ?>' class="contador">0</text>
                   </center>
                 </td>
               </tr>

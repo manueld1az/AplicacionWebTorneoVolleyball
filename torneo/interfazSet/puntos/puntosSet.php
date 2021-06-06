@@ -57,7 +57,7 @@
         </div>
         <div class="col-auto">
           <!--    FORMULARIO PARA ENVIAR LOS PUNTOS Y AMONESTACIONES A LA BASE DE DATOS   -->
-          <form action="recibirPuntos.php" method="POST">
+          <form action="recibirPuntos.php" method="POST" >
             <input type="hidden" name="codigoEncuentro" value="<?php echo $codigoEncuentro; ?>">
             <input type="hidden" name="codigoEquipo1" value="<?php echo $codigoEquipo1; ?>">
             <input type="hidden" name="codigoEquipo2" value="<?php echo $codigoEquipo2; ?>">
@@ -70,12 +70,12 @@
         <!--  BOTONES DE NAVEGACION   -->
         <center>
           <a href="#">
-              <button class="btn botonNav BN1" type="button">
+              <button class="btn button BN1" type="button">
                 <b>Puntos</b>
               </button>
             </a>
-            <!--<a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">-->
-              <button class="btn botonNav" id="botonAmonestaciones" type="button">
+            <a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
+              <button class="btn button" id="botonAmonestaciones" type="button">
                 <b>Amonestaciones</b>
               </button>
             </a>
@@ -148,11 +148,11 @@
                 <td><center><?php echo $mostrar['Nombre'] ?></center></td>
                 <td>
                   <center>
-                    <div class="btn contadores" onclick="deductClicks('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo1; ?>', '<?php echo $ganador; ?>')">
+                    <div class="btn contadores" onclick="deductClicks('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-minus"></i>
                     </div>
                     <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
-                    <div class="btn contadores" onclick="countingClicks('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo1; ?>', '<?php echo $ganador; ?>')">
+                    <div class="btn contadores" onclick="countingClicks('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-plus"></i>
                     </div>
                   </center>
@@ -193,11 +193,11 @@
                 <td><center><?php echo $mostrar['Nombre'] ?></center></td>
                 <td>
                   <center>
-                    <div class="btn contadores" onclick="deductClicksb('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo2; ?>', '<?php echo $ganador; ?>')">
+                    <div class="btn contadores" onclick="deductClicksb('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-minus"></i>
                     </div>
                     <text id="<?php echo $mostrar['Id_Jugadora'] ?>" class="contador">0</text>
-                    <div class="btn contadores" onclick="countingClicksb('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $codigoEquipo2; ?>', '<?php echo $ganador; ?>')">
+                    <div class="btn contadores" onclick="countingClicksb('<?php echo $mostrar['Id_Jugadora']; ?>', '<?php echo $ganador; ?>')">
                       <i class="fas fa-plus"></i>
                     </div>
                   </center>
@@ -219,28 +219,28 @@
       $consulta = mysqli_query($conexion,$sql);
       $mostrar=mysqli_fetch_assoc($consulta);
       $cantidadJugadorasEquipo1=$mostrar['cantidadJugadorasEquipo1'];
-      ?>
+    ?>
       <input type="hidden" name="cantidadJugadorasEquipo1" id="cantidadJugadorasEquipo1" value="<?php echo $cantidadJugadorasEquipo1; ?>">
       <?php
       for ($i=0; $i < $cantidadJugadorasEquipo1; $i++){
         ?>
         <input type="hidden" name="puntosJugadorasEquipo1[]" id="puntosJugadorasEquipo1[<?php echo $jugadorasEquipo1[$i]; ?>]" value="">
-      <?php
+    <?php
       }
       //  2 - SE CONSULTA LA CANTIDAD DE JUGADORAS DEL EQUIPO 2
       $sql = "SELECT COUNT(Id_Jugadora) AS cantidadJugadorasEquipo2 FROM jugadoras WHERE (Cod_equipo = $codigoEquipo2)";
       $consulta = mysqli_query($conexion,$sql);
       $mostrar=mysqli_fetch_assoc($consulta);
       $cantidadJugadorasEquipo2=$mostrar['cantidadJugadorasEquipo2'];
-      ?>
+    ?>
       <input type="hidden" name="cantidadJugadorasEquipo2" id="cantidadJugadorasEquipo2" value="<?php echo $cantidadJugadorasEquipo2; ?>">
       <?php
       for ($i=0; $i < $cantidadJugadorasEquipo2; $i++){
         ?>
         <input type="hidden" name="puntosJugadorasEquipo2[]" id="puntosJugadorasEquipo2[<?php echo $jugadorasEquipo2[$i]; ?>]" value="">
       <?php
-      }
-    ?>
+        }
+      ?>
       <input type="hidden" name="numeroRegistro" value="<?php echo $numeroRegistro; ?>">
       <input type="hidden" name="codigoSet" value="<?php echo $codigoSet; ?>">
     </form>
@@ -258,9 +258,9 @@
             }
     ?>
 
-    <!--<script src="recuperaVariables.js"></script>-->
     <!--  SCRIPT PARA HACER LOS CONTEOS DE PUNTOS  -->
-    <script src="contadorPuntos.js"></script>
+    <script 
+      src="contadorPuntos.js"></script>
     <!--Scripts cdn de font awesome-->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"

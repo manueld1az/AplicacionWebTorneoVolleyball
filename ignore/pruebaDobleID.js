@@ -1,12 +1,14 @@
-document.getElementById("b").addEventListener("click",function(e){
-    e.preventDefault();
-});
+let var1 = 0;
+let var2 = [];
 
-function o(){
+function v(var1) {
+    var1 += 1;
 
-let var1=document.getElementById("free").getAttribute("value");
-let var2=document.getElementById("fire").getAttribute("value");
+  return var1;
+}
 
-console.log(var1, var2);
+sname(var1);
 
+function sname(var1) {
+    console.log(var1);
 }

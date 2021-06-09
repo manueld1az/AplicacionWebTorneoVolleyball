@@ -46,7 +46,7 @@
     <header class="container">
       <div class="row">
         <div class="col-auto">
-          <a href="../encuentrosDiarios.php">
+          <a href="../encuentrosDiarios.php" >
             <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
           </a>
         </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="col-auto">
           <!--    FORMULARIO PARA ENVIAR LOS PUNTOS Y AMONESTACIONES A LA BASE DE DATOS   -->
-          <form action="recibirPuntos.php" method="POST" >
+          <form action="recibirPuntos.php" method="POST">
             <input type="hidden" name="codigoEncuentro" value="<?php echo $codigoEncuentro; ?>">
             <input type="hidden" name="codigoEquipo1" value="<?php echo $codigoEquipo1; ?>">
             <input type="hidden" name="codigoEquipo2" value="<?php echo $codigoEquipo2; ?>">
@@ -142,7 +142,7 @@
               $consulta = mysqli_query($conexion,$sql);
               while ($mostrar = mysqli_fetch_assoc($consulta)) {
                 $jugadorasEquipo1[] = $mostrar['Id_Jugadora'];
-            ?>
+                ?>
             <tbody>
               <tr>
                 <td><center><?php echo $mostrar['Nombre'] ?></center></td>
@@ -160,8 +160,11 @@
               </tr>
             </tbody>
             <?php
-            }
+              }
             ?>
+            <script> 
+              var idJugadorasEquipo1 = '<?php echo json_encode($jugadorasEquipo1); ?>';
+            </script>
           </table>
         </section>
         <section class="col-xs-12 col-sm-6">
@@ -205,8 +208,11 @@
               </tr>
             </tbody>
             <?php
-            }
+              }
             ?>
+            <script> 
+              var idJugadorasEquipo2 = '<?php echo json_encode($jugadorasEquipo2); ?>';
+            </script>
           </table>
         </section>
       </div>

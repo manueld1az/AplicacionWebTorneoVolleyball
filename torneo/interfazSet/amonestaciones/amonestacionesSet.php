@@ -55,10 +55,11 @@
             <b>Guardar</b>
           </button>
         </div>
+        <!-- BOTONES DE NAVEGACION ENTRE PUNTOS Y AMONESTACIONES -->
         <center>
           <ul class="">
             <a href="../puntos/puntosSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
-            <button class="btn button BN1" type="button" id="botonNavegacionSet">
+            <button class="btn button BN1" type="button" >
               <b>Puntos</b>
             </button>
             </a>
@@ -99,12 +100,14 @@
               </tr>
             </thead>
             <?php
-            $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo1
+              $i=0;
+              $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo1
                                                                                 FROM encuentro
                                                                                 WHERE Cod_Encuentro = $codigoEncuentro )";
-            $consulta = mysqli_query($conexion,$sql);
-            while ($mostrar = mysqli_fetch_assoc($consulta)) {
-              $idJugadora = $mostrar['Id_Jugadora'];
+              $consulta = mysqli_query($conexion,$sql);
+              while ($mostrar = mysqli_fetch_assoc($consulta)) {
+                $idJugadora = $mostrar['Id_Jugadora'];
+                $idJugadorasEquipo1[] = $idJugadora;
             ?>
             <tbody>
               <tr>
@@ -113,24 +116,30 @@
                   <center>
                     <select
                       name="tarjetasEquipo1"
-                      id="tarjetaSeleccionadaEquipo1"
-                      onchange="alertaConfirmarTarjeta('<?php  echo $mostrar['Nombre'];  ?>', '<?php echo $idJugadora; ?>')"
+                      id="tarjetaSeleccionadaEquipo1<?php echo $idJugadorasEquipo1[$i]; ?>"
+                      onchange="alertaConfirmarTarjeta('<?php  echo $mostrar['Nombre'];  ?>', '<?php echo $idJugadora; ?>', '<?php echo $i; ?>')"
                     >
                       <option value="0">Seleccione...</option>
                       <option value="1">Tarjeta Amarilla</option>
                       <option value="2">Tarjeta Roja</option>
                     </select>
                     <div id="yellowCard"></div>
-                    <text id="<?php echo $idJugadora;  ?>" class="contador">0</text>
+                    <text id="amarillasEquipo1<?php echo $idJugadora;  ?>" class="contador">0</text>
                     <div id="redCard"></div>
-                    <text id="<?php echo $idJugadora;  ?>" class="contador">0</text>
+                    <text id="rojasEquipo1<?php echo $idJugadora;  ?>" class="contador">0</text>
                   </center>
                 </td>
               </tr>
             </tbody>
             <?php
-            }
+              $i++;
+              }
             ?>
+            <script> 
+            //  OBTENER EN JAVASCRIPT PERO LA VARIABLE O ARRAY RECEPTOR DEBE TENER
+            //  UN NOMBRE DIFERENTE A EL REMITENTE
+              var idsJugadorasEquipo1 = '<?php echo json_encode($idJugadorasEquipo1); ?>';
+            </script>
           </table>
         </section>
         <section class="col-xs-12 col-sm-6">
@@ -150,38 +159,46 @@
               </tr>
             </thead>
             <?php
-            $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo2
+              $i=0;
+              $sql = "SELECT Id_Jugadora, Nombre FROM jugadoras WHERE Cod_equipo = (  SELECT Cod_Equipo2
                                                                                 FROM encuentro
                                                                                 WHERE Cod_Encuentro = $codigoEncuentro )";
-            $consulta = mysqli_query($conexion,$sql);
-            while ($mostrar = mysqli_fetch_assoc($consulta)) {
-              $idJugadora = $mostrar['Id_Jugadora'];
+              $consulta = mysqli_query($conexion,$sql);
+              while ($mostrar = mysqli_fetch_assoc($consulta)) {
+                $idJugadora = $mostrar['Id_Jugadora'];
+                $idJugadorasEquipo2[] = $idJugadora;
             ?>
             <tbody>
               <tr>
-                <td><?php echo $mostrar['Nombre'] ?></td>
+                <td><?php echo $mostrar['Nombre']; ?></td>
                 <td>
                   <center>
                     <select
                       name="tarjetasEquipo2"
-                      id="tarjetaSeleccionadaEquipo2"
-                      onchange="alertaConfirmarTarjeta('<?php  echo $mostrar['Nombre'];  ?>', '<?php echo $idJugadora; ?>')"
+                      id="tarjetaSeleccionadaEquipo2<?php echo $idJugadorasEquipo2[$i]; ?>"
+                      onchange="alertaConfirmarTarjeta('<?php  echo $mostrar['Nombre'];  ?>', '<?php echo $idJugadora; ?>', '<?php echo $i; ?>')"
                     >
                       <option value="0">Seleccione...</option>
                       <option value="1">Tarjeta Amarilla</option>
                       <option value="2">Tarjeta Roja</option>
                     </select>
                     <div id="yellowCard"></div>
-                    <text id='<?php echo $idJugadora;  ?>' class="contador">0</text>
+                    <text id='amarillasEquipo2<?php echo $idJugadora;  ?>' class="contador">0</text>
                     <div id="redCard"></div>
-                    <text id='<?php echo $idJugadora;  ?>' class="contador">0</text>
+                    <text id='rojasEquipo2<?php echo $idJugadora;  ?>' class="contador">0</text>
                   </center>
                 </td>
               </tr>
             </tbody>
             <?php
-            }
+              $i++;
+              }
             ?>
+            <script> 
+            //  OBTENER EN JAVASCRIPT PERO LA VARIABLE O ARRAY RECEPTOR DEBE TENER
+            //  UN NOMBRE DIFERENTE A EL REMITENTE
+              var idsJugadorasEquipo2 = '<?php echo json_encode($idJugadorasEquipo2); ?>';
+            </script>
           </table>
         </section>
       </div>

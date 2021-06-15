@@ -1,9 +1,6 @@
-function x(i){
-  let v1 = document.getElementById("select"+i).value;
-  console.log("select"+i);
+let input1 = document.getElementById("input1").value;
 
-  console.log(v1);
+console.log(input1);
 
-  
-  document.getElementById("select"+i).value=0; 
-}
+let input2 = document.getElementById("input2").value;
+console.log(input2);

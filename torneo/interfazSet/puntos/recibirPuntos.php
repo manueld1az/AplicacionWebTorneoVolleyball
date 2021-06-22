@@ -23,8 +23,6 @@ if (isset($_POST['guardarPuntos'])) {
                 VALUES ( $numeroRegistro, $codigoSet, $codigoEncuentro )";
     $ingresar = mysqli_query($conexion, $sql);
 
-
-
 //  SE GUARDAN LOS PUNTOS EN LA TABLA ZET
 
     $sql = "    UPDATE zet
@@ -102,55 +100,49 @@ if (isset($_POST['guardarPuntos'])) {
                 WHERE Cod_Equipo = $codigoEquipo2";
         $actualizar = mysqli_query($conexion, $sql);
 
-        header("location: ../encuentrosDiarios.php");
-    } else {
-        header("location: puntosSet.php?Cod_Encuentro=$codigoEncuentro");
-    }
+        //      INGRESO DE PUNTOS DE CADA JUGADORA DEL ENCUENTRO A LA BASE DE DATOS POR EQUIPO
 
-//      INGRESO DE PUNTOS DE CADA JUGADORA DEL ENCUENTRO A LA BASE DE DATOS POR EQUIPO
-
-        //      SE RECIBEN LOS ARRAYS CON LOS PUNTOS DE CADA JUGADORA EN SU EQUIPO AL FINAL DEL ENCUENTRO    
+        //      SE RECIBEN LOS ARRAYS CON LOS PUNTOS DE CADA JUGADORA EN SU EQUIPO AL FINAL DEL ENCUENTRO
         $nuevosPuntosJugadorasEquipo1 = $_POST['puntosJugadorasEquipo1'];
         $nuevosPuntosJugadorasEquipo2 = $_POST['puntosJugadorasEquipo2'];
 
-        //      SE CONSULTAN LAS JUGADORAS DE ESTOS EQUIPOS EN DISPUTA Y SUS PUNTAJES CONSEGUIDOS EN PATIDOS POSTERIORES
+        //SE CONSULTAN LAS JUGADORAS DE ESTOS EQUIPOS EN DISPUTA Y SUS PUNTAJES CONSEGUIDOS EN PATIDOS POSTERIORES
 
         //      EQUIPO 1
         $sql = "SELECT Id_Jugadora, Puntos_Anotados FROM jugadoras WHERE Cod_equipo = $codigoEquipo1";
-        $consulta = mysqli_query($conexion,$sql);
-        $i=0;
-        while ($mostrar=mysqli_fetch_assoc($consulta)){
-                $idJugadorasEquipo1[]=$mostrar['Id_Jugadora'];
-                $ultimosPuntosJugadorasEquipo1[]=$mostrar['Puntos_Anotados'];
-        
-                //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
-                $puntosJugadorasEquipo1[$i] = $ultimosPuntosJugadorasEquipo1[$i] + $nuevosPuntosJugadorasEquipo1[$i];
-                $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo1[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo1[$i]');";
-                $actualizar = mysqli_query($conexion,$sql);
-                $i++;
+        $consulta = mysqli_query($conexion, $sql);
+        $i = 0;
+        while ($mostrar = mysqli_fetch_assoc($consulta)) {
+            $idJugadorasEquipo1[] = $mostrar['Id_Jugadora'];
+            $ultimosPuntosJugadorasEquipo1[] = $mostrar['Puntos_Anotados'];
+
+            //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
+            $puntosJugadorasEquipo1[$i] = $ultimosPuntosJugadorasEquipo1[$i] + $nuevosPuntosJugadorasEquipo1[$i];
+            $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo1[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo1[$i]');";
+            $actualizar = mysqli_query($conexion, $sql);
+            $i++;
         }
 
         //      EQUIPO 2
         $sql = "SELECT Id_Jugadora, Puntos_Anotados FROM jugadoras WHERE Cod_equipo = $codigoEquipo2";
-        $consulta = mysqli_query($conexion,$sql);
-        $i=0;
-        while ($mostrar=mysqli_fetch_assoc($consulta)){
-                $idJugadorasEquipo1[]=$mostrar['Id_Jugadora'];
-                $ultimosPuntosJugadorasEquipo2[]=$mostrar['Puntos_Anotados'];
+        $consulta = mysqli_query($conexion, $sql);
+        $i = 0;
+        while ($mostrar = mysqli_fetch_assoc($consulta)) {
+            $idJugadorasEquipo1[] = $mostrar['Id_Jugadora'];
+            $ultimosPuntosJugadorasEquipo2[] = $mostrar['Puntos_Anotados'];
 
-                //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
-                $puntosJugadorasEquipo2[$i] = $ultimosPuntosJugadorasEquipo2[$i] + $nuevosPuntosJugadorasEquipo2[$i];
-                $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo2[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo2[$i]');";
-                $actualizar = mysqli_query($conexion,$sql);
-                $i++;
+            //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
+            $puntosJugadorasEquipo2[$i] = $ultimosPuntosJugadorasEquipo2[$i] + $nuevosPuntosJugadorasEquipo2[$i];
+            $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo2[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo2[$i]');";
+            $actualizar = mysqli_query($conexion, $sql);
+            $i++;
         }
-
-
-/*
-    echo "<pre>";
-    print_r($puntosJugadorasEquipo1);
-    echo "</pre>";
-    echo "<pre>";
-    print_r($puntosJugadorasEquipo2);
-*/
+        if ($amonestacionesGuardadas) {
+            header("location: ../encuentrosDiarios.php");
+        } else {
+            header("location: ../amonestaciones/amonestacionesSet.php?Cod_Encuentro=$codigoEncuentro&puntosGuardados=true");
+        }
+    } else {
+        header("location: puntosSet.php?Cod_Encuentro=$codigoEncuentro");
+    }
 }

@@ -37,6 +37,27 @@
     $mostrar = mysqli_fetch_assoc($consulta);
     $nombreEquipo2 = $mostrar["Nombre_Equipo"];
     $codigoEquipo2 = $mostrar["Cod_Equipo"];
+
+    //  SE CONSULTA SI YA EXISTE UN SET ANTERIOR EN ESTE ENCUENTRO Y SI NO ES ASI SE CREAN
+    $sql = "SELECT MAX(Cod_Set) AS mayorCodigoSet,
+    MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet 
+    WHERE Cod_Encuentro = $codigoEncuentro";
+    $consulta = mysqli_query($conexion,$sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $codigoSet = $mostrar['mayorCodigoSet'];
+    $numeroRegistro = $mostrar['mayorNumeroRegistro'];
+    //  SE SUMA 1 PARA AUMENTAR CADA VEZ QUE INICIA UN NUEVO SET
+    $numeroRegistro ++;
+    if ($numeroRegistro == 1){
+    //  SE CONSULTA EL ULTIMO NUMEROREGISTRO DE LA TABLA POR QUE SE CONSULTO ANTERIORMENTE SOLO EL NUMERO REGISTRO
+    //  POR ENCUENTRO Y PARA EL PRIMER REGISTRO DEL ENCUENTRO SE NECESITA EL ULTIMO REGISTRO DEL ENCUENTRO ANTERIOR
+    $sql = "SELECT MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet ";
+    $consulta = mysqli_query($conexion,$sql);
+    $mostrar = mysqli_fetch_assoc($consulta);
+    $numeroRegistro += $mostrar['mayorNumeroRegistro'];
+    }
+    $codigoSet ++;
+    //  SE EVALUA SI EL ENCUENTRO YA CUMPLIO LOS 3 SETS Y YA TERMINO
   ?>
     <header class="container">
         <div class="row">
@@ -58,7 +79,7 @@
                     <input type="hidden" name="codigoEquipo2" value="<?php echo $codigoEquipo2; ?>">
                     <input type="hidden" name="puntosEquipo1" id="puntosEquipo1" value="0">
                     <input type="hidden" name="puntosEquipo2" id="puntosEquipo2" value="0">
-                    <button class="btn button" name="guardarPuntos" type="submit">
+                    <button class="btn button" name="guardarPuntos" id="guardarPuntos" type="submit">
                         <b>Guardar</b>
                     </button>
             </div>
@@ -69,7 +90,7 @@
                         <b>Puntos</b>
                     </button>
                 </a>
-                <a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro ?>">
+                <a href="../amonestaciones/amonestacionesSet.php?Cod_Encuentro=<?php echo $codigoEncuentro; ?>&codigoSet=<?php echo $codigoSet; ?>">
                     <button class="btn button" id="botonAmonestaciones" type="button">
                         <b>Amonestaciones</b>
                     </button>
@@ -82,26 +103,6 @@
             <img src="../../../img/mallaVolleyball.svg" alt="icono malla voleibol" width="130px" />
             <h2>Puntos Set
               <?php 
-                //  SE CONSULTA SI YA EXISTE UN SET ANTERIOR EN ESTE ENCUENTRO Y SI NO ES ASI SE CREAN
-                $sql = "SELECT MAX(Cod_Set) AS mayorCodigoSet,
-                        MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet 
-                        WHERE Cod_Encuentro = $codigoEncuentro";
-                $consulta = mysqli_query($conexion,$sql);
-                $mostrar = mysqli_fetch_assoc($consulta);
-                $codigoSet = $mostrar['mayorCodigoSet'];
-                $numeroRegistro = $mostrar['mayorNumeroRegistro'];
-                //  SE SUMA 1 PARA AUMENTAR CADA VEZ QUE INICIA UN NUEVO SET
-                $numeroRegistro ++;
-                if ($numeroRegistro == 1){
-                  //  SE CONSULTA EL ULTIMO NUMEROREGISTRO DE LA TABLA POR QUE SE CONSULTO ANTERIORMENTE SOLO EL NUMERO REGISTRO
-                  //  POR ENCUENTRO Y PARA EL PRIMER REGISTRO DEL ENCUENTRO SE NECESITA EL ULTIMO REGISTRO DEL ENCUENTRO ANTERIOR
-                  $sql = "SELECT MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet ";
-                  $consulta = mysqli_query($conexion,$sql);
-                  $mostrar = mysqli_fetch_assoc($consulta);
-                  $numeroRegistro += $mostrar['mayorNumeroRegistro'];
-                }
-                $codigoSet ++;
-                //  SE EVALUA SI EL ENCUENTRO YA CUMPLIO LOS 3 SETS Y YA TERMINO
                 if ($codigoSet <= 3){
                 //  SE IMPRIME EL SET ACTUAL
                 echo $codigoSet;

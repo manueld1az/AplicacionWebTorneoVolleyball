@@ -1,8 +1,15 @@
 <?php
 
 if (isset($_POST["botonGuardarDatosAlerta"])) {
-
+    
     include "../conexion/conexionServer.php";
+
+    // SE INGRESA LOS CODIGOS DE ENCUENTRO PARA TENER LLAVE PRIMARIA PARA CADA ENCUENTRO
+    for ($i=0; $i < 48; $i++) { 
+        $sql = "INSERT INTO encuentro (Cod_Encuentro)
+                VALUES ($i)";
+        $insertar = mysqli_query($conexion, $sql);
+    }
 
     //  Se obtiene la fecha del ultimo encuentro
 
@@ -12,7 +19,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
     $ultimaFechaEncuentro = $mayorFechaEncuentro["mayorFechaEncuentro"];
 
     if ($ultimaFechaEncuentro == 0) {
-
+        
         //  Obtengo la fecha, hora y cantidad de encuentros diarios para hacer el salto diario de fechas y hora.
         //  Estos datos son ingresados por el usuario.
         $fechaInicioTorneo = $_POST['fechaInicioTorneo'];
@@ -22,7 +29,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
         //  Esta variable se encarga de contar las filas modificadas para hacer el salto sumando un dia
         $contador = 0;
         $fechasIngresadas = 0;
-        $iteradorPosicion = 1;
+        $iteradorPosicion = 0;
 
         //      Ingresos de las dos primeras fechas en los grupos
         for ($a = 1; $a <= 16; $a++) {
@@ -63,7 +70,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
         //  Esta variable se encarga de contar las filas modificadas para hacer el salto sumando un dia
         $contador = 0;
         $fechasIngresadas = 0;
-        $iteradorPosicion = 3;
+        $iteradorPosicion = 2;
 
         //      Ingresos de las dos segundas fechas en los grupos
         for ($c = 1; $c <= 16; $c++) {
@@ -104,7 +111,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
         //  Esta variable se encarga de contar las filas modificadas para hacer el salto sumando un dia
         $contador = 0;
         $fechasIngresadas = 0;
-        $iteradorPosicion = 5;
+        $iteradorPosicion = 4;
 
         //      Ingresos de las dos segundas fechas en los grupos
         for ($e = 1; $e <= 16; $e++) {
@@ -142,14 +149,12 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
             }
         }
 
-    } /*     SE USA PARA REINICIAR LAS FECHAS EN LA BASE DE DATOS ENVIANDO EL VALOR DE 0
-    else {
-    for ($i = 1; $i <= 48; $i++) {
-    $sql = "UPDATE encuentro
-    SET Fecha = 0
-    WHERE ( Cod_Encuentro = '$i' )";
-    $ingresar = mysqli_query($conexion, $sql);
-    }
+    } /*else {
+        //   SE USA PARA REINICIAR LAS FECHAS EN LA BASE DE DATOS ENVIANDO EL VALOR DE 0
+        for ($i = 1; $i <= 48; $i++) {
+            $sql = "UPDATE encuentro SET Fecha = 0 WHERE ( Cod_Encuentro = '$i' )";
+            $ingresar = mysqli_query($conexion, $sql);
+        }
     }*/
 
     //  Se obtiene la hora del ultimo encuentro
@@ -170,7 +175,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
         //  Esta variable se encarga de contar las filas modificadas para hacer el salto sumando un dia
         $contador = 0;
 
-        for ($i = 1; $i <= 48; $i++) {
+        for ($i = 0; $i < 48; $i++) {
             if ($contador != $cantidadEncuentrosDiarios) {
                 if ($contador == 0) {
                     //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
@@ -204,15 +209,13 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
                 $ultimaHoraTorneo = $horaInicioTorneo;
             }
         }
-    } /*    SE USA PARA REINICIAR LAS HORAS EN LA BASE DE DATOS ENVIANDO EL VALOR DE 0
-    else {
-    $ultimaHoraTorneo = 0;
-    for ($i = 1; $i <= 48; $i++) {
-    $sql = "UPDATE encuentro
-    SET Hora = '$ultimaHoraTorneo'
-    WHERE ( Cod_Encuentro = '$i' )";
-    $ingresar = mysqli_query($conexion, $sql);
-    }
+    } /*else{
+        // SE USA PARA REINICIAR LAS HORAS EN LA BASE DE DATOS ENVIANDO EL VALOR DE 0
+        $ultimaHoraTorneo = 0;
+        for ($i = 1; $i <= 48; $i++) {
+            $sql = "UPDATE encuentro SET Hora = '$ultimaHoraTorneo' WHERE ( Cod_Encuentro = '$i' )";
+            $ingresar = mysqli_query($conexion, $sql);
+        }
     }*/
     include "../conexion/cerrarConexion.php";
     header("location: ../torneo/ronda1/encuentrosRonda1.php");

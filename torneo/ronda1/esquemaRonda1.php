@@ -91,16 +91,16 @@
       $resultado = mysqli_query($conexion, $sql);
       $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
       $puntosCabecera = ["PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS"];
-      $sql = "SELECT Puntos_Ronda1, equipos.Nombre_Equipo FROM `encuentros_ganados` 
-      INNER JOIN `equipos` ON equipos.Cod_Equipo = encuentros_ganados.Cod_Equipo 
-      ORDER BY encuentros_ganados.posicionSorteada ASC";
+      $sql = "SELECT equipos.* FROM `equipos` 
+      INNER JOIN `encuentro` ON equipos.Cod_Equipo = encuentro.Cod_Equipo1 AND encuentro.Cod_Equipo2 
+      WHERE encuentro.Grupo = 1 ORDER BY equipos.posicionSorteada ASC";
       $consulta = mysqli_query($conexion, $sql);
 
       //  SE AGREGAN LOS EQUIPOS DE LA CONSULTA SQL EN EL ARRAY $equipo[]
 
       while ($equipos = mysqli_fetch_array($consulta)) {
         $equipo[] = $equipos["Nombre_Equipo"];
-        $clasificados[] = $equipos["Puntos_Ronda1"];
+        $clasificados[] = $equipos["Ptos_Equipo"];
       }
 
       /*echo "<pre>";

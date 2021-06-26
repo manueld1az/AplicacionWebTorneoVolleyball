@@ -1,13 +1,13 @@
 <?php
 if (isset($_POST['guardarTarjetas'])) {
     $respuesta = $_REQUEST;
-    echo "<pre>";
+    /* echo "<pre>";
     print_r($respuesta);
-    echo "</pre>";
+    echo "</pre>"; */
     $codigoSet = $respuesta['codigoSet'];
 
-    if ($codigoSet == 3) {
-
+    if ($codigoSet == 3 && $_GET['puntosGuardados'] == true) {
+    // SE GUARDAN LAS TARJETAS EN LA BD
         $cantidadJugadorasEquipo1 = $respuesta['cantidadJugadorasEquipo1'];
         $cantidadJugadorasEquipo2 = $respuesta['cantidadJugadorasEquipo2'];
 
@@ -77,5 +77,10 @@ if (isset($_POST['guardarTarjetas'])) {
             }
         }
 
+        // SI SE CUMPLE LA CONDICION DE HABER GUARDADO YA TODOS LOS CONTADORES DE AMBAS INTERFACES
+        // SE REDIRIGE AL MENU DE ENCUENTROS DEL DIA PARA CONTINUAR CON EL DESARROLLO DE OTRO ENCUENTRO
+        header("location: ../encuentrosDiarios.php");
+    }else{
+        header("location: ../puntos/puntosSet.php?Cod_Encuentro=$codigoEncuentro");
     }
 }

@@ -51,7 +51,7 @@
                 </a>
             </div>
             <div class="col-auto">
-            <form action="recibirAmonestaciones.php" method="POST">
+                <form action="recibirAmonestaciones.php" method="POST">
                 <button class="btn button" name="guardarTarjetas" id="guardarTarjetas" type="submit">
                     <b>Guardar</b>
                 </button>
@@ -76,32 +76,11 @@
     <main class="container">
         <center>
             <img src="../../../img/cards.svg" alt="icono tarjetas voleibol" width="130px" />
-            <h2>Amonestaciones Set
+            <h2>Amonestaciones
                 <?php 
-            //  SE CONSULTA SI YA EXISTE UN SET ANTERIOR EN ESTE ENCUENTRO Y SI NO ES ASI SE CREAN
-            $sql = "SELECT MAX(Cod_Set) AS mayorCodigoSet,
-                    MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet 
-                    WHERE Cod_Encuentro = $codigoEncuentro";
-            $consulta = mysqli_query($conexion,$sql);
-            $mostrar = mysqli_fetch_assoc($consulta);
-            $codigoSet = $mostrar['mayorCodigoSet'];
-            $numeroRegistro = $mostrar['mayorNumeroRegistro'];
-            //  SE SUMA 1 PARA AUMENTAR CADA VEZ QUE INICIA UN NUEVO SET
-            $numeroRegistro ++;
-            if ($numeroRegistro == 1){
-              //  SE CONSULTA EL ULTIMO NUMEROREGISTRO DE LA TABLA POR QUE SE CONSULTO ANTERIORMENTE SOLO EL NUMERO REGISTRO
-              //  POR ENCUENTRO Y PARA EL PRIMER REGISTRO DEL ENCUENTRO SE NECESITA EL ULTIMO REGISTRO DEL ENCUENTRO ANTERIOR
-              $sql = "SELECT MAX(NumeroRegistro) AS mayorNumeroRegistro FROM zet ";
-              $consulta = mysqli_query($conexion,$sql);
-              $mostrar = mysqli_fetch_assoc($consulta);
-              $numeroRegistro += $mostrar['mayorNumeroRegistro'];
-            }
-            $codigoSet ++;
-            //  SE EVALUA SI EL ENCUENTRO YA CUMPLIO LOS 3 SETS Y YA TERMINO
-            if ($codigoSet <= 3){
-            //  SE IMPRIME EL SET ACTUAL
-            echo $codigoSet;
-          ?>
+                    $codigoSet = $_GET['codigoSet'];
+                    if ($codigoSet <= 3){
+                ?>
             </h2>
         </center>
         <br />

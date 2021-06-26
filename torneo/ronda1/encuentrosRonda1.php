@@ -539,6 +539,42 @@
                                          Id_Juezdos = ".$juez[$numAleatorio2].", Id_Jueztres = ".$juez[$numAleatorio3]."
                                     WHERE (Cod_Encuentro = $e)";
             $actualizar = mysqli_query($conexion, $sql);
+
+
+        //  Se guarda el grupo del nuevo encuentro
+            if ($e < 6) {
+                $sql = "UPDATE encuentro SET Grupo = 'A'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            } else if ($e < 12) {
+                $sql = "UPDATE encuentro SET Grupo = 'B'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            }else if ($e < 18) {
+                $sql = "UPDATE encuentro SET Grupo = 'C'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            }else if ($e < 24) {
+                $sql = "UPDATE encuentro SET Grupo = 'D'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            }else if ($e < 30) {
+                $sql = "UPDATE encuentro SET Grupo = 'E'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            }else if ($e < 36) {
+                $sql = "UPDATE encuentro SET Grupo = 'F'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            }else if ($e < 42) {
+                $sql = "UPDATE encuentro SET Grupo = 'G'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            }else if ($e < 48) {
+                $sql = "UPDATE encuentro SET Grupo = 'H'
+                WHERE (Cod_Encuentro = $e)";
+                $actualizar = mysqli_query($conexion, $sql);
+            }
         }
     }
     ?>

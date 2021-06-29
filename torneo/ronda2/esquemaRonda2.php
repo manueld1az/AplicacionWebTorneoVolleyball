@@ -36,106 +36,36 @@
       <?php
       // Sorteo terminado, se guarda el nuevo orden de los equipos y se toman los valores de posicion sorteada
       //y codigo equipo para ingresarlo a la tabla esquemas ronda2
-      /* $sql1 = "SELECT posicionSorteada,Cod_Equipo FROM `equipos` ORDER BY posicionSorteada ASC";
-      $consulta1 = mysqli_query($conexion, $sql1); */
-
-      $sql = "SELECT Ptos_Equipo, Nombre_Equipo FROM `equipos` WHERE posicionSorteada < 4 ORDER BY Ptos_Equipo DESC";
+      $letrasDeGrupo= ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+      for($i=0; $i<8; $i++){
+        $sql = "SELECT Cod_Equipo, Nombre_Equipo FROM `equipos` WHERE grupo= '$letrasDeGrupo[$i]' ORDER BY Ptos_Equipo DESC LIMIT 2";
       $consulta = $conexion->query($sql);
-      
       if($consulta->num_rows > 0 ){
         while ($equipoRonda2 = $consulta->fetch_assoc()) {
           $equipo1[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
+          $codEquipo[]= $equipoRonda2["Cod_Equipo"];
         }
       }
-
-      $sql2 = "SELECT * FROM `equipos` WHERE (posicionSorteada > 3) AND (posicionSorteada < 8) 
-      AND (Ptos_Equipo = (SELECT MAX(Ptos_Equipo) FROM equipos WHERE (posicionSorteada > 3) 
-      AND (posicionSorteada < 8)))";
-      $consulta2 = $conexion->query($sql2);
-      
-      if($consulta2->num_rows > 0 ){
-        while ($equipoRonda2 = $consulta2->fetch_assoc()) {
-          $equipo2[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
-        }
       }
-
-      $sql3 = "SELECT * FROM `equipos` WHERE (posicionSorteada > 7) AND (posicionSorteada < 12) 
-      AND (Ptos_Equipo = (SELECT MAX(Ptos_Equipo) FROM equipos WHERE (posicionSorteada > 7) 
-      AND (posicionSorteada < 12)))";
-      $consulta3 = $conexion->query($sql3);
-      
-      if($consulta3->num_rows > 0 ){
-        while ($equipoRonda2 = $consulta3->fetch_assoc()) {
-          $equipo3[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
-        }
+      $contador= 0;
+      for($i=0; $i<16; $i++){
+      $letra="";
+      if ($i%2==0){
+        $contador++;
+        $letra = 'A';
+      }else {
+        $letra = 'B';
       }
-
-      $sql4 = "SELECT * FROM `equipos` WHERE (posicionSorteada > 11) AND (posicionSorteada < 16) 
-      AND (Ptos_Equipo = (SELECT MAX(Ptos_Equipo) FROM equipos WHERE (posicionSorteada > 11) 
-      AND (posicionSorteada < 16)))";
-      $consulta4 = $conexion->query($sql4);
-      
-      if($consulta4->num_rows > 0 ){
-        while ($equipoRonda2 = $consulta4->fetch_assoc()) {
-          $equipo4[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
-        }
-      }
-
-      $sql5 = "SELECT * FROM `equipos` WHERE (posicionSorteada > 15) AND (posicionSorteada < 20) 
-      AND (Ptos_Equipo = (SELECT MAX(Ptos_Equipo) FROM equipos WHERE (posicionSorteada > 15) 
-      AND (posicionSorteada < 20)))";
-      $consulta5 = $conexion->query($sql5);
-      
-      if($consulta5->num_rows > 0 ){
-        while ($equipoRonda2 = $consulta5->fetch_assoc()) {
-          $equipo5[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
-        }
-      }
-
-      $sql6 = "SELECT * FROM `equipos` WHERE (posicionSorteada > 19) AND (posicionSorteada < 24) 
-      AND (Ptos_Equipo = (SELECT MAX(Ptos_Equipo) FROM equipos WHERE (posicionSorteada > 19) 
-      AND (posicionSorteada < 24)))";
-      $consulta6 = $conexion->query($sql6);
-      
-      if($consulta6->num_rows > 0 ){
-        while ($equipoRonda2 = $consulta6->fetch_assoc()) {
-          $equipo6[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
-        }
-      }
-
-      $sql7 = "SELECT * FROM `equipos` WHERE (posicionSorteada > 23) AND (posicionSorteada < 28) 
-      AND (Ptos_Equipo = (SELECT MAX(Ptos_Equipo) FROM equipos WHERE (posicionSorteada > 23) 
-      AND (posicionSorteada < 28)))";
-      $consulta7 = $conexion->query($sql7);
-      
-      if($consulta7->num_rows > 0 ){
-        while ($equipoRonda2 = $consulta7->fetch_assoc()) {
-          $equipo7[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
-        }
-      }
-
-      $sql8 = "SELECT * FROM `equipos` WHERE (posicionSorteada > 27) AND (posicionSorteada < 32) 
-      AND (Ptos_Equipo = (SELECT MAX(Ptos_Equipo) FROM equipos WHERE (posicionSorteada > 27) 
-      AND (posicionSorteada < 32)))";
-      $consulta8 = $conexion->query($sql8);
-      
-      if($consulta8->num_rows > 0 ){
-        while ($equipoRonda2 = $consulta8->fetch_assoc()) {
-          $equipo8[] = $equipoRonda2["Nombre_Equipo"];
-          /* $clasificados[] = $equipoRonda2["Ptos_Equipo"]; */
-        }
-      }
-
+      /* echo "<br>".$equipo1[$i]." ".$contador."".$letra; */
+    
+      $sql = "UPDATE `equipos` SET octavos = '$contador$letra' WHERE Cod_Equipo = $codEquipo[$i] ";
+      $consulta = $conexion->query($sql);
+    }
       //  SE CREA LA LISTA "listaTabla" DE de los puestos que ocupan los equipos, 
       //  PARA ORDENAR LOS EQUIPOS SEGUN ESTA LISTA
-
+     /*  echo "<pre>";
+      print_r($equipo1);
+      echo "</pre>"; */
       $listaTabla = [];
       $nombreGrupos = ["LLAVE UNO", "LLAVE DOS", "LLAVE TRES", "LLAVE CUATRO", "LLAVE CINCO", "LLAVE SEIS", "LLAVE SIETE", "LLAVE OCHO"];
       $puntosCabecera = ["PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS"];
@@ -152,72 +82,60 @@
                     </b>
                   </p>
                 </td>
-                <!-- <td class="columnaCabecera">
-                  <p>
-                    <b>
-                      <center>
-                      <?php echo $puntosCabecera[$i]; ?>
-                      </center>
-                    </b>
-                  </p>
-                </td> -->
               </tr>
             </thead>
             <tbody>
-              <?php
-              for ($j = 0; $j < 1; $j++) {
-              ?>
+              
                 <tr>
                   <td>
                     <center>
                       <?php
                       if ($i == 0) {
-                        echo $equipo1[$j];
+                        echo $equipo1[0];
                       } else if ($i == 1) {
-                        echo $equipo2[$j];
+                        echo $equipo1[2];
                       } else if ($i == 2) {
-                        echo $equipo3[$j];
+                        echo $equipo1[ 4];
                       } else if ($i == 3) {
-                        echo $equipo4[$j];
+                        echo $equipo1[ 6];
                       } else if ($i == 4) {
-                        echo $equipo5[$j];
+                        echo $equipo1[ 8];
                       } else if ($i == 5) {
-                        echo $equipo6[$j];
+                        echo $equipo1[ 10];
                       } else if ($i == 6) {
-                        echo $equipo7[$j];
+                        echo $equipo1[ 12];
                       } else if ($i == 7) {
-                        echo $equipo8[$j];
+                        echo $equipo1[ 14];
                       }
                       ?>
                     </center>
                   </td>
-                  <!-- <td>
+                </tr>
+                <tr>
+                <td>
                     <center>
-                    <?php
+                      <?php
                       if ($i == 0) {
-                        echo $clasificados[$j];
+                        echo $equipo1[15];
                       } else if ($i == 1) {
-                        echo $clasificados[$j + 4];
-                      }else if ($i == 2) {
-                        echo $clasificados[$j + 8];
-                      }else if ($i == 3) {
-                        echo $clasificados[$j + 12];
-                      }else if ($i == 4) {
-                        echo $clasificados[$j + 16];
-                      }else if ($i == 5) {
-                        echo $clasificados[$j + 20];
-                      }else if ($i == 6) {
-                        echo $clasificados[$j + 24];
-                      }else if ($i == 7) {
-                        echo $clasificados[$j + 28];
+                        echo $equipo1[13];
+                      } else if ($i == 2) {
+                        echo $equipo1[11];
+                      } else if ($i == 3) {
+                        echo $equipo1[9];
+                      } else if ($i == 4) {
+                        echo $equipo1[7];
+                      } else if ($i == 5) {
+                        echo $equipo1[5];
+                      } else if ($i == 6) {
+                        echo $equipo1[3];
+                      } else if ($i == 7) {
+                        echo $equipo1[1];
                       }
                       ?>
                     </center>
-                  </td> -->
+                  </td>
                 </tr>
-              <?php
-              }
-              ?>
             </tbody>
           </table>
         </div>
@@ -235,5 +153,4 @@
   <!--Scripts cdn de font awesome-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js" integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw==" crossorigin="anonymous"></script>
 </body>
-
 </html>

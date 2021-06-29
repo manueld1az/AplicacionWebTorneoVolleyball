@@ -82,25 +82,25 @@
       print_r($listaTabla);
       echo "</pre>";*/
       $nombreGrupos = ["A", "B", "C", "D", "E", "F", "G", "H"];
-<<<<<<< HEAD
+/* <<<<<<< HEAD
       $puntosCabecera = ["PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS", "PUNTOS"];
       $sql = "SELECT equipos.* FROM `equipos` 
       INNER JOIN `encuentro` ON equipos.Cod_Equipo = encuentro.Cod_Equipo1 AND encuentro.Cod_Equipo2 
       WHERE encuentro.Grupo = 1 ORDER BY equipos.posicionSorteada ASC";
-=======
+======= */
       $sql = "SELECT Nombre_Equipo, Cod_Equipo FROM equipos ORDER BY posicionSorteada";
->>>>>>> 9207bbd67167065b0f06ab62c78a1baa6f3f0ca9
+/* >>>>>>> 9207bbd67167065b0f06ab62c78a1baa6f3f0ca9 */
       $consulta = mysqli_query($conexion, $sql);
 
       //  SE AGREGAN LOS EQUIPOS DE LA CONSULTA SQL EN EL ARRAY $equipo[]
 
       while ($equipos = mysqli_fetch_array($consulta)) {
         $equipo[] = $equipos["Nombre_Equipo"];
-<<<<<<< HEAD
+/* <<<<<<< HEAD
         $clasificados[] = $equipos["Ptos_Equipo"];
-=======
+======= */
         $codigosEquipo[] = $equipos["Cod_Equipo"];
->>>>>>> 9207bbd67167065b0f06ab62c78a1baa6f3f0ca9
+/* >>>>>>> 9207bbd67167065b0f06ab62c78a1baa6f3f0ca9 */
       }
 
       /* echo "<pre>";

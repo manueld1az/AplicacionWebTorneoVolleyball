@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+1 -- Puede usar un archivo de configuración de una lista de valores separados de punto y coma
+2 --- El archivo de configuración puede colocar en la carpeta raíz de espacio de trabajo o la carpeta .vscode o cualquier otra carpeta:
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form 2</title>
-</head>
-
-<body>
-    <br />
-    <label for="input2"> INPUT 2
-        <input type="text" id="input2" value=" input2" />
-    </label>
-    <script src="prueba.js"></script>
-</body>
-
-</html>
+<?php

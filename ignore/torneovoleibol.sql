@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2021 a las 01:32:14
+-- Tiempo de generación: 27-06-2021 a las 00:08:03
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -71,72 +71,72 @@ INSERT INTO `cuerpotecnico` (`NumeroRegistro`, `id_Cuerpotecnico`, `Nombre`, `Ca
 
 CREATE TABLE `encuentro` (
   `Cod_Encuentro` int(6) NOT NULL,
-  `Grupo` int(4) NOT NULL,
-  `Fecha` date NOT NULL,
-  `Hora` time NOT NULL,
-  `Cod_Equipo1` int(4) NOT NULL,
-  `Ptos_Equipo1` int(4) NOT NULL,
-  `Cod_Equipo2` int(4) NOT NULL,
-  `Ptos_Equipo2` int(4) NOT NULL,
-  `idCancha` int(11) NOT NULL,
-  `Id_Juezuno` int(15) NOT NULL,
-  `Id_Juezdos` int(15) NOT NULL,
-  `Id_Jueztres` int(15) NOT NULL
+  `Grupo` char(1) DEFAULT NULL,
+  `Fecha` date DEFAULT NULL,
+  `Hora` time DEFAULT NULL,
+  `idCancha` int(11) DEFAULT NULL,
+  `Cod_Equipo1` int(4) DEFAULT NULL,
+  `Ptos_Equipo1` int(4) DEFAULT NULL,
+  `Cod_Equipo2` int(4) DEFAULT NULL,
+  `Ptos_Equipo2` int(4) DEFAULT NULL,
+  `Id_Juezuno` int(15) DEFAULT NULL,
+  `Id_Juezdos` int(15) DEFAULT NULL,
+  `Id_Jueztres` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `encuentro`
 --
 
-INSERT INTO `encuentro` (`Cod_Encuentro`, `Grupo`, `Fecha`, `Hora`, `Cod_Equipo1`, `Ptos_Equipo1`, `Cod_Equipo2`, `Ptos_Equipo2`, `idCancha`, `Id_Juezuno`, `Id_Juezdos`, `Id_Jueztres`) VALUES
-(1, 1, '2021-04-27', '00:00:00', 7, 0, 9, 0, 1, 34, 123, 1323),
-(2, 1, '2021-04-27', '00:00:00', 25, 0, 10, 0, 1, 34, 123, 13),
-(3, 1, '2021-04-27', '00:00:00', 9, 0, 25, 0, 1, 34, 1323, 13),
-(4, 1, '2021-04-27', '00:00:00', 10, 0, 7, 0, 1, 123, 1323, 13),
-(5, 1, '2021-04-27', '00:00:00', 7, 0, 25, 0, 1, 34, 123, 13),
-(6, 1, '2021-04-28', '00:00:00', 9, 0, 10, 0, 1, 123, 34, 13),
-(7, 1, '2021-04-28', '00:00:00', 5, 0, 16, 0, 1, 34, 13, 1323),
-(8, 1, '2021-04-28', '00:00:00', 18, 0, 19, 0, 1, 1323, 123, 13),
-(9, 1, '2021-04-28', '00:00:00', 16, 0, 18, 0, 1, 123, 34, 1323),
-(10, 1, '2021-04-28', '00:00:00', 19, 0, 5, 0, 1, 123, 13, 34),
-(11, 1, '2021-04-29', '00:00:00', 5, 0, 18, 0, 1, 34, 13, 1323),
-(12, 1, '2021-04-29', '00:00:00', 16, 0, 19, 0, 1, 1323, 13, 34),
-(13, 1, '2021-04-29', '00:00:00', 22, 0, 17, 0, 1, 123, 34, 1323),
-(14, 1, '2021-04-29', '00:00:00', 2, 0, 20, 0, 1, 13, 123, 1323),
-(15, 1, '2021-04-29', '00:00:00', 17, 0, 2, 0, 1, 13, 1323, 34),
-(16, 1, '2021-04-30', '00:00:00', 20, 0, 22, 0, 1, 34, 1323, 123),
-(17, 1, '2021-04-30', '00:00:00', 22, 0, 2, 0, 1, 123, 1323, 34),
-(18, 1, '2021-04-30', '00:00:00', 17, 0, 20, 0, 1, 34, 13, 1323),
-(19, 1, '2021-04-30', '00:00:00', 31, 0, 24, 0, 1, 123, 34, 1323),
-(20, 1, '2021-04-30', '00:00:00', 27, 0, 12, 0, 1, 34, 13, 123),
-(21, 1, '2021-05-01', '00:00:00', 24, 0, 27, 0, 1, 34, 123, 13),
-(22, 1, '2021-05-01', '00:00:00', 12, 0, 31, 0, 1, 13, 34, 123),
-(23, 1, '2021-05-01', '00:00:00', 31, 0, 27, 0, 1, 123, 34, 1323),
-(24, 1, '2021-05-01', '00:00:00', 24, 0, 12, 0, 1, 1323, 13, 123),
-(25, 1, '2021-05-01', '00:00:00', 6, 0, 13, 0, 1, 13, 1323, 123),
-(26, 1, '2021-05-02', '00:00:00', 32, 0, 23, 0, 1, 34, 123, 13),
-(27, 1, '2021-05-02', '00:00:00', 13, 0, 32, 0, 1, 1323, 13, 34),
-(28, 1, '2021-05-02', '00:00:00', 23, 0, 6, 0, 1, 1323, 123, 13),
-(29, 1, '2021-05-02', '00:00:00', 6, 0, 32, 0, 1, 34, 123, 13),
-(30, 1, '2021-05-02', '00:00:00', 13, 0, 23, 0, 1, 34, 1323, 123),
-(31, 1, '2021-05-03', '00:00:00', 26, 0, 11, 0, 1, 1323, 34, 123),
-(32, 1, '2021-05-03', '00:00:00', 28, 0, 4, 0, 1, 123, 13, 1323),
-(33, 1, '2021-05-03', '00:00:00', 11, 0, 28, 0, 1, 34, 123, 13),
-(34, 1, '2021-05-03', '00:00:00', 4, 0, 26, 0, 1, 1323, 34, 13),
-(35, 1, '2021-05-03', '00:00:00', 26, 0, 28, 0, 1, 123, 13, 1323),
-(36, 1, '2021-05-04', '00:00:00', 11, 0, 4, 0, 1, 13, 1323, 123),
-(37, 1, '2021-05-04', '00:00:00', 21, 0, 15, 0, 1, 123, 1323, 13),
-(38, 1, '2021-05-04', '00:00:00', 30, 0, 1, 0, 1, 1323, 34, 123),
-(39, 1, '2021-05-04', '00:00:00', 15, 0, 30, 0, 1, 34, 13, 1323),
-(40, 1, '2021-05-04', '00:00:00', 1, 0, 21, 0, 1, 13, 34, 1323),
-(41, 1, '2021-05-05', '00:00:00', 21, 0, 30, 0, 1, 13, 1323, 34),
-(42, 1, '2021-05-05', '00:00:00', 15, 0, 1, 0, 1, 123, 13, 34),
-(43, 1, '2021-05-05', '00:00:00', 14, 0, 8, 0, 1, 123, 13, 34),
-(44, 1, '2021-05-05', '00:00:00', 3, 0, 29, 0, 1, 1323, 123, 13),
-(45, 1, '2021-05-05', '00:00:00', 8, 0, 3, 0, 1, 13, 123, 1323),
-(46, 1, '2021-05-06', '00:00:00', 29, 0, 14, 0, 1, 1323, 123, 13),
-(47, 1, '2021-05-06', '00:00:00', 14, 0, 3, 0, 1, 1323, 123, 34),
-(48, 1, '2021-05-06', '00:00:00', 8, 0, 29, 0, 1, 124, 13, 34);
+INSERT INTO `encuentro` (`Cod_Encuentro`, `Grupo`, `Fecha`, `Hora`, `idCancha`, `Cod_Equipo1`, `Ptos_Equipo1`, `Cod_Equipo2`, `Ptos_Equipo2`, `Id_Juezuno`, `Id_Juezdos`, `Id_Jueztres`) VALUES
+(0, 'A', '2021-06-25', '14:00:00', 1, 13, NULL, 26, NULL, 1323, 13, 123),
+(1, 'A', '2021-06-25', '17:00:00', 1, 20, NULL, 16, NULL, 34, 13, 123),
+(2, 'A', '2021-07-02', '20:00:00', 1, 26, NULL, 20, NULL, 13, 34, 123),
+(3, 'A', '2021-07-02', '23:00:00', 1, 16, NULL, 13, NULL, 123, 13, 34),
+(4, 'A', '2021-07-09', '14:00:00', 1, 13, NULL, 20, NULL, 34, 123, 1323),
+(5, 'A', '2021-07-09', '17:00:00', 1, 26, NULL, 16, NULL, 13, 1323, 123),
+(6, 'B', '2021-06-25', '20:00:00', 1, 7, NULL, 18, NULL, 13, 123, 1323),
+(7, 'B', '2021-06-25', '23:00:00', 1, 30, NULL, 22, NULL, 123, 1323, 34),
+(8, 'B', '2021-07-02', '14:00:00', 1, 18, NULL, 30, NULL, 123, 34, 13),
+(9, 'B', '2021-07-02', '17:00:00', 1, 22, NULL, 7, NULL, 1323, 123, 34),
+(10, 'B', '2021-07-09', '20:00:00', 1, 7, NULL, 30, NULL, 34, 1323, 123),
+(11, 'B', '2021-07-09', '23:00:00', 1, 18, NULL, 22, NULL, 13, 123, 34),
+(12, 'C', '2021-06-26', '14:00:00', 1, 17, NULL, 2, NULL, 1323, 13, 123),
+(13, 'C', '2021-06-26', '17:00:00', 1, 28, NULL, 8, NULL, 123, 13, 1323),
+(14, 'C', '2021-07-03', '20:00:00', 1, 2, NULL, 28, NULL, 34, 1323, 123),
+(15, 'C', '2021-07-03', '23:00:00', 1, 8, NULL, 17, NULL, 13, 123, 34),
+(16, 'C', '2021-07-10', '14:00:00', 1, 17, NULL, 28, NULL, 1323, 34, 123),
+(17, 'C', '2021-07-10', '17:00:00', 1, 2, NULL, 8, NULL, 123, 34, 1323),
+(18, 'D', '2021-06-26', '20:00:00', 1, 21, NULL, 27, NULL, 123, 34, 13),
+(19, 'D', '2021-06-26', '23:00:00', 1, 12, NULL, 11, NULL, 123, 34, 1323),
+(20, 'D', '2021-07-03', '14:00:00', 1, 27, NULL, 12, NULL, 13, 1323, 34),
+(21, 'D', '2021-07-03', '17:00:00', 1, 11, NULL, 21, NULL, 13, 1323, 34),
+(22, 'D', '2021-07-10', '20:00:00', 1, 21, NULL, 12, NULL, 34, 123, 13),
+(23, 'D', '2021-07-10', '23:00:00', 1, 27, NULL, 11, NULL, 123, 13, 1323),
+(24, 'E', '2021-06-27', '14:00:00', 1, 25, NULL, 14, NULL, 123, 1323, 34),
+(25, 'E', '2021-06-27', '17:00:00', 1, 5, NULL, 24, NULL, 13, 123, 34),
+(26, 'E', '2021-07-04', '20:00:00', 1, 14, NULL, 5, NULL, 13, 1323, 34),
+(27, 'E', '2021-07-04', '23:00:00', 1, 24, NULL, 25, NULL, 123, 1323, 13),
+(28, 'E', '2021-07-11', '14:00:00', 1, 25, NULL, 5, NULL, 34, 13, 1323),
+(29, 'E', '2021-07-11', '17:00:00', 1, 14, NULL, 24, NULL, 123, 13, 34),
+(30, 'F', '2021-06-27', '20:00:00', 1, 10, NULL, 23, NULL, 1323, 123, 34),
+(31, 'F', '2021-06-27', '23:00:00', 1, 19, NULL, 4, NULL, 123, 13, 1323),
+(32, 'F', '2021-07-04', '14:00:00', 1, 23, NULL, 19, NULL, 1323, 13, 123),
+(33, 'F', '2021-07-04', '17:00:00', 1, 4, NULL, 10, NULL, 123, 34, 13),
+(34, 'F', '2021-07-11', '20:00:00', 1, 10, NULL, 19, NULL, 34, 1323, 123),
+(35, 'F', '2021-07-11', '23:00:00', 1, 23, NULL, 4, NULL, 123, 13, 1323),
+(36, 'G', '2021-06-28', '14:00:00', 1, 32, NULL, 15, NULL, 123, 13, 34),
+(37, 'G', '2021-06-28', '17:00:00', 1, 9, NULL, 1, NULL, 1323, 123, 13),
+(38, 'G', '2021-07-05', '20:00:00', 1, 15, NULL, 9, NULL, 34, 123, 1323),
+(39, 'G', '2021-07-05', '23:00:00', 1, 1, NULL, 32, NULL, 1323, 123, 13),
+(40, 'G', '2021-07-12', '14:00:00', 1, 32, NULL, 9, NULL, 1323, 34, 13),
+(41, 'G', '2021-07-12', '17:00:00', 1, 15, NULL, 1, NULL, 13, 1323, 123),
+(42, 'H', '2021-06-28', '20:00:00', 1, 6, NULL, 31, NULL, 13, 34, 1323),
+(43, 'H', '2021-06-28', '23:00:00', 1, 3, NULL, 29, NULL, 123, 34, 13),
+(44, 'H', '2021-07-05', '14:00:00', 1, 31, NULL, 3, NULL, 13, 1323, 123),
+(45, 'H', '2021-07-05', '17:00:00', 1, 29, NULL, 6, NULL, 123, 34, 13),
+(46, 'H', '2021-07-12', '20:00:00', 1, 6, NULL, 3, NULL, 1323, 13, 123),
+(47, 'H', '2021-07-12', '23:00:00', 1, 31, NULL, 29, NULL, 13, 34, 1323);
 
 -- --------------------------------------------------------
 
@@ -150,65 +150,47 @@ CREATE TABLE `equipos` (
   `Nombre_Colegio` varchar(30) DEFAULT NULL,
   `Nombre_Equipo` varchar(20) DEFAULT NULL,
   `Ptos_Equipo` int(4) DEFAULT NULL,
-  `posicionSorteada` int(11) DEFAULT NULL
+  `posicionSorteada` int(11) DEFAULT NULL,
+  `grupo` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`NumeroRegistro`, `Cod_Equipo`, `Nombre_Colegio`, `Nombre_Equipo`, `Ptos_Equipo`, `posicionSorteada`) VALUES
-(1, 1, '1', '1', NULL, 27),
-(2, 2, '2', '2', NULL, 9),
-(34, 3, '3', '3', NULL, 30),
-(4, 4, '4', '4', NULL, 23),
-(35, 5, '5', '5', NULL, 18),
-(5, 6, '6', '6', NULL, 11),
-(37, 7, '7', '7', NULL, NULL),
-(7, 8, '8', '8', NULL, 26),
-(8, 9, '9', '9', NULL, 0),
-(9, 10, '10', '10', NULL, 16),
-(10, 11, '11', '11', NULL, 15),
-(11, 12, '12', '12', NULL, 14),
-(36, 13, '13', '13', NULL, 7),
-(13, 14, '14', '14', NULL, 17),
-(14, 15, '15', '15', NULL, 25),
-(15, 16, '16', '16', NULL, 3),
-(16, 17, '17', '17', NULL, 8),
-(17, 18, '18', '18', NULL, 5),
-(18, 19, '19', '19', NULL, 22),
-(19, 20, '20', '20', NULL, 2),
-(20, 21, '21', '21', NULL, 21),
-(21, 22, '22', '22', NULL, 28),
-(22, 23, '23', '23', NULL, 19),
-(23, 24, '24', '24', NULL, 31),
-(24, 25, '25', '25', NULL, 1),
-(25, 26, '26', '26', NULL, 29),
-(26, 27, '27', '27', NULL, 13),
-(27, 28, '28', '28', NULL, 10),
-(28, 29, '29', '29', NULL, 4),
-(29, 30, '30', '30', NULL, 6),
-(30, 31, '31', '31', NULL, 20),
-(31, 32, '32', '32', NULL, 12);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `grupo`
---
-
-CREATE TABLE `grupo` (
-  `grupo` int(4) NOT NULL,
-  `Id_Ronda` int(11) NOT NULL,
-  `idTorneo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `grupo`
---
-
-INSERT INTO `grupo` (`grupo`, `Id_Ronda`, `idTorneo`) VALUES
-(1, 0, 0);
+INSERT INTO `equipos` (`NumeroRegistro`, `Cod_Equipo`, `Nombre_Colegio`, `Nombre_Equipo`, `Ptos_Equipo`, `posicionSorteada`, `grupo`) VALUES
+(1, 1, '1', '1', NULL, 27, 'G'),
+(2, 2, '2', '2', 6, 9, 'C'),
+(34, 3, '3', '3', NULL, 30, 'H'),
+(4, 4, '4', '4', NULL, 23, 'F'),
+(35, 5, '5', '5', NULL, 18, 'E'),
+(5, 6, '6', '6', 14, 28, 'H'),
+(37, 7, '7', '7', NULL, 4, 'B'),
+(7, 8, '8', '8', NULL, 11, 'C'),
+(8, 9, '9', '9', 3, 26, 'G'),
+(9, 10, '10', '10', NULL, 20, 'F'),
+(10, 11, '11', '11', NULL, 15, 'D'),
+(11, 12, '12', '12', 11, 14, 'D'),
+(36, 13, '13', '13', 12, 0, 'A'),
+(13, 14, '14', '14', NULL, 17, 'E'),
+(14, 15, '15', '15', NULL, 25, 'G'),
+(15, 16, '16', '16', NULL, 3, 'A'),
+(16, 17, '17', '17', 3, 8, 'C'),
+(17, 18, '18', '18', NULL, 5, 'B'),
+(18, 19, '19', '19', NULL, 22, 'F'),
+(19, 20, '20', '20', 3, 2, 'A'),
+(20, 21, '21', '21', NULL, 12, 'D'),
+(21, 22, '22', '22', 6, 7, 'B'),
+(22, 23, '23', '23', NULL, 21, 'F'),
+(23, 24, '24', '24', 6, 19, 'E'),
+(24, 25, '25', '25', 6, 16, 'E'),
+(25, 26, '26', '26', NULL, 1, 'A'),
+(26, 27, '27', '27', 12, 13, 'D'),
+(27, 28, '28', '28', NULL, 10, 'C'),
+(28, 29, '29', '29', NULL, 31, 'H'),
+(29, 30, '30', '30', NULL, 6, 'B'),
+(30, 31, '31', '31', 12, 29, 'H'),
+(31, 32, '32', '32', 16, 24, 'G');
 
 -- --------------------------------------------------------
 
@@ -246,37 +228,26 @@ CREATE TABLE `jugadoras` (
   `FechaNacimiento` date NOT NULL,
   `Telefono` varchar(15) DEFAULT NULL,
   `Puntos_Anotados` int(4) NOT NULL,
-  `Cod_equipo` int(4) NOT NULL
+  `Cod_equipo` int(4) NOT NULL,
+  `amarillas` int(11) DEFAULT NULL,
+  `rojas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `jugadoras`
 --
 
-INSERT INTO `jugadoras` (`NumeroRegistro`, `Id_Jugadora`, `Nombre`, `FechaNacimiento`, `Telefono`, `Puntos_Anotados`, `Cod_equipo`) VALUES
-(16, 213, 'fghfhf', '2021-04-07', '2343', 0, 12);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `puntaje`
---
-
-CREATE TABLE `puntaje` (
-  `NumeroRegistro` int(11) NOT NULL,
-  `puntos` int(11) DEFAULT NULL,
-  `idJugadora` int(11) NOT NULL,
-  `codigoEquipo` int(11) NOT NULL,
-  `codigoEncuentro` int(11) NOT NULL,
-  `codigoSet` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `puntaje`
---
-
-INSERT INTO `puntaje` (`NumeroRegistro`, `puntos`, `idJugadora`, `codigoEquipo`, `codigoEncuentro`, `codigoSet`) VALUES
-(2, 222, 213, 12, 21, 2);
+INSERT INTO `jugadoras` (`NumeroRegistro`, `Id_Jugadora`, `Nombre`, `FechaNacimiento`, `Telefono`, `Puntos_Anotados`, `Cod_equipo`, `amarillas`, `rojas`) VALUES
+(17, 13, 'FDSGg', '2021-04-27', '12742', 1, 7, NULL, NULL),
+(18, 21, 'jhkjg', '2021-05-04', '216512', 0, 7, NULL, NULL),
+(19, 123, 'dfgdf', '2021-05-06', '23423', 0, 9, NULL, NULL),
+(16, 213, 'fghfhf', '2021-04-07', '2343', 2, 9, NULL, NULL),
+(20, 1234, 'fgdgfd', '2021-04-28', '32432', 0, 10, NULL, NULL),
+(21, 5435, 'ghfghh', '2021-05-13', '345345', 0, 11, NULL, NULL),
+(23, 6788, 'fghgfhfg', '2021-05-12', '5785', 0, 32, NULL, NULL),
+(25, 56756, 'gdhfh', '2021-05-15', '45645', 6, 12, NULL, NULL),
+(22, 65476, 'ljhgkh', '2021-04-30', '345345', 0, 22, NULL, NULL),
+(24, 678678, '7686', '2021-04-29', '678', 0, 21, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -317,23 +288,12 @@ CREATE TABLE `usuarios` (
 --
 
 CREATE TABLE `zet` (
-  `NumeroRegistro` int(11) DEFAULT NULL,
+  `NumeroRegistro` int(11) NOT NULL,
   `Cod_Set` int(8) NOT NULL,
   `Cod_Encuentro` int(6) NOT NULL,
   `Ptos_Equipo1` int(4) DEFAULT NULL,
   `Ptos_Equipo2` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `zet`
---
-
-INSERT INTO `zet` (`NumeroRegistro`, `Cod_Set`, `Cod_Encuentro`, `Ptos_Equipo1`, `Ptos_Equipo2`) VALUES
-(2, 1, 1, 12, 21),
-(5, 2, 2, 2, 2),
-(3, 3, 3, 3, 3),
-(1, 5, 5, 5, 5),
-(4, 12, 12, 12, 21);
 
 --
 -- Índices para tablas volcadas
@@ -357,13 +317,7 @@ ALTER TABLE `cuerpotecnico`
 -- Indices de la tabla `encuentro`
 --
 ALTER TABLE `encuentro`
-  ADD PRIMARY KEY (`Cod_Encuentro`),
-  ADD KEY `Cod_Equipo1` (`Cod_Equipo1`),
-  ADD KEY `Cod_Equipo2` (`Cod_Equipo2`),
-  ADD KEY `Id_Juezuno` (`Id_Juezuno`),
-  ADD KEY `Id_Juezdos` (`Id_Juezdos`),
-  ADD KEY `Id_Jueztres` (`Id_Jueztres`),
-  ADD KEY `Num_ronda` (`Grupo`);
+  ADD PRIMARY KEY (`Cod_Encuentro`);
 
 --
 -- Indices de la tabla `equipos`
@@ -372,13 +326,6 @@ ALTER TABLE `equipos`
   ADD PRIMARY KEY (`Cod_Equipo`),
   ADD UNIQUE KEY `NumeroRegistro_UNIQUE` (`NumeroRegistro`),
   ADD UNIQUE KEY `posicionSorteada_UNIQUE` (`posicionSorteada`);
-
---
--- Indices de la tabla `grupo`
---
-ALTER TABLE `grupo`
-  ADD PRIMARY KEY (`grupo`),
-  ADD KEY `idTorneo_idx` (`idTorneo`);
 
 --
 -- Indices de la tabla `jueces`
@@ -396,16 +343,6 @@ ALTER TABLE `jugadoras`
   ADD KEY `Cod_equipo` (`Cod_equipo`);
 
 --
--- Indices de la tabla `puntaje`
---
-ALTER TABLE `puntaje`
-  ADD PRIMARY KEY (`NumeroRegistro`),
-  ADD KEY `idJugadora_idx` (`idJugadora`),
-  ADD KEY `Cod_Equipo_idx` (`codigoEquipo`),
-  ADD KEY `codigoEncuentro_idx` (`codigoEncuentro`),
-  ADD KEY `Con_Set_idx` (`codigoSet`);
-
---
 -- Indices de la tabla `torneo`
 --
 ALTER TABLE `torneo`
@@ -421,7 +358,7 @@ ALTER TABLE `usuarios`
 -- Indices de la tabla `zet`
 --
 ALTER TABLE `zet`
-  ADD PRIMARY KEY (`Cod_Set`),
+  ADD PRIMARY KEY (`NumeroRegistro`),
   ADD KEY `Cod_Encuentro` (`Cod_Encuentro`);
 
 --
@@ -444,7 +381,7 @@ ALTER TABLE `cuerpotecnico`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `NumeroRegistro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `NumeroRegistro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `jueces`
@@ -456,7 +393,7 @@ ALTER TABLE `jueces`
 -- AUTO_INCREMENT de la tabla `jugadoras`
 --
 ALTER TABLE `jugadoras`
-  MODIFY `NumeroRegistro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `NumeroRegistro` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `torneo`
@@ -475,27 +412,16 @@ ALTER TABLE `cuerpotecnico`
   ADD CONSTRAINT `cuerpotecnico_ibfk_1` FOREIGN KEY (`Cod_equipo`) REFERENCES `equipos` (`Cod_Equipo`);
 
 --
--- Filtros para la tabla `encuentro`
---
-ALTER TABLE `encuentro`
-  ADD CONSTRAINT `encuentro_ibfk_1` FOREIGN KEY (`Cod_Equipo1`) REFERENCES `equipos` (`Cod_Equipo`),
-  ADD CONSTRAINT `encuentro_ibfk_2` FOREIGN KEY (`Cod_Equipo2`) REFERENCES `equipos` (`Cod_Equipo`),
-  ADD CONSTRAINT `encuentro_ibfk_6` FOREIGN KEY (`Grupo`) REFERENCES `grupo` (`grupo`);
-
---
 -- Filtros para la tabla `jugadoras`
 --
 ALTER TABLE `jugadoras`
   ADD CONSTRAINT `jugadoras_ibfk_1` FOREIGN KEY (`Cod_equipo`) REFERENCES `equipos` (`Cod_Equipo`);
 
 --
--- Filtros para la tabla `puntaje`
+-- Filtros para la tabla `zet`
 --
-ALTER TABLE `puntaje`
-  ADD CONSTRAINT `Cod_Equipo` FOREIGN KEY (`codigoEquipo`) REFERENCES `equipos` (`Cod_Equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `Con_Set` FOREIGN KEY (`codigoSet`) REFERENCES `zet` (`Cod_Set`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `codigoEncuentro` FOREIGN KEY (`codigoEncuentro`) REFERENCES `encuentro` (`Cod_Encuentro`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `idJugadora` FOREIGN KEY (`idJugadora`) REFERENCES `jugadoras` (`Id_Jugadora`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `zet`
+  ADD CONSTRAINT `zet_ibfk_1` FOREIGN KEY (`Cod_Encuentro`) REFERENCES `encuentro` (`Cod_Encuentro`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

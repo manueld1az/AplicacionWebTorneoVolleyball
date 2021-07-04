@@ -1,13 +1,5 @@
-//                      CONTADOR DE LA INTERFAZ DE PUNTOS
-
 //  ARRAY CON LOS CONTADORES DE TODAS LAS JUGADORAS
 let contadoresParciales = [];
-
-//  FUNCION QUE SE EJECUTA AL CARGAR LA VENTANA
-window.onload = () => {
-  //  SE RELLENAN LOS CONTADORES CON EL ARRAY DEL LOCAL STORAGE GUARDADO AL CAMBIAR DE PAGINA
-  rellenarContadores();
-};
 
 //  SE OBTIENEN LOS IDS DE LAS JUGADORAS EN ARRAY POR EQUIPO LLAMANDO A LOS JSON DE LA INTERFAZ
 //  IDS JUGADORAS EQUIPO 1
@@ -22,10 +14,24 @@ var contadorEquipo2 = 0;
 //  SE CREA PARA VALIDAR SI NO HAY GANADOR PARA PERMITIR MODIFICAR LOS CONTADORES
 let ganador = false;
 
+//  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
+var nombreEquipo1 = document.getElementById("nombreEquipo1").textContent;
+var nombreEquipo2 = document.getElementById("nombreEquipo2").textContent;
+
+//  FUNCION QUE SE EJECUTA AL CARGAR LA VENTANA
+window.onload = () => {
+  //  SE RELLENAN LOS CONTADORES CON EL ARRAY DEL LOCAL STORAGE GUARDADO AL CAMBIAR DE PAGINA
+  rellenarContadoresPuntos();
+  //  SE SUMA LOS PUNTOS DE CADA JUGADORA DEL EQUIPO DEL ARRAY CONTADORES PARCIALES
+  sumarPuntosEquipo1();
+  sumarPuntosEquipo2();
+  verificarGanador(ganador);
+};
+
 //  -------------------------------------------------------------------------------------------
 
 //  FUNCION PARA EVALUAR SI HAY GANADOR AL MOMENTO
-function verificarGanador(nombreEquipo1, nombreEquipo2, ganador) {
+function verificarGanador(ganador) {
   if (contadorEquipo1 >= 3) {
     Swal.fire({
       title: "<b>El equipo " + nombreEquipo1 + " es el ganador de este set</b>",
@@ -181,24 +187,11 @@ function countingClicks(idJugadora, ganador) {
     }
   }
 
-  //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
-  let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
-  let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
-  obtenerContadoresEquipo1(
-    idJugadora,
-    cantidadJugadorasEquipo1,
-    puntosJugadorasEquipo1
-  );
-  almacenarContadores();
+  obtenerContadoresEquipo1(puntosJugadorasEquipo1);
   //  SE SUMA LOS PUNTOS DE CADA JUGADORA DEL EQUIPO DEL ARRAY CONTADORES PARCIALES
   sumarPuntosEquipo1();
-  verificarGanador(
-    contadorEquipo1,
-    contadorEquipo2,
-    nombreEquipo1,
-    nombreEquipo2,
-    ganador
-  );
+  almacenarContadoresPuntos();
+  verificarGanador(ganador);
 }
 
 //  FUNCION PARA RESTAR UN PUNTO AL EQUIPO 1
@@ -221,25 +214,12 @@ function deductClicks(idJugadora, ganador) {
       }
     }
 
-    //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
-    let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
-    let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
-    obtenerContadoresEquipo1(
-      idJugadora,
-      cantidadJugadorasEquipo1,
-      puntosJugadorasEquipo1
-    );
+    obtenerContadoresEquipo1(puntosJugadorasEquipo1);
   }
-  almacenarContadores();
   //  SE SUMA LOS PUNTOS DE CADA JUGADORA DEL EQUIPO DEL ARRAY CONTADORES PARCIALES
   sumarPuntosEquipo1();
-  verificarGanador(
-    contadorEquipo1,
-    contadorEquipo2,
-    nombreEquipo1,
-    nombreEquipo2,
-    ganador
-  );
+  almacenarContadoresPuntos();
+  verificarGanador(ganador);
 }
 
 //  FUNCION PARA SUMAR UN PUNTO AL EQUIPO 2
@@ -260,24 +240,11 @@ function countingClicksb(idJugadora, ganador) {
     }
   }
 
-  //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
-  let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
-  let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
-  obtenerContadoresEquipo1(
-    idJugadora,
-    cantidadJugadorasEquipo2,
-    puntosJugadorasEquipo2
-  );
-  almacenarContadores();
+  obtenerContadoresEquipo2(puntosJugadorasEquipo2);
   //  SE SUMA LOS PUNTOS DE CADA JUGADORA DEL EQUIPO DEL ARRAY CONTADORES PARCIALES
   sumarPuntosEquipo2();
-  verificarGanador(
-    contadorEquipo1,
-    contadorEquipo2,
-    nombreEquipo1,
-    nombreEquipo2,
-    ganador
-  );
+  almacenarContadoresPuntos();
+  verificarGanador(ganador);
 }
 
 //  FUNCION PARA RESTAR UN PUNTO AL EQUIPO 2
@@ -299,25 +266,12 @@ function deductClicksb(idJugadora, ganador) {
       }
     }
 
-    //  SE OPTIENE LOS NOMBRES DE LOS EQUIPOS PARA MOSTRARLOS EN LA ALERTA PERSONALIZADA
-    let nombreEquipo1 = document.getElementById("nombreEquipo1").innerHTML;
-    let nombreEquipo2 = document.getElementById("nombreEquipo2").innerHTML;
-    obtenerContadoresEquipo1(
-      idJugadora,
-      cantidadJugadorasEquipo2,
-      puntosJugadorasEquipo2
-    );
+    obtenerContadoresEquipo2(puntosJugadorasEquipo2);
   }
-  almacenarContadores();
   //  SE SUMA LOS PUNTOS DE CADA JUGADORA DEL EQUIPO DEL ARRAY CONTADORES PARCIALES
   sumarPuntosEquipo2();
-  verificarGanador(
-    contadorEquipo1,
-    contadorEquipo2,
-    nombreEquipo1,
-    nombreEquipo2,
-    ganador
-  );
+  almacenarContadoresPuntos();
+  verificarGanador(ganador);
 }
 
 //----------------------------------------------------------------------------------
@@ -326,34 +280,24 @@ function deductClicksb(idJugadora, ganador) {
 let puntosJugadorasEquipo1 = [];
 let puntosJugadorasEquipo2 = [];
 
-function obtenerContadoresEquipo1(
-  idJugadora,
-  cantidadJugadorasEquipo1,
-  puntosJugadorasEquipo1
-) {
-  // console.log(puntosJugadorasEquipo1);
+function obtenerContadoresEquipo1(puntosJugadorasEquipo1) {
   return puntosJugadorasEquipo1;
 }
 
-function obtenerContadoresEquipo2(
-  idJugadora,
-  cantidadJugadorasEquipo2,
-  puntosJugadorasEquipo2
-) {
-  // console.log(puntosJugadorasEquipo2);
+function obtenerContadoresEquipo2(puntosJugadorasEquipo2) {
   return puntosJugadorasEquipo2;
 }
 
-function almacenarContadores() {
+function almacenarContadoresPuntos() {
   //  SE CREA EL ARRAY DE CONTADORES ALMACENADOS PARA ALLI GUARDAR LOS NUEVOS
   let contadoresGuardados = JSON.parse(
     localStorage.getItem("contadoresGuardados")
   );
 
-  let contador = parseInt(cantidadJugadorasEquipo1.value);
+  let contador = parseInt(cantidadJugadorasEquipo1);
   //  SE INGRESAN LOS VALORES DE LOS CONTADORES DE CADA JUGADORA A UN SOLO ARRAY
   //  QUE TIENE COMO INDICES LOS IDS DE CADA JUGADORA Y COMO VALORES LOS PUNTOS DE CADA UNA
-  for (let i = 0; i < cantidadJugadorasEquipo1.value; i++) {
+  for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
     contadoresParciales[idJugadorasEquipo1[i]] = parseInt(
       document.getElementById(idJugadorasEquipo1[i]).textContent
     );
@@ -366,7 +310,7 @@ function almacenarContadores() {
       contadoresGuardados[i] = contadoresParciales[idJugadorasEquipo1[i]];
     }
   }
-  for (let i = 0; i < cantidadJugadorasEquipo2.value; i++) {
+  for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
     contadoresParciales[idJugadorasEquipo2[i]] = parseInt(
       document.getElementById(idJugadorasEquipo2[i]).textContent
     );
@@ -389,7 +333,7 @@ function almacenarContadores() {
 
 //  TOMAR CONTADORES PREVIOS SI EXITEN, COMO PARAMETROS Y RELLENAR LOS VALORES NUEVAMENTE
 //  EN LOS REGISTROS DE CADA JUGADORA TENIENDO EN CUENTA SU ID
-function rellenarContadores() {
+function rellenarContadoresPuntos() {
   // SI ESTA VACIO EL ESPACIO EN EL localStorage SE INGRESAN []
   // PARA QUE SE PUEDA TOMAR EL OBJETO COMO ARRAY Y NO COMO JSON
   if (localStorage.getItem("contadoresGuardados") == null) {
@@ -406,21 +350,19 @@ function rellenarContadores() {
     localStorage.getItem("contadoresGuardados")
   );
 
-  for (let i = 0; i < cantidadJugadorasEquipo1.value; i++) {
+  for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
     if (contadoresGuardados[i] == null) {
       contadoresGuardados[i] = 0;
     }
     document.getElementById(idJugadorasEquipo1[i]).innerHTML =
       contadoresGuardados[i];
   }
-  for (let i = 0; i < cantidadJugadorasEquipo2.value; i++) {
-    if (
-      contadoresGuardados[i + parseInt(cantidadJugadorasEquipo2.value)] == null
-    ) {
-      contadoresGuardados[i + parseInt(cantidadJugadorasEquipo2.value)] = 0;
+  for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
+    if (contadoresGuardados[i + parseInt(cantidadJugadorasEquipo2)] == null) {
+      contadoresGuardados[i + parseInt(cantidadJugadorasEquipo2)] = 0;
     }
     document.getElementById(idJugadorasEquipo2[i]).innerHTML =
-      contadoresGuardados[i + parseInt(cantidadJugadorasEquipo2.value)];
+      contadoresGuardados[i + parseInt(cantidadJugadorasEquipo2)];
   }
 }
 
@@ -441,7 +383,7 @@ function sumarPuntosEquipo1() {
   document
     .getElementById("puntosEquipo1")
     .setAttribute("value", contadorEquipo1);
-  console.log("PUNTOS EQUIPO 1: " + contadorEquipo1);
+  // console.log("PUNTOS EQUIPO 1: " + contadorEquipo1);
 }
 
 function sumarPuntosEquipo2() {
@@ -457,7 +399,7 @@ function sumarPuntosEquipo2() {
   document
     .getElementById("puntosEquipo2")
     .setAttribute("value", contadorEquipo2);
-  console.log("PUNTOS EQUIPO 2: " + contadorEquipo2);
+  // console.log("PUNTOS EQUIPO 2: " + contadorEquipo2);
 }
 
 //  ------------------------------------------------------------------------------

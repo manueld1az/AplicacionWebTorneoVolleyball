@@ -1,9 +1,3 @@
-//  FUNCION QUE SE EJECUTA AL CARGAR LA VENTANA
-window.onload = () => {
-  //  SE RELLENAN LOS CONTADORES CON EL ARRAY DEL LOCAL STORAGE GUARDADO AL CAMBIAR DE PAGINA
-  rellenarContadores();
-};
-
 //  CONTADORES DE CADA JUGADORA DE CADA EQUIPO SEPARADO POR TIPO
 let contadorTarjetasAmarillasEquipo1 = [];
 let contadorTarjetasRojasEquipo1 = [];
@@ -130,7 +124,7 @@ async function alertaConfirmarTarjeta(nombreJugadora, idJugadora, x) {
         showCloseButton: true,
         closeButtonAriaLabel: "Cerrar",
 
-        imageUrl: "../../../img/yellowCard.svg",
+        imageUrl: "../../img/yellowCard.svg",
         imageWidth: "7em",
         imageHeight: "8em",
         imageAlt: "imgAlertaTarjeta",
@@ -147,7 +141,7 @@ async function alertaConfirmarTarjeta(nombreJugadora, idJugadora, x) {
           }
           document.getElementById("amarillasEquipo1" + idJugadora).innerHTML =
             contadorTarjetasAmarillasEquipo1[idJugadora];
-          almacenarContadores();
+          almacenarContadoresTarjetas();
 
           //    SE SUMA ROJA SI SE SUMAN 2 AMARILLAS
           if (contadorTarjetasAmarillasEquipo1[idJugadora] == 2) {
@@ -155,7 +149,7 @@ async function alertaConfirmarTarjeta(nombreJugadora, idJugadora, x) {
               contadorTarjetasRojasEquipo1[idJugadora]++;
               document.getElementById("rojasEquipo1" + idJugadora).innerHTML =
                 contadorTarjetasRojasEquipo1[idJugadora];
-              almacenarContadores();
+              almacenarContadoresTarjetas();
             }
           }
         } else if (equipo == 2) {
@@ -166,7 +160,7 @@ async function alertaConfirmarTarjeta(nombreJugadora, idJugadora, x) {
             contadorTarjetasAmarillasEquipo2[idJugadora]++;
             document.getElementById("amarillasEquipo2" + idJugadora).innerHTML =
               contadorTarjetasAmarillasEquipo2[idJugadora];
-            almacenarContadores();
+            almacenarContadoresTarjetas();
           }
 
           //    SE SUMA ROJA SI SE SUMAN 2 AMARILLAS
@@ -175,7 +169,7 @@ async function alertaConfirmarTarjeta(nombreJugadora, idJugadora, x) {
               contadorTarjetasRojasEquipo2[idJugadora]++;
               document.getElementById("rojasEquipo2" + idJugadora).innerHTML =
                 contadorTarjetasRojasEquipo2[idJugadora];
-              almacenarContadores();
+              almacenarContadoresTarjetas();
             }
           }
         }
@@ -242,7 +236,7 @@ async function alertaConfirmarTarjeta(nombreJugadora, idJugadora, x) {
         showCloseButton: true,
         closeButtonAriaLabel: "Cerrar",
 
-        imageUrl: "../../../img/redCard.svg",
+        imageUrl: "../../img/redCard.svg",
         imageWidth: "7em",
         imageHeight: "8em",
         imageAlt: "imgAlertaTarjeta",
@@ -255,14 +249,14 @@ async function alertaConfirmarTarjeta(nombreJugadora, idJugadora, x) {
             contadorTarjetasRojasEquipo1[idJugadora]++;
             document.getElementById("rojasEquipo1" + idJugadora).innerHTML =
               contadorTarjetasRojasEquipo1[idJugadora];
-            almacenarContadores();
+            almacenarContadoresTarjetas();
           }
         } else if (equipo == 2) {
           if (contadorTarjetasRojasEquipo2[idJugadora] == 0) {
             contadorTarjetasRojasEquipo2[idJugadora]++;
             document.getElementById("rojasEquipo2" + idJugadora).innerHTML =
               contadorTarjetasRojasEquipo2[idJugadora];
-            almacenarContadores();
+            almacenarContadoresTarjetas();
           }
         }
       }
@@ -317,7 +311,7 @@ if (localStorage.getItem("rojas") == null) {
 //  SE CREA EL ARRAY DE AMARILLAS PARA ALLI GUARDAR LAS NUEVAS QUE SE SUMARAN DURANTE EL SET
 let rojas = JSON.parse(localStorage.getItem("rojas"));
 
-function almacenarContadores() {
+function almacenarContadoresTarjetas() {
   // SE OPTIENEN Y SE GUARDAN LOS CONTADORES DE TARJETAS AMARILLAS
 
   //  SE INGRESAN LOS VALORES DE LOS CONTADORES DE CADA JUGADORA A UN SOLO ARRAY
@@ -405,7 +399,8 @@ function almacenarContadores() {
   localStorage.setItem("rojas", JSON.stringify(rojas));
 }
 
-function rellenarContadores() {
+
+function rellenarContadoresTarjetas() {
   //  SE OBTIENEN LOS CONTADORES DE AMARILLAS DE LOS DOS EQUIPOS
   let amarillas = JSON.parse(localStorage.getItem("amarillas"));
 
@@ -435,9 +430,9 @@ function rellenarContadores() {
   }
 }
 
-/* SE OBTIENE EL EVENTO DEL BOTON GUARDAR EN AMONESTACIONES PARA EJECUTAR EL ENVIO DE LOS CONTADORES DE LA INTERFAZ
+/* SE OBTIENE EL EVENTO DEL BOTON/GUARDAR EN AMONESTACIONES PARA EJECUTAR EL ENVIO DE LOS CONTADORES DE LA INTERFAZ
 FORMULARIO OCULTO DE LA INTERFAZ QUE ENVIARA LOS CONTADORES A EL BACKEND */
-document.getElementById("guardarTarjetas").addEventListener("click", () => {
+/* document.getElementById("guardarTarjetas").addEventListener("click", () => {
   //  SE ENVIA LAS TARJETAS AMARILLAS DE CADA EQUIPO AL FORMULARIO OCULTO DE LA INTERFAZ
   for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
     document
@@ -474,4 +469,4 @@ document.getElementById("guardarTarjetas").addEventListener("click", () => {
       .getElementById("idJugadorasEquipo2[" + idJugadorasEquipo2[i] + "]")
       .setAttribute("value", idJugadorasEquipo2[i]);
   }
-});
+}); */

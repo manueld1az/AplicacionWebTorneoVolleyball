@@ -298,7 +298,7 @@
             <br />
             <div class="row">
                 <section class="col-xs-12 col-sm-6">
-                    <table class="table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th class="columnaCabecera">
@@ -360,7 +360,7 @@
                     </table>
                 </section>
                 <section class="col-xs-12 col-sm-6">
-                    <table class="table-hover">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th class="columnaCabecera">

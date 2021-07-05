@@ -98,7 +98,7 @@ function verificarGanador(ganador) {
     document.getElementById("guardarPuntos").disabled = false;
   } else if (contadorEquipo2 >= 3) {
     Swal.fire({
-      title: "<b>El equipo " + nombreEquipo2 + " es el ganador este set</b>",
+      title: "<b>El equipo " + nombreEquipo2 + " es el ganador de este set</b>",
       // text:
       // html:
       icon: "info",

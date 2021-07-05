@@ -1,14 +1,13 @@
 <?php
 
 if (isset($_POST['guardarPuntos'])) {
-
-    /*     SE USA PARA MOSTRAR TODOS LOS DATOS DE LA PETICION
+/*     SE USA PARA MOSTRAR TODOS LOS DATOS DE LA PETICION
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
-     */
+    */
 
-    include "../../../conexion/conexionServer.php";
+    include "../../conexion/conexionServer.php";
 
     $puntosEquipo1 = $_POST["puntosEquipo1"];
     $puntosEquipo2 = $_POST["puntosEquipo2"];
@@ -23,7 +22,7 @@ if (isset($_POST['guardarPuntos'])) {
                 VALUES ( $numeroRegistro, $codigoSet, $codigoEncuentro )";
     $ingresar = mysqli_query($conexion, $sql);
 
-//  SE GUARDAN LOS PUNTOS EN LA TABLA ZET
+    //  SE GUARDAN LOS PUNTOS EN LA TABLA ZET
 
     $sql = "    UPDATE zet
                 SET Ptos_Equipo1 = $puntosEquipo1
@@ -36,9 +35,9 @@ if (isset($_POST['guardarPuntos'])) {
                 AND Cod_Set = $codigoSet";
     $actualizar = mysqli_query($conexion, $sql);
 
-//  SE ACTUALIZAN LOS PUNTOS EN LA TABLA ENCUENTRO SUMANDO LOS PUNTOS DE CADA EQUIPO EN LOS SETS JUGADOS
+    //  SE ACTUALIZAN LOS PUNTOS EN LA TABLA ENCUENTRO SUMANDO LOS PUNTOS DE CADA EQUIPO EN LOS SETS JUGADOS
     if ($codigoSet == 1) {
-//  SE SUMAN LOS PUNTOS INICIALES DEL PRIMER SET
+        //  SE SUMAN LOS PUNTOS INICIALES DEL PRIMER SET
         $sql = "UPDATE encuentro
                 SET Ptos_Equipo1 = $puntosEquipo1
                 WHERE Cod_Encuentro = $codigoEncuentro";
@@ -48,7 +47,7 @@ if (isset($_POST['guardarPuntos'])) {
                 WHERE Cod_Encuentro = $codigoEncuentro";
         $actualizar = mysqli_query($conexion, $sql);
     } else {
-// SE CONSULTAN LOS PUNTOS DEL PRIMER SET
+        // SE CONSULTAN LOS PUNTOS DEL PRIMER SET
         $sql = "SELECT Ptos_Equipo1, Ptos_Equipo2 FROM encuentro
                 WHERE Cod_Encuentro = $codigoEncuentro";
         $consulta = mysqli_query($conexion, $sql);
@@ -56,11 +55,11 @@ if (isset($_POST['guardarPuntos'])) {
         $puntosConsultados1 = $mostrar["Ptos_Equipo1"];
         $puntosConsultados2 = $mostrar["Ptos_Equipo2"];
 
-//  CON LOS PUNTOS OBTENIDOS DE LA CONSULTA SE LE SUMAN LOS DEL NUEVO SET QUE PODRIA SER EL 2 O EL 3
+        //  CON LOS PUNTOS OBTENIDOS DE LA CONSULTA SE LE SUMAN LOS DEL NUEVO SET QUE PODRIA SER EL 2 O EL 3
         $puntosEquipo1 += $puntosConsultados1;
         $puntosEquipo2 += $puntosConsultados2;
 
-//  SE INGRESAN LOS NUEVOS PUNTOS
+        //  SE INGRESAN LOS NUEVOS PUNTOS
         $sql = "UPDATE encuentro
                 SET Ptos_Equipo1 = " . $puntosEquipo1 . "
                 WHERE Cod_Encuentro = " . $codigoEncuentro;
@@ -71,7 +70,7 @@ if (isset($_POST['guardarPuntos'])) {
         $actualizar = mysqli_query($conexion, $sql);
     }
 
-//  SE GUARDAN LOS PUNTOS DEL ENCUENTRO AL FINALIZAR EL MISMO A LA TABLA EQUIPOS
+    //  SE GUARDAN LOS PUNTOS DEL ENCUENTRO AL FINALIZAR EL MISMO A LA TABLA EQUIPOS
     if ($codigoSet == 3) {
 
 //      SE CONSULTAN LOS PUNTOS PREVIOS QUE HALLA SUMADO EL PRIMER EQUIPO DEL ENCUENTRO
@@ -86,11 +85,11 @@ if (isset($_POST['guardarPuntos'])) {
         $mostrar = mysqli_fetch_array($consulta);
         $puntosConsultados2 = $mostrar["Ptos_Equipo"];
 
-//  CON LOS PUNTOS OBTENIDOS DE LA CONSULTA SE LE SUMAN LOS DEL ENCUENTRO AL TERMINAR EL MISMO
+        //  CON LOS PUNTOS OBTENIDOS DE LA CONSULTA SE LE SUMAN LOS DEL ENCUENTRO AL TERMINAR EL MISMO
         $puntosEquipo1 += $puntosConsultados1;
         $puntosEquipo2 += $puntosConsultados2;
 
-//  SE INGRESAN LOS NUEVOS PUNTOS DE CADA EQUIPO
+        //  SE INGRESAN LOS NUEVOS PUNTOS DE CADA EQUIPO
         $sql = "UPDATE equipos
                 SET Ptos_Equipo = $puntosEquipo1
                 WHERE Cod_Equipo = $codigoEquipo1";
@@ -100,8 +99,12 @@ if (isset($_POST['guardarPuntos'])) {
                 WHERE Cod_Equipo = $codigoEquipo2";
         $actualizar = mysqli_query($conexion, $sql);
 
-        //      INGRESO DE PUNTOS DE CADA JUGADORA DEL ENCUENTRO A LA BASE DE DATOS POR EQUIPO
+//      INGRESO DE PUNTOS DE CADA JUGADORA DEL ENCUENTRO A LA BASE DE DATOS POR EQUIPO
 
+
+        /* !!!!!!!!!!!!!!!!!!!!!!!! ERORRRRR
+        EN ESTA SECCION NO SE ESTAN ACTUALIZANDO LOS PUNTOS EN LA TABLA DE JUGADORAS */
+/* 
         //      SE RECIBEN LOS ARRAYS CON LOS PUNTOS DE CADA JUGADORA EN SU EQUIPO AL FINAL DEL ENCUENTRO
         $nuevosPuntosJugadorasEquipo1 = $_POST['puntosJugadorasEquipo1'];
         $nuevosPuntosJugadorasEquipo2 = $_POST['puntosJugadorasEquipo2'];
@@ -136,13 +139,9 @@ if (isset($_POST['guardarPuntos'])) {
             $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo2[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo2[$i]');";
             $actualizar = mysqli_query($conexion, $sql);
             $i++;
-        }
-        if ($amonestacionesGuardadas) {
-            header("location: ../encuentrosDiarios.php");
-        } else {
-            header("location: ../amonestaciones/amonestacionesSet.php?Cod_Encuentro=$codigoEncuentro&puntosGuardados=true");
-        }
-    } else {
-        header("location: puntosSet.php?Cod_Encuentro=$codigoEncuentro");
+        } */
+header("location: resultadoEncuentro.php?Cod_Encuentro=$codigoEncuentro&&codigoEquipo1=$codigoEquipo1&&codigoEquipo2=$codigoEquipo2");
+} else {
+        header("location: interfazSet.php?Cod_Encuentro=$codigoEncuentro");
     }
 }

@@ -63,5 +63,23 @@ if ($setsGanadosEquipo1 > $setsGanadosEquipo2) {
 }
 
 $conexion->close();
-
-header("location: encuentrosDiarios.php");
+// SE EVALUA SI YA SE JUGO EL ULTIMO ENCUENTRO DE LA RONDA ACTUAL,
+// TOMANDO EL CODIGO DEL ENCUENTRO DE ESE ULTIMO ENCUENTRO Y CON ESTE
+// SE EVALUA SI SE SALTA A LA SIGUIENTE RONDA.
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// CAMBIAR EL 47 POR 48 SI SE MODIFCAN LOS CODIGOS DE ENCUENTRO PA QUE INICIEN DESDE 1
+if ($codigoEncuentro == 47) {// FASE DE GRUPOS SE JUEGAN 48 PARTIDOS
+    header("location: cambiarRonda.php?ronda=1");
+} elseif ($codigoEncuentro == 55) {// OCTAVOS DE FINAL SE JUEGAN 8 PARTIDOS
+    header("location: cambiarRonda.php?ronda=2");
+} elseif ($codigoEncuentro == 59) {// CUARTOS DE FINAL SE JUEGAN 4 PARTIDOS
+    header("location: cambiarRonda.php?ronda=3");
+} elseif ($codigoEncuentro == 61) {// SEMIFINALES SE JUEGAN 2 PARTIDOS
+    header("location: cambiarRonda.php?ronda=4");
+} elseif ($codigoEncuentro == 63) {// FINALES SE JUEGAN 2 PARTIDOS
+    header("location: cambiarRonda.php?ronda=5");
+} else {
+    header("location: encuentrosDiarios.php");
+}
+// !!!!!!!!!!!!!!!!!!!!!!!!!
+// SUMAR UNO MAS A LOS CODIGOS DE LOS ENCUENTROS FINALES SI SE MODIFICARON EN BASE DE DATOS

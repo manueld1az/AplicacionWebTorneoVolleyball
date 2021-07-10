@@ -41,7 +41,9 @@
       //y codigo equipo para ingresarlo a la tabla esquemas ronda2
       $letrasDeGrupo= ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
       for ($i=0; $i<8; $i++) {
-          $sql = "SELECT Cod_Equipo, Nombre_Equipo FROM `equipos` WHERE grupo= '$letrasDeGrupo[$i]' ORDER BY Ptos_Equipo DESC LIMIT 2";
+          $sql = "SELECT Cod_Equipo, Nombre_Equipo 
+                  FROM `equipos` WHERE grupo= '$letrasDeGrupo[$i]' 
+                  ORDER BY Ptos_Equipo DESC LIMIT 2";
           $consulta = $conexion->query($sql);
           if ($consulta->num_rows > 0) {
               while ($equipoRonda2 = $consulta->fetch_assoc()) {
@@ -65,7 +67,7 @@
       }
       //  SE CREA LA LISTA "listaTabla" DE de los puestos que ocupan los equipos,
       //  PARA ORDENAR LOS EQUIPOS SEGUN ESTA LISTA
-     /*  echo "<pre>";
+      /*  echo "<pre>";
       print_r($equipo1);
       echo "</pre>"; */
       $listaTabla = [];

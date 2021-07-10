@@ -3,11 +3,7 @@
 if (isset($_POST["botonGuardarDatosAlerta"])) {
     include "../conexion/conexionServer.php";
 
-    /*  SE REGISTRA LA INFORMACION ESCENCIAL DEL TORNEO COMO LAS FECHA Y HORA INICIAL, ADEMAS DEL NOMBRE,
-        UNA DESCRIPCION BREVE Y LA RONDA CON QUE SE DARA INICIO AL TORNEO SEGUN LA CANTIDAD DE EQUIPOS INSCRITOS */
-    $sql = "INSERT INTO `torneovoleibol`.`torneo` (`idTorneo`, `nombreTorneo`, `descripcionTorneo`, `rondaActual`, `fechaInicio`, `horaInicio`) 
-            VALUES ('1193', 'Femenino del Valle Sub 18', 'torneo intercolegiado de la liga vallecaucana Sub 18', '1' , '$fechaInicioTorneo', '$horaInicioTorneo');";
-    $consulta = mysqli_query($conexion, $sql);
+
 
     // SE INGRESA LOS CODIGOS DE ENCUENTRO PARA TENER LLAVE PRIMARIA PARA CADA ENCUENTRO
     for ($i=0; $i < 48; $i++) {
@@ -208,6 +204,14 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
             $ingresar = mysqli_query($conexion, $sql);
         }
     }*/
+
+    /*  SE REGISTRA LA INFORMACION ESCENCIAL DEL TORNEO COMO LAS FECHA Y HORA INICIAL, ADEMAS DEL NOMBRE,
+        UNA DESCRIPCION BREVE Y LA RONDA CON QUE SE DARA INICIO AL TORNEO SEGUN LA CANTIDAD DE EQUIPOS INSCRITOS */
+    $sql = "INSERT INTO `torneovoleibol`.`torneo` ( `idTorneo`, `nombreTorneo`, `descripcionTorneo`, `rondaActual`, 
+                                                    `fechaInicio`, `horaInicio`, `cantidadEncuentrosDiarios`, `inervaloDiario`) 
+            VALUES ('1193', 'Femenino del Valle Sub 18', 'torneo intercolegiado de la liga vallecaucana Sub 18', '1' ,
+                    '".$_POST['fechaInicioTorneo']."', '".$_POST['horaInicioTorneo']."', '".$_POST["cantidadEncuentrosDiarios"]."', '".$_POST["intervaloEntrePartidos"]."');";
+    $insertar = mysqli_query($conexion, $sql);
 
     include "../conexion/cerrarConexion.php";
     header("location: ../torneo/ronda1/encuentrosRonda1.php");

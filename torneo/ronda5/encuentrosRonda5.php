@@ -184,7 +184,7 @@
 
         // SE VALIDA SI YA SE HAN CREADO LOS ENCUENTROS DE ESTA RONDA
 
-            if ($encuentros[1]['codigoEncuentro'] == 61) {
+            if ($encuentros[1]['codigoEncuentro'] == 63) {
 
                 //  Se obtienen los jueces de la DB
 

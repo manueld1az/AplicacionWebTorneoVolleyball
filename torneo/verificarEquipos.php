@@ -83,11 +83,11 @@
     } elseif ($rondaActual == 2) {
         header("location: ronda2/menuRonda2.html");
     } elseif ($rondaActual == 3) {
-        header("location: ronda3.php");
+        header("location: ronda3/menuRonda3.html");
     } elseif ($rondaActual == 4) {
-        header("location: ronda4.php");
+        header("location: ronda4/menuRonda4.html");
     } elseif ($rondaActual == 5) {
-        header("location: ronda5.php");
+        header("location: ronda5/menuRonda5.html");
     }
     ?>
     <h5>La cantidad de equipos que puede manejar esta aplicacion actualmente es de: 32-16-8-4-2 Equipos</h5>

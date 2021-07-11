@@ -32,7 +32,7 @@
   </header>
   <main class="container main">
     <div class="container">
-      <h3 class="tittleMain">OCTAVOS</h3>
+      <h3 class="tittleMain">Octavos de Final</h3>
     </div>
     <?php include("../../conexion/conexionServer.php"); ?>
     <div class="row">

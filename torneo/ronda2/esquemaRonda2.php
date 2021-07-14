@@ -32,16 +32,16 @@
   </header>
   <main class="container main">
     <div class="container">
-      <h3 class="tittleMain">OCTAVOS</h3>
+      <h3 class="tittleMain">Octavos de Final</h3>
     </div>
     <?php include("../../conexion/conexionServer.php"); ?>
     <div class="row">
       <?php
-      // Sorteo terminado, se guarda el nuevo orden de los equipos y se toman los valores de posicion sorteada
-      //y codigo equipo para ingresarlo a la tabla esquemas ronda2
       $letrasDeGrupo= ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
       for ($i=0; $i<8; $i++) {
-          $sql = "SELECT Cod_Equipo, Nombre_Equipo FROM `equipos` WHERE grupo= '$letrasDeGrupo[$i]' ORDER BY Ptos_Equipo DESC LIMIT 2";
+          $sql = "SELECT Cod_Equipo, Nombre_Equipo 
+                  FROM `equipos` WHERE grupo= '$letrasDeGrupo[$i]' 
+                  ORDER BY Ptos_Equipo DESC LIMIT 2";
           $consulta = $conexion->query($sql);
           if ($consulta->num_rows > 0) {
               while ($equipoRonda2 = $consulta->fetch_assoc()) {
@@ -65,13 +65,16 @@
       }
       //  SE CREA LA LISTA "listaTabla" DE de los puestos que ocupan los equipos,
       //  PARA ORDENAR LOS EQUIPOS SEGUN ESTA LISTA
-     /*  echo "<pre>";
-      print_r($equipo1);
-      echo "</pre>"; */
+
       $listaTabla = [];
       $nombreGrupos = ["LLAVE UNO", "LLAVE DOS", "LLAVE TRES", "LLAVE CUATRO", "LLAVE CINCO", "LLAVE SEIS", "LLAVE SIETE", "LLAVE OCHO"];
+      $contador = 0;
       for ($i = 0; $i < 8; $i++) {
-          ?>
+          if ($i %2 == 0 && $i != 0) {
+              $contador += 2;
+          } elseif ($i %2 != 0) {
+              $contador+=2;
+          } ?>
       <div class="col-xs-12 col-sm-12 col-md-3">
         <table class="table table-hover">
           <thead>
@@ -92,23 +95,8 @@
               <td>
                 <center>
                   <?php
-                      if ($i == 0) {
-                          echo $equipo1[0];
-                      } elseif ($i == 1) {
-                          echo $equipo1[2];
-                      } elseif ($i == 2) {
-                          echo $equipo1[ 4];
-                      } elseif ($i == 3) {
-                          echo $equipo1[ 6];
-                      } elseif ($i == 4) {
-                          echo $equipo1[ 8];
-                      } elseif ($i == 5) {
-                          echo $equipo1[ 10];
-                      } elseif ($i == 6) {
-                          echo $equipo1[ 12];
-                      } elseif ($i == 7) {
-                          echo $equipo1[ 14];
-                      } ?>
+                    echo $equipo1[$contador]
+                    ?>
                 </center>
               </td>
             </tr>
@@ -116,23 +104,8 @@
               <td>
                 <center>
                   <?php
-                      if ($i == 0) {
-                          echo $equipo1[15];
-                      } elseif ($i == 1) {
-                          echo $equipo1[13];
-                      } elseif ($i == 2) {
-                          echo $equipo1[11];
-                      } elseif ($i == 3) {
-                          echo $equipo1[9];
-                      } elseif ($i == 4) {
-                          echo $equipo1[7];
-                      } elseif ($i == 5) {
-                          echo $equipo1[5];
-                      } elseif ($i == 6) {
-                          echo $equipo1[3];
-                      } elseif ($i == 7) {
-                          echo $equipo1[1];
-                      } ?>
+                    echo $equipo1[$contador + 1]
+                    ?>
                 </center>
               </td>
             </tr>

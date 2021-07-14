@@ -19,7 +19,7 @@
     <header class="container">
         <div class="row">
             <div class="col-auto">
-                <a href="../ronda1/menuRonda1.html">
+                <a href="../mantenerEstado.php">
                     <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
                 </a>
             </div>

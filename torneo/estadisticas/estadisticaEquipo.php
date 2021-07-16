@@ -8,8 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
     <!-- Link de font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <title>Tabla de Posiciones Equipos</title>
-    <link rel="stylesheet" href="../../nuevoTorneo/listados/listas.css" />
+    <title>Tabla de Estadisticas</title>
+    <link rel="stylesheet" href="estadisticas.css" />
 </head>
 
 <body>
@@ -27,14 +27,25 @@
             </div>
         </div>
     </header>
-    <main class="container main">
+    <ul class="nav justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link btn button BN1" id="equipos-tab" data-toggle="tab" href="#posicionEquipos" role="tab"
+                aria-controls="contenidoEquipos" aria-selected="true">Equipos</a>
+        </li>
+        <li class="nav-item">
+            <!--   SE RELLENAN LOS CONTADORES DE TARJETAS CON EL ARRAY DEL LOCAL STORAGE AL CAMBIAR DE PAGINA -->
+            <a class="nav-link btn button" id="jugadoras-tab" data-toggle="tab" href="#posicionJugadoras" role="tab"
+                aria-controls="posicionJugadoras" aria-selected="true">Jugadoras</a>
+        </li>
+    </ul>
+    <main class="tab-content container" id="myTabContent">
+    <section class="tab-pane fade show active" id="posicionEquipos" role="tabpanel" aria-labelledby="equipos-tab">
         <div class="container">
-            <h3 class="tittleMain">
-                Tabla de Posicion Equipos
-                <a href="../estadisticas/estadisticaJugadoras.php">
-                <h6>Ver Estadisticas de las Jugadoras</h6>
-                </a>
-            </h3>  
+            <center>
+                <h3 class="tittleMain">
+                Tabla de Posiciones Equipos
+                </h3> 
+            </center>
         </div>
         <center><i class="fas fa-users avatar"></i><br /></center>
         <div class="table-responsive">
@@ -81,6 +92,62 @@
                 ?>
             </table>
         </div>
+    </section>
+    <!-- SECCION DE JUGADORAS -->
+    <section class="tab-pane fade" id="posicionJugadoras" role="tabpanel" aria-labelledby="jugadoras-tab">
+    <div class="container">
+            <center>
+                <h3 class="tittleMain">
+                Tabla de Posiciones Jugadoras
+                </h3> 
+            </center>
+        </div>
+        <center><i class="fas fa-users avatar"></i><br /></center>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td class="columnaCabecera">
+                            <p>
+                                <b>
+                                    <center>Jugadora</center>
+                                </b>
+                            </p>
+                        </td>
+                        <td class="columnaCabecera">
+                            <p>
+                                <b>
+                                    <center>Puntaje</center>
+                                </b>
+                            </p>
+                        </td>
+                        
+                        
+                    </tr>
+                </thead>
+                <?php
+                include("../../conexion/conexionServer.php");
+                $sql = "SELECT Nombre, Puntos_Anotados FROM jugadoras ORDER BY Puntos_Anotados DESC LIMIT 10";
+                $consulta = mysqli_query($conexion, $sql);
+                while ($mostrar = mysqli_fetch_assoc($consulta)) {
+                ?>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <center><?php echo $mostrar['Nombre'] ?></center>
+                            </td>
+                            <td>
+                                <center><?php echo $mostrar['Puntos_Anotados'] ?></center>
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
+    </section>
     </main>
     <!-- Scripts de boostrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

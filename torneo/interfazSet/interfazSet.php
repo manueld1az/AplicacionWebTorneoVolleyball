@@ -288,11 +288,10 @@
         <section class="tab-pane fade" id="contenidoTarjetas" role="tabpanel" aria-labelledby="tarjetas-tab">
             <center>
                 <img src="../../img/cards.svg" alt="icono tarjetas voleibol" width="130px" />
-                <h2>Amonestaciones Set
+                <h2>Amonestaciones
                     <?php
                     if ($codigoSet <= 3) {
-                        // SE IMPRIME EL SET ACTUAL
-                        echo $codigoSet; ?>
+                        ?>
                 </h2>
             </center>
             <br />

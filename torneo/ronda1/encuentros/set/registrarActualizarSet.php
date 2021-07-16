@@ -1,15 +1,13 @@
 <?php
+
 include("../../../../conexion/conexionServer.php");
 $NumeroRegistro = $_POST["NumeroRegistro"];
-$codigoSet = $_POST["Cod_Set"];
-$codigoEncuentro = $_POST["Cod_Encuentro"];
 $puntosEquipo1 = $_POST["Ptos_Equipo1"];
 $puntosEquipo2 = $_POST["Ptos_Equipo2"];
 
 $sql = "UPDATE zet
-    SET Cod_Set='$codigoSet', Cod_Encuentro='$codigoEncuentro', Ptos_Equipo1='$puntosEquipo1', 
-    Ptos_Equipo2='$puntosEquipo2'
-    WHERE NumeroRegistro='$NumeroRegistro'";
+        SET Ptos_Equipo1='$puntosEquipo1', Ptos_Equipo2='$puntosEquipo2'
+        WHERE NumeroRegistro='$NumeroRegistro'";
 
 $actualizar = mysqli_query($conexion, $sql);
 

@@ -294,22 +294,31 @@ let cantidadJugadorasEquipo2 = idJugadorasEquipo2.length;
 // SI ESTA VACIO EL ESPACIO EN EL localStorage SE INGRESAN []
 // PARA QUE SE PUEDA TOMAR EL OBJETO COMO ARRAY Y NO COMO JSON
 if (localStorage.getItem("amarillas") == null) {
-  localStorage.setItem("amarillas", "[]");
+  //  SE CREA EL ARRAY DE AMARILLAS PARA ALLI GUARDAR LAS NUEVAS QUE SE SUMARAN DURANTE EL SET
+  var amarillas = [];
+  for (let i = 0; i < cantidadJugadorasEquipo1 + cantidadJugadorasEquipo2; i++) {
+    amarillas[i] = 0;
+  }
+  localStorage.setItem("amarillas", JSON.stringify(amarillas));
 }
 
-//  SE CREA EL ARRAY DE AMARILLAS PARA ALLI GUARDAR LAS NUEVAS QUE SE SUMARAN DURANTE EL SET
-let amarillas = JSON.parse(localStorage.getItem("amarillas"));
+var amarillas = JSON.parse(localStorage.getItem("amarillas"));
 
 //  ----------------------------------------------------------------------------------------
 
 // SI ESTA VACIO EL ESPACIO EN EL localStorage SE INGRESAN []
 // PARA QUE SE PUEDA TOMAR EL OBJETO COMO ARRAY Y NO COMO JSON
 if (localStorage.getItem("rojas") == null) {
-  localStorage.setItem("rojas", "[]");
+  //  SE CREA EL ARRAY DE AMARILLAS PARA ALLI GUARDAR LAS NUEVAS QUE SE SUMARAN DURANTE EL SET
+  var rojas = [];
+  for (let i = 0; i < cantidadJugadorasEquipo1 + cantidadJugadorasEquipo2; i++) {
+    rojas[i] = 0;
+  }
+  localStorage.setItem("rojas", JSON.stringify(rojas));
 }
 
 //  SE CREA EL ARRAY DE AMARILLAS PARA ALLI GUARDAR LAS NUEVAS QUE SE SUMARAN DURANTE EL SET
-let rojas = JSON.parse(localStorage.getItem("rojas"));
+var rojas = JSON.parse(localStorage.getItem("rojas"));
 
 function almacenarContadoresTarjetas() {
   // SE OPTIENEN Y SE GUARDAN LOS CONTADORES DE TARJETAS AMARILLAS
@@ -412,12 +421,12 @@ function rellenarContadoresTarjetas() {
   for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
     document.getElementById(
       "amarillasEquipo2" + idJugadorasEquipo2[i]
-    ).innerHTML = amarillas[i + parseInt(cantidadJugadorasEquipo2)];
+    ).innerHTML = amarillas[i + parseInt(cantidadJugadorasEquipo1)];
   }
 
   //  --------------------------------------------------------------------------------------
 
-  //  SE OBTIENEN LOS CONTADORES DE AMARILLAS DE LOS DOS EQUIPOS
+  //  SE OBTIENEN LOS CONTADORES DE AS DE LOS DOS EQUIPOS
   let rojas = JSON.parse(localStorage.getItem("rojas"));
 
   for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
@@ -426,7 +435,7 @@ function rellenarContadoresTarjetas() {
   }
   for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
     document.getElementById("rojasEquipo2" + idJugadorasEquipo2[i]).innerHTML =
-      rojas[i + parseInt(cantidadJugadorasEquipo2)];
+      rojas[i + parseInt(cantidadJugadorasEquipo1)];
   }
 }
 

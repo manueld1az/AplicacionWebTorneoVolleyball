@@ -470,18 +470,12 @@
 
     //  Se obtiene el codigo del ultimo encuentro
 
-    $sql = "SELECT MAX(Cod_Encuentro) as mayorCodigoEncuentro FROM encuentro";
+    $sql = "SELECT count(Cod_Equipo1) as cantidadEncuentros FROM encuentro";
     $consulta = mysqli_query($conexion, $sql);
     $mayorCodigoEncuentro = mysqli_fetch_array($consulta);
-    $codigoUltimoEncuentro = $mayorCodigoEncuentro["mayorCodigoEncuentro"] + 1;
+    $cantidadEncuentros = $mayorCodigoEncuentro["cantidadEncuentros"];
 
-    //  Se verifica que no haya ningun encuentro creado
-
-    if ($codigoUltimoEncuentro == 1) {
-        //  ya se han creado los encuentros y guardado en la base de datos
-        //  !!!!!!!!!!!!!!!!!!!!!!!!!!  puede existir un error puede ser != 1 la comparacion
-    } else {
-
+    if ($cantidadEncuentros < 48) {
         //                  Se guardan los datos de cada encuentro en la base de datos.
 
         //  Se obtienen los jueces de la DB
@@ -499,10 +493,8 @@
         $jueces = mysqli_fetch_array($consulta);
         $cantidadJueces = $jueces["cantidadJueces"];
 
-        for ($e = 0; $e < 48; $e++) {
-            if ($e == 0) {
-                //  La primera vez del for no sumara por que ya viene con el valor = 1
-            } else {
+        for ($e = 1; $e <= 48; $e++) {
+            if ($e != 1) {
                 $codigoUltimoEncuentro++;
             }
 
@@ -530,43 +522,43 @@
 
             //  Se guarda la informacion adicional del nuevo encuentro
 
-            $sql = "UPDATE encuentro SET Cod_Equipo1 = ".$equipo1[$e].",
-                                        Cod_Equipo2 = ".$equipo2[$e].", idCancha = 1, Id_Juezuno = ".$juez[$numAleatorio1].",
+            $sql = "UPDATE encuentro SET Cod_Equipo1 = '".$equipo1[$e]."',
+                                        Cod_Equipo2 = '".$equipo2[$e]."', idCancha = 1, Id_Juezuno = ".$juez[$numAleatorio1].",
                                         Id_Juezdos = ".$juez[$numAleatorio2].", Id_Jueztres = ".$juez[$numAleatorio3]."
                                     WHERE (Cod_Encuentro = $e)";
             $actualizar = mysqli_query($conexion, $sql);
 
 
             //  Se guarda el grupo del nuevo encuentro
-            if ($e < 6) {
+            if ($e <= 6) {
                 $sql = "UPDATE encuentro SET Grupo = 'A'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
-            } elseif ($e < 12) {
+            } elseif ($e <= 12) {
                 $sql = "UPDATE encuentro SET Grupo = 'B'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
-            } elseif ($e < 18) {
+            } elseif ($e <= 18) {
                 $sql = "UPDATE encuentro SET Grupo = 'C'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
-            } elseif ($e < 24) {
+            } elseif ($e <= 24) {
                 $sql = "UPDATE encuentro SET Grupo = 'D'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
-            } elseif ($e < 30) {
+            } elseif ($e <= 30) {
                 $sql = "UPDATE encuentro SET Grupo = 'E'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
-            } elseif ($e < 36) {
+            } elseif ($e <= 36) {
                 $sql = "UPDATE encuentro SET Grupo = 'F'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
-            } elseif ($e < 42) {
+            } elseif ($e <= 42) {
                 $sql = "UPDATE encuentro SET Grupo = 'G'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
-            } elseif ($e < 48) {
+            } elseif ($e <= 48) {
                 $sql = "UPDATE encuentro SET Grupo = 'H'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);

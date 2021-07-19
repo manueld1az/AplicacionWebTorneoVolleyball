@@ -34,6 +34,7 @@
     <div class="container">
       <h3 class="tittleMain">Fase de Grupos</h3>
     </div>
+    <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
     <?php include("../../conexion/conexionServer.php"); ?>
     <div class="row">
 

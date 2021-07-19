@@ -48,6 +48,7 @@
         <h3 class="tittleMain">Lista de Cuerpo Técnico</h3>
       </div>
       <center><i class="fas fa-users avatar"></i><br /></center>
+      <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>

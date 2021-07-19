@@ -6,7 +6,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
 
 
     // SE INGRESA LOS CODIGOS DE ENCUENTRO PARA TENER LLAVE PRIMARIA PARA CADA ENCUENTRO
-    for ($i=0; $i < 48; $i++) {
+    for ($i=1; $i <= 48; $i++) {
         $sql = "INSERT INTO encuentro (Cod_Encuentro)
                 VALUES ($i)";
         $insertar = mysqli_query($conexion, $sql);
@@ -163,7 +163,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
         //  Esta variable se encarga de contar las filas modificadas para hacer el salto sumando un dia
         $contador = 0;
 
-        for ($i = 0; $i < 48; $i++) {
+        for ($i = 1; $i <= 48; $i++) {
             if ($contador != $cantidadEncuentrosDiarios) {
                 if ($contador == 0) {
                     //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-07-2021 a las 18:40:57
+-- Tiempo de generación: 17-07-2021 a las 20:00:14
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -259,8 +259,8 @@ CREATE TABLE `jugadoras` (
 --
 
 INSERT INTO `jugadoras` (`NumeroRegistro`, `Id_Jugadora`, `Nombre`, `FechaNacimiento`, `Telefono`, `Puntos_Anotados`, `Cod_equipo`, `amarillas`, `rojas`) VALUES
-(17, 13, 'FDSGg', '2021-04-27', '1274231', 138, 30, NULL, NULL),
-(18, 21, 'jhkjg', '2021-05-04', '2165122931', 0, 18, NULL, NULL),
+(17, 13, 'Alejandra', '2021-04-27', '1274231', 138, 16, NULL, NULL),
+(18, 21, 'Yuliana', '2021-05-04', '2165122931', 0, 13, NULL, NULL),
 (19, 123, 'dfgdf', '2021-05-06', '23423', 0, 29, NULL, NULL),
 (16, 213, 'fghfhf', '2021-04-07', '2343', 2, 31, NULL, NULL),
 (20, 1234, 'fgdgfd', '2021-04-28', '32432', 0, 29, NULL, NULL),

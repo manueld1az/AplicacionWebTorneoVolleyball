@@ -336,8 +336,7 @@
                                             <option value="2">Tarjeta Roja</option>
                                         </select>
                                         <div id="yellowCard"></div>
-                                        <text
-                                            id="amarillasEquipo1<?php echo $idJugadora; ?>"
+                                        <text id="amarillasEquipo1<?php echo $idJugadora; ?>"
                                             class="contador">0</text>
                                         <div id="redCard"></div>
                                         <text

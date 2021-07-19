@@ -28,6 +28,11 @@
                     <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
                 </a>
             </div>
+            <div class="col-auto">
+                <button class="btn button2" type="button" onclick="window.print(); ">
+                    <b>Imprimir</b>
+                </button>
+            </div>
         </div>
     </header>
     <ul class="nav justify-content-center" id="myTab" role="tablist">
@@ -51,7 +56,6 @@
                 </center>
             </div>
             <center><i class="fas fa-users avatar"></i><br /></center>
-            <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -109,7 +113,6 @@
                 </center>
             </div>
             <center><i class="fas fa-users avatar"></i><br /></center>
-            <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>

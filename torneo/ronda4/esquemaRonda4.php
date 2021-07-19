@@ -28,13 +28,17 @@
           <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
         </a>
       </div>
+      <div class="col-auto">
+        <button class="btn button2" type="button" onclick="window.print(); ">
+          <b>Imprimir</b>
+        </button>
+      </div>
     </div>
   </header>
   <main class="container main">
     <div class="container">
       <h3 class="tittleMain">Semifinales</h3>
     </div>
-    <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
     <?php include("../../conexion/conexionServer.php"); ?>
     <div class="row">
       <?php

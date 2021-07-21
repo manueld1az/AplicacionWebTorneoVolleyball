@@ -296,7 +296,11 @@ let cantidadJugadorasEquipo2 = idJugadorasEquipo2.length;
 if (localStorage.getItem("amarillas") == null) {
   //  SE CREA EL ARRAY DE AMARILLAS PARA ALLI GUARDAR LAS NUEVAS QUE SE SUMARAN DURANTE EL SET
   var amarillas = [];
-  for (let i = 0; i < cantidadJugadorasEquipo1 + cantidadJugadorasEquipo2; i++) {
+  for (
+    let i = 0;
+    i < cantidadJugadorasEquipo1 + cantidadJugadorasEquipo2;
+    i++
+  ) {
     amarillas[i] = 0;
   }
   localStorage.setItem("amarillas", JSON.stringify(amarillas));
@@ -311,7 +315,11 @@ var amarillas = JSON.parse(localStorage.getItem("amarillas"));
 if (localStorage.getItem("rojas") == null) {
   //  SE CREA EL ARRAY DE AMARILLAS PARA ALLI GUARDAR LAS NUEVAS QUE SE SUMARAN DURANTE EL SET
   var rojas = [];
-  for (let i = 0; i < cantidadJugadorasEquipo1 + cantidadJugadorasEquipo2; i++) {
+  for (
+    let i = 0;
+    i < cantidadJugadorasEquipo1 + cantidadJugadorasEquipo2;
+    i++
+  ) {
     rojas[i] = 0;
   }
   localStorage.setItem("rojas", JSON.stringify(rojas));
@@ -406,8 +414,9 @@ function almacenarContadoresTarjetas() {
 
   //  SE ENVIAN LOS CONTADORES AL LOCAL STORAGE
   localStorage.setItem("rojas", JSON.stringify(rojas));
-}
 
+  tomarContadores();
+}
 
 function rellenarContadoresTarjetas() {
   //  SE OBTIENEN LOS CONTADORES DE AMARILLAS DE LOS DOS EQUIPOS
@@ -439,43 +448,42 @@ function rellenarContadoresTarjetas() {
   }
 }
 
-/* SE OBTIENE EL EVENTO DEL BOTON/GUARDAR EN AMONESTACIONES PARA EJECUTAR EL ENVIO DE LOS CONTADORES DE LA INTERFAZ
-FORMULARIO OCULTO DE LA INTERFAZ QUE ENVIARA LOS CONTADORES A EL BACKEND */
-/* document.getElementById("guardarTarjetas").addEventListener("click", () => {
-  //  SE ENVIA LAS TARJETAS AMARILLAS DE CADA EQUIPO AL FORMULARIO OCULTO DE LA INTERFAZ
-  for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
-    document
-      .getElementById("amarillasEquipo1[" + idJugadorasEquipo1[i] + "]")
-      .setAttribute("value", amarillas[i]);
-  }
-  for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
-    document
-      .getElementById("amarillasEquipo2[" + idJugadorasEquipo2[i] + "]")
-      .setAttribute("value", amarillas[i + cantidadJugadorasEquipo1]);
-  }
+// EJECUTA EL ENVIO DE LOS CONTADORES DE LA INTERFAZ AL FORMULARIO OCULTO DE LA INTERFAZ
+// QUE ENVIARA LOS CONTADORES A EL BACKEND
+function tomarContadores() {
+    //  SE ENVIA LAS TARJETAS AMARILLAS DE CADA EQUIPO AL FORMULARIO OCULTO DE LA INTERFAZ
+    for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
+      document
+        .getElementById("amarillasEquipo1[" + idJugadorasEquipo1[i] + "]")
+        .setAttribute("value", amarillas[i]);
+    }
+    for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
+      document
+        .getElementById("amarillasEquipo2[" + idJugadorasEquipo2[i] + "]")
+        .setAttribute("value", amarillas[i + cantidadJugadorasEquipo1]);
+    }
 
-  //  SE ENVIA LAS TARJETAS ROJAS DE CADA EQUIPO AL FORMULARIO OCULTO DE LA INTERFAZ
-  for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
-    document
-      .getElementById("rojasEquipo1[" + idJugadorasEquipo1[i] + "]")
-      .setAttribute("value", rojas[i]);
-  }
-  for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
-    document
-      .getElementById("rojasEquipo2[" + idJugadorasEquipo2[i] + "]")
-      .setAttribute("value", rojas[i + cantidadJugadorasEquipo1]);
-  }
+    //  SE ENVIA LAS TARJETAS ROJAS DE CADA EQUIPO AL FORMULARIO OCULTO DE LA INTERFAZ
+    for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
+      document
+        .getElementById("rojasEquipo1[" + idJugadorasEquipo1[i] + "]")
+        .setAttribute("value", rojas[i]);
+    }
+    for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
+      document
+        .getElementById("rojasEquipo2[" + idJugadorasEquipo2[i] + "]")
+        .setAttribute("value", rojas[i + cantidadJugadorasEquipo1]);
+    }
 
-
-  //  SE ENVIA LOS IDS DE LAS JUGADORAS DE CADA EQUIPO AL FORMULARIO OCULTO DE LA INTERFAZ
-  for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
-    document
-      .getElementById("idJugadorasEquipo1[" + idJugadorasEquipo1[i] + "]")
-      .setAttribute("value", idJugadorasEquipo1[i]);
-  }
-  for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
-    document
-      .getElementById("idJugadorasEquipo2[" + idJugadorasEquipo2[i] + "]")
-      .setAttribute("value", idJugadorasEquipo2[i]);
-  }
-}); */
+    //  SE ENVIA LOS IDS DE LAS JUGADORAS DE CADA EQUIPO AL FORMULARIO OCULTO DE LA INTERFAZ
+    for (let i = 0; i < cantidadJugadorasEquipo1; i++) {
+      document
+        .getElementById("idJugadorasEquipo1[" + idJugadorasEquipo1[i] + "]")
+        .setAttribute("value", idJugadorasEquipo1[i]);
+    }
+    for (let i = 0; i < cantidadJugadorasEquipo2; i++) {
+      document
+        .getElementById("idJugadorasEquipo2[" + idJugadorasEquipo2[i] + "]")
+        .setAttribute("value", idJugadorasEquipo2[i]);
+    }
+}

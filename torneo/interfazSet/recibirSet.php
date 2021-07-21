@@ -1,12 +1,6 @@
 <?php
 
 if (isset($_POST['guardarPuntos'])) {
-/*     SE USA PARA MOSTRAR TODOS LOS DATOS DE LA PETICION
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
-    */
-
     include "../../conexion/conexionServer.php";
 
     $puntosEquipo1 = $_POST["puntosEquipo1"];
@@ -16,7 +10,46 @@ if (isset($_POST['guardarPuntos'])) {
     $codigoEquipo1 = $_POST["codigoEquipo1"];
     $codigoEquipo2 = $_POST["codigoEquipo2"];
     $numeroRegistro = $_POST["numeroRegistro"];
+    $idJugadorasEquipo1 = $_POST["idJugadorasEquipo1"];
+    $idJugadorasEquipo2 = $_POST["idJugadorasEquipo2"];
+    $amarillasEquipo1 = $_POST["amarillasEquipo1"];
+    $amarillasEquipo2 = $_POST["amarillasEquipo2"];
+    $rojasEquipo1 = $_POST["rojasEquipo1"];
+    $rojasEquipo2 = $_POST["rojasEquipo2"];
 
+    //     EQUIPO 1
+    for ($i=0; $i < count($idJugadorasEquipo1); $i++) {
+        // SE CONSULTAN LAS TARJETAS PREVIAS DE CADA JUGADORA PARA SUMARLAS A LAS ANTERIORES
+        $sql = "SELECT amarillas, rojas FROM jugadoras WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
+        $consulta = mysqli_query($conexion, $sql);
+        $tarjetasEquipo1 = mysqli_fetch_assoc($consulta);
+        $tarjetasEquipo1['amarillas']+=$amarillasEquipo1[$i];
+        $tarjetasEquipo1['rojas']+=$rojasEquipo1[$i];
+        //     SE SUMAN LAS NUEVAS TARJETAS AMARILLAS AL EQUIPO 1
+        $sql = "UPDATE jugadoras SET amarillas = ".$tarjetasEquipo1['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
+        $actualizar = mysqli_query($conexion, $sql);
+
+        //     SE SUMAN LAS TARJETAS ROJAS AL EQUIPO 1
+        $sql = "UPDATE jugadoras SET rojas = ".$tarjetasEquipo1['rojas']." WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
+        $actualizar = mysqli_query($conexion, $sql);
+    }
+
+    //     EQUIPO 2
+    for ($i=0; $i < count($idJugadorasEquipo2); $i++) {
+        // SE CONSULTAN LAS TARJETAS PREVIAS DE CADA JUGADORA PARA SUMARLAS A LAS ANTERIORES
+        $sql = "SELECT amarillas, rojas FROM jugadoras WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
+        $consulta = mysqli_query($conexion, $sql);
+        $tarjetasEquipo2 = mysqli_fetch_assoc($consulta);
+        $tarjetasEquipo2['amarillas']+=$amarillasEquipo2[$i];
+        $tarjetasEquipo2['rojas']+=$rojasEquipo2[$i];
+        //     SE SUMAN TARJETAS AMARILLAS AL EQUIPO 2
+        $sql = "UPDATE jugadoras SET amarillas = ".$tarjetasEquipo2['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
+        $actualizar = mysqli_query($conexion, $sql);
+
+        //     SE SUMAN TARJETAS ROJAS AL EQUIPO 2
+        $sql = "UPDATE jugadoras SET rojas = ".$tarjetasEquipo2['rojas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
+        $actualizar = mysqli_query($conexion, $sql);
+    }
 //      SE RECIBE EL SET ACUAL Y SE CREA EL SIGUIENTE
     $sql = "    INSERT INTO zet (NumeroRegistro, Cod_Set, Cod_Encuentro)
                 VALUES ( $numeroRegistro, $codigoSet, $codigoEncuentro )";
@@ -104,44 +137,44 @@ if (isset($_POST['guardarPuntos'])) {
 
         /* !!!!!!!!!!!!!!!!!!!!!!!! ERORRRRR
         EN ESTA SECCION NO SE ESTAN ACTUALIZANDO LOS PUNTOS EN LA TABLA DE JUGADORAS */
-/* 
-        //      SE RECIBEN LOS ARRAYS CON LOS PUNTOS DE CADA JUGADORA EN SU EQUIPO AL FINAL DEL ENCUENTRO
-        $nuevosPuntosJugadorasEquipo1 = $_POST['puntosJugadorasEquipo1'];
-        $nuevosPuntosJugadorasEquipo2 = $_POST['puntosJugadorasEquipo2'];
+        /*
+                //      SE RECIBEN LOS ARRAYS CON LOS PUNTOS DE CADA JUGADORA EN SU EQUIPO AL FINAL DEL ENCUENTRO
+                $nuevosPuntosJugadorasEquipo1 = $_POST['puntosJugadorasEquipo1'];
+                $nuevosPuntosJugadorasEquipo2 = $_POST['puntosJugadorasEquipo2'];
 
-        //SE CONSULTAN LAS JUGADORAS DE ESTOS EQUIPOS EN DISPUTA Y SUS PUNTAJES CONSEGUIDOS EN PATIDOS POSTERIORES
+                //SE CONSULTAN LAS JUGADORAS DE ESTOS EQUIPOS EN DISPUTA Y SUS PUNTAJES CONSEGUIDOS EN PATIDOS POSTERIORES
 
-        //      EQUIPO 1
-        $sql = "SELECT Id_Jugadora, Puntos_Anotados FROM jugadoras WHERE Cod_equipo = $codigoEquipo1";
-        $consulta = mysqli_query($conexion, $sql);
-        $i = 0;
-        while ($mostrar = mysqli_fetch_assoc($consulta)) {
-            $idJugadorasEquipo1[] = $mostrar['Id_Jugadora'];
-            $ultimosPuntosJugadorasEquipo1[] = $mostrar['Puntos_Anotados'];
+                //      EQUIPO 1
+                $sql = "SELECT Id_Jugadora, Puntos_Anotados FROM jugadoras WHERE Cod_equipo = $codigoEquipo1";
+                $consulta = mysqli_query($conexion, $sql);
+                $i = 0;
+                while ($mostrar = mysqli_fetch_assoc($consulta)) {
+                    $idJugadorasEquipo1[] = $mostrar['Id_Jugadora'];
+                    $ultimosPuntosJugadorasEquipo1[] = $mostrar['Puntos_Anotados'];
 
-            //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
-            $puntosJugadorasEquipo1[$i] = $ultimosPuntosJugadorasEquipo1[$i] + $nuevosPuntosJugadorasEquipo1[$i];
-            $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo1[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo1[$i]');";
-            $actualizar = mysqli_query($conexion, $sql);
-            $i++;
-        }
+                    //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
+                    $puntosJugadorasEquipo1[$i] = $ultimosPuntosJugadorasEquipo1[$i] + $nuevosPuntosJugadorasEquipo1[$i];
+                    $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo1[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo1[$i]');";
+                    $actualizar = mysqli_query($conexion, $sql);
+                    $i++;
+                }
 
-        //      EQUIPO 2
-        $sql = "SELECT Id_Jugadora, Puntos_Anotados FROM jugadoras WHERE Cod_equipo = $codigoEquipo2";
-        $consulta = mysqli_query($conexion, $sql);
-        $i = 0;
-        while ($mostrar = mysqli_fetch_assoc($consulta)) {
-            $idJugadorasEquipo1[] = $mostrar['Id_Jugadora'];
-            $ultimosPuntosJugadorasEquipo2[] = $mostrar['Puntos_Anotados'];
+                //      EQUIPO 2
+                $sql = "SELECT Id_Jugadora, Puntos_Anotados FROM jugadoras WHERE Cod_equipo = $codigoEquipo2";
+                $consulta = mysqli_query($conexion, $sql);
+                $i = 0;
+                while ($mostrar = mysqli_fetch_assoc($consulta)) {
+                    $idJugadorasEquipo1[] = $mostrar['Id_Jugadora'];
+                    $ultimosPuntosJugadorasEquipo2[] = $mostrar['Puntos_Anotados'];
 
-            //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
-            $puntosJugadorasEquipo2[$i] = $ultimosPuntosJugadorasEquipo2[$i] + $nuevosPuntosJugadorasEquipo2[$i];
-            $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo2[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo2[$i]');";
-            $actualizar = mysqli_query($conexion, $sql);
-            $i++;
-        } */
-header("location: resultadoEncuentro.php?Cod_Encuentro=$codigoEncuentro&&codigoEquipo1=$codigoEquipo1&&codigoEquipo2=$codigoEquipo2");
-} else {
+                    //      SE INGRESAN LOS PUNTOS POR CADA JUGADORA EN ORDEN
+                    $puntosJugadorasEquipo2[$i] = $ultimosPuntosJugadorasEquipo2[$i] + $nuevosPuntosJugadorasEquipo2[$i];
+                    $sql = "UPDATE `torneovoleibol`.`jugadoras` SET `Puntos_Anotados` = '$puntosJugadorasEquipo2[$i]'  WHERE (`Id_Jugadora` = '$idJugadorasEquipo2[$i]');";
+                    $actualizar = mysqli_query($conexion, $sql);
+                    $i++;
+                } */
+        header("location: resultadoEncuentro.php?Cod_Encuentro=$codigoEncuentro&&codigoEquipo1=$codigoEquipo1&&codigoEquipo2=$codigoEquipo2");
+    } else {
         header("location: interfazSet.php?Cod_Encuentro=$codigoEncuentro");
     }
 }

@@ -37,7 +37,6 @@
         <div class="container">
             <h3 class="tittleMain">Encuentros Octavos de Final</h3>
         </div>
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
         <!-- SE ORGANIZAN LOS ENCUENTROS DE LOS OCTAVOS DE FINAL -->
         <?php
             include("../../conexion/conexionServer.php");

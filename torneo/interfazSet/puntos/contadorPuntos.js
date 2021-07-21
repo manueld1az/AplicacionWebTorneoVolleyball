@@ -419,4 +419,20 @@ document.getElementById("guardarPuntos").addEventListener("click", () => {
     "contadoresGuardados",
     JSON.stringify(contadoresGuardados)
   );
+
+  // SOLO SE REINICIAN LOS CONTADORES DE LAS TARJETAS SOLO SI ES EL ULTIMO SET DEL ENCUENTRO
+  let codigoSet = document.getElementById("codigoSet").value;
+  if (codigoSet == 3) {
+    let amarillas = JSON.parse(localStorage.getItem("amarillas"));
+    for (let i = 0; i < amarillas.length; i++) {
+      amarillas[i] = 0;
+    }
+    localStorage.setItem("amarillas", JSON.stringify(amarillas));
+
+    let rojas = JSON.parse(localStorage.getItem("rojas"));
+    for (let i = 0; i < rojas.length; i++) {
+      rojas[i] = 0;
+    }
+    localStorage.setItem("rojas", JSON.stringify(rojas));
+  }
 });

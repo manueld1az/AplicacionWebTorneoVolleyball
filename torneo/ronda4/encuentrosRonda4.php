@@ -37,7 +37,6 @@
         <div class="container">
             <h3 class="tittleMain">Encuentros Semifinales</h3>
         </div>
-        <input type="button" name="imprimir" value="Imprimir" onclick="window.print();">
         <!-- SE ORGANIZAN LOS ENCUENTROS DE LOS Cuartos de Final -->
         <?php
             include("../../conexion/conexionServer.php");
@@ -61,7 +60,7 @@
             $sql =" SELECT  MAX(Cod_Encuentro) AS ultimoCodigo,
                             MAX(Fecha) AS ultimaFecha, 
                             MAX(Hora) AS ultimaHora
-                    FROM torneovoleibol.encuentro WHERE Cod_Encuentro < 60;";
+                    FROM torneovoleibol.encuentro WHERE Cod_Encuentro < 61;";
             $consulta = mysqli_query($conexion, $sql);
             $datosUltimoEncuentro = mysqli_fetch_assoc($consulta);
             /* echo "ULTIMO ENCUENTRO";
@@ -141,7 +140,13 @@
                                     </b>
                                 </p>
                             </td>
-                            <td class="columnaCabecera"></td>
+                            <td class="columnaCabecera">
+                                <p>
+                                    <b>
+                                        <center>Equipo Local</center>
+                                    </b>
+                                </p>
+                            </td>
                             <td class="columnaCabecera">
                                 <p>
                                     <b>
@@ -150,7 +155,13 @@
                                     </b>
                                 </p>
                             </td>
-                            <td class="columnaCabecera"></td>
+                            <td class="columnaCabecera">
+                            <p>
+                                    <b>
+                                        <center>Equipo Visitante</center>
+                                    </b>
+                                </p>
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
@@ -184,7 +195,7 @@
 
         // SE VALIDA SI YA SE HAN CREADO LOS ENCUENTROS DE ESTA RONDA
 
-            if ($encuentros[1]['codigoEncuentro'] == 61) {
+            if ($encuentros[1]['codigoEncuentro'] == 62) {
 
                 //  Se obtienen los jueces de la DB
 
@@ -227,9 +238,9 @@
 
                     //  Se guarda la informacion de los nuevos encuentros
 
-                    $sql = "INSERT INTO encuentro ( Cod_Encuentro, Fecha, Hora, idCancha, Cod_Equipo1, Cod_Equipo2, Id_Juezuno, Id_Juezdos, Id_Jueztres  )
-                            VALUES ('".$encuentros[$i]['codigoEncuentro']."', '".$encuentros[$i]['fecha']."', '".$encuentros[$i]['hora']."', '1', '".$encuentros[$i]['codigoEquipo1']."', 
-                                    '".$encuentros[$i]['codigoEquipo2']."', ".$juez[$numAleatorio1].", ".$juez[$numAleatorio2].", ".$juez[$numAleatorio3].");";
+                    $sql = "INSERT INTO encuentro ( Cod_Encuentro, Fecha, Hora, idCancha, Cod_Equipo1, Nombre_Equipo1, Cod_Equipo2, Nombre_Equipo2, Id_Juezuno, Id_Juezdos, Id_Jueztres  )
+                            VALUES ('".$encuentros[$i]['codigoEncuentro']."', '".$encuentros[$i]['fecha']."', '".$encuentros[$i]['hora']."', '1', '".$encuentros[$i]['codigoEquipo1']."', '".$encuentros[$i]['equipo1']."', 
+                                    '".$encuentros[$i]['codigoEquipo2']."', '".$encuentros[$i]['equipo2']."', ".$juez[$numAleatorio1].", ".$juez[$numAleatorio2].", ".$juez[$numAleatorio3].");";
                     $insertar = mysqli_query($conexion, $sql);
                 }
             }

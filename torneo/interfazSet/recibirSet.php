@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['guardarPuntos'])) {
-    include "../../conexion/conexionServer.php";
+    include("../../conexion/conexionServer.php");
 
     $puntosEquipo1 = $_POST["puntosEquipo1"];
     $puntosEquipo2 = $_POST["puntosEquipo2"];
@@ -22,9 +22,24 @@ if (isset($_POST['guardarPuntos'])) {
         // SE CONSULTAN LAS TARJETAS PREVIAS DE CADA JUGADORA PARA SUMARLAS A LAS ANTERIORES
         $sql = "SELECT amarillas, rojas FROM jugadoras WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
         $consulta = mysqli_query($conexion, $sql);
-        $tarjetasEquipo1 = mysqli_fetch_assoc($consulta);
-        $tarjetasEquipo1['amarillas']+=$amarillasEquipo1[$i];
-        $tarjetasEquipo1['rojas']+=$rojasEquipo1[$i];
+        echo "<pre>";
+        print_r($consulta);
+        echo "</pre>";
+        while ($tarjetasEquipo1 = mysqli_fetch_assoc($consulta)) {
+            //      CREAR UNA POSICION EN LA MATRIZ PARA CADA JUGADORA CON SUS TARJETAS
+            $tarjetasJugadora[$i];
+        }
+
+        if ($tarjetasEquipo1['amarillas'] == null) {
+            $tarjetasEquipo1['amarillas'] = $amarillasEquipo1[$i];
+        } else {
+            $tarjetasEquipo1['amarillas']+=$amarillasEquipo1[$i];
+        }
+        if ($tarjetasEquipo1['rojas'] == null) {
+            $tarjetasEquipo1['rojas'] = $rojasEquipo1[$i];
+        } else {
+            $tarjetasEquipo1['rojas']+=$rojasEquipo1[$i];
+        }
         //     SE SUMAN LAS NUEVAS TARJETAS AMARILLAS AL EQUIPO 1
         $sql = "UPDATE jugadoras SET amarillas = ".$tarjetasEquipo1['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
         $actualizar = mysqli_query($conexion, $sql);
@@ -42,6 +57,17 @@ if (isset($_POST['guardarPuntos'])) {
         $tarjetasEquipo2 = mysqli_fetch_assoc($consulta);
         $tarjetasEquipo2['amarillas']+=$amarillasEquipo2[$i];
         $tarjetasEquipo2['rojas']+=$rojasEquipo2[$i];
+
+        if ($tarjetasEquipo2['amarillas'] == null) {
+            $tarjetasEquipo2['amarillas'] = $amarillasEquipo2[$i];
+        } else {
+            $tarjetasEquipo2['amarillas']+=$amarillasEquipo2[$i];
+        }
+        if ($tarjetasEquipo2['rojas'] == null) {
+            $tarjetasEquipo2['rojas'] = $rojasEquipo2[$i];
+        } else {
+            $tarjetasEquipo2['rojas']+=$rojasEquipo2[$i];
+        }
         //     SE SUMAN TARJETAS AMARILLAS AL EQUIPO 2
         $sql = "UPDATE jugadoras SET amarillas = ".$tarjetasEquipo2['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
         $actualizar = mysqli_query($conexion, $sql);
@@ -50,6 +76,7 @@ if (isset($_POST['guardarPuntos'])) {
         $sql = "UPDATE jugadoras SET rojas = ".$tarjetasEquipo2['rojas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
         $actualizar = mysqli_query($conexion, $sql);
     }
+} else {
 //      SE RECIBE EL SET ACUAL Y SE CREA EL SIGUIENTE
     $sql = "    INSERT INTO zet (NumeroRegistro, Cod_Set, Cod_Encuentro)
                 VALUES ( $numeroRegistro, $codigoSet, $codigoEncuentro )";

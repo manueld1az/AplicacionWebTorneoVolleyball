@@ -81,7 +81,7 @@
                 </thead>
                 <?php
                 include("../../conexion/conexionServer.php");
-                $sql = "SELECT Cod_Encuentro, Hora, Cod_Equipo1, Cod_Equipo2 
+                $sql = "SELECT Cod_Encuentro, Hora, Nombre_Equipo1, Nombre_Equipo2 
                         FROM encuentro
                         WHERE Fecha = '$fechaDelServidor' ";
                 $consulta = mysqli_query($conexion, $sql);
@@ -99,14 +99,14 @@
                         <td>
                             <a
                                 href="interfazSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
-                                <center><?php echo $mostrar['Cod_Equipo1'] ?>
+                                <center><?php echo $mostrar['Nombre_Equipo1'] ?>
                                 </center>
                             </a>
                         </td>
                         <td>
                             <a
                                 href="interfazSet.php?Cod_Encuentro=<?php echo $mostrar['Cod_Encuentro'] ?>">
-                                <center><?php echo $mostrar['Cod_Equipo2'] ?>
+                                <center><?php echo $mostrar['Nombre_Equipo2'] ?>
                                 </center>
                             </a>
                         </td>

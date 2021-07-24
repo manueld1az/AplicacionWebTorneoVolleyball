@@ -5,7 +5,7 @@ $NumeroRegistro = $_POST["NumeroRegistro"];
 $puntosEquipo1 = $_POST["Ptos_Equipo1"];
 $puntosEquipo2 = $_POST["Ptos_Equipo2"];
 
-$sql = "UPDATE zet
+$sql = "UPDATE id17287989_torneovoleibol.zet
         SET Ptos_Equipo1='$puntosEquipo1', Ptos_Equipo2='$puntosEquipo2'
         WHERE NumeroRegistro='$NumeroRegistro'";
 

@@ -43,7 +43,7 @@
 
         // SE CONSULTAN LOS EQUIPOS CLASIFICADOS
             $sql =" SELECT Nombre_Equipo, Cod_Equipo
-                    FROM torneovoleibol.equipos 
+                    FROM equipos 
                     WHERE octavos is not null ORDER BY octavos;";
             $consulta = mysqli_query($conexion, $sql);
             while ($registros = mysqli_fetch_assoc($consulta)) {
@@ -69,7 +69,7 @@
             echo "</pre>"; */
 
         // SE CONSULTA EL INTERVALO EN HORAS Y LA CANTIDAD DE PARTIDOS QUE SE JUEGAN DIARIAMENTE INGRESADO POR EL USUARIO AL INICIAR EL TORNEO
-            $sql ="SELECT intervaloDiario, cantidadEncuentrosDiarios FROM torneovoleibol.torneo WHERE idTorneo = 1193;"; // SE DEBE CAMBIAR EL NUMERO FIJO POR UNA VARIBLE QUECONTENGA EL ID DEL TORNEO DE CADA USUARIO
+            $sql ="SELECT intervaloDiario, cantidadEncuentrosDiarios FROM torneo WHERE idTorneo = 1193;"; // SE DEBE CAMBIAR EL NUMERO FIJO POR UNA VARIBLE QUECONTENGA EL ID DEL TORNEO DE CADA USUARIO
             $consulta = mysqli_query($conexion, $sql);
             $registro = mysqli_fetch_assoc($consulta);
             $intervalo = $registro['intervaloDiario'];

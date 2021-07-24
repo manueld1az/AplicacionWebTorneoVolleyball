@@ -74,7 +74,7 @@
 
         include("../../../conexion/conexionServer.php");
         $codigoEquipo=$_GET['Cod_Equipo'];
-        $sql = "SELECT * FROM equipos where Cod_Equipo='$codigoEquipo'";
+        $sql = "SELECT * FROM id17287989_torneovoleibol.equipos where Cod_Equipo='$codigoEquipo'";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {

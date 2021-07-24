@@ -1,3 +1,6 @@
+<?php
+    ob_start();
+?>
 <html lang="es">
 
 <head>
@@ -18,7 +21,7 @@
     <header class="container">
         <div class="row">
             <div class="col-auto">
-                <a href="menuRoda1.html">
+                <a href="../../mantenerEstado.php">
                     <h1><i class="fas fa-arrow-alt-circle-left"></i></h1>
                 </a>
             </div>
@@ -31,37 +34,37 @@
     </header>
     <?php
 
-    include("../conexion/conexionServer.php");
+        include("../conexion/conexionServer.php");
 
-    // SE CONSULTA LA RONDA ACTUAL DEL TORNEO PARA QUE TAMBIEN SE MUESTRE SIEMPRE LA RONDA ACTUAL
-    $sql = "SELECT rondaActual FROM torneo WHERE idTorneo = 1193";
-    // EL 1193(id del torneo), DEBE SER INGRESADO POR EL USUARIO EN LA ALERTA DESPLEGADA ANTES DE EJECUTAR ESTE ARCHIVO
-    $consulta = mysqli_query($conexion, $sql);
-    $ronda = mysqli_fetch_assoc($consulta);
-    $rondaActual = $ronda['rondaActual'];
-
-    /* SE VERIFICA LA CANTIDAD DE EQUIPOS INSCRITOS SI NO SE HA DADO INICIO AL TORNEO
-    ES DECIR QUE EL TORNEO ESTE EN LA PRIMERA RONDA */
-    if ($rondaActual == 1) {
-        // SE CONSULTAN LA CNATIDAD DE EQUIPOS PARA EVALUAR DESDE QUE RONDA SE PUEDE EMPEZAR CON ESE CANTIDAD DE EQUIPOS
-        $sql = "SELECT COUNT(Cod_Equipo) AS equiposInscritos FROM equipos";
+        // SE CONSULTA LA RONDA ACTUAL DEL TORNEO PARA QUE TAMBIEN SE MUESTRE SIEMPRE LA RONDA ACTUAL
+        $sql = "SELECT rondaActual FROM id17287989_torneovoleibol.torneo WHERE idTorneo = 1193";
+        // EL 1193(id del torneo), DEBE SER INGRESADO POR EL USUARIO EN LA ALERTA DESPLEGADA ANTES DE EJECUTAR ESTE ARCHIVO
         $consulta = mysqli_query($conexion, $sql);
-        $equiposInscritos = mysqli_fetch_assoc($consulta);
-        $equiposInscritos = $equiposInscritos['equiposInscritos'];
+        $ronda = mysqli_fetch_assoc($consulta);
+        $rondaActual = $ronda['rondaActual'];
+
+        /* SE VERIFICA LA CANTIDAD DE EQUIPOS INSCRITOS SI NO SE HA DADO INICIO AL TORNEO
+        ES DECIR QUE EL TORNEO ESTE EN LA PRIMERA RONDA */
+        if ($rondaActual == 1) {
+            // SE CONSULTAN LA CNATIDAD DE EQUIPOS PARA EVALUAR DESDE QUE RONDA SE PUEDE EMPEZAR CON ESE CANTIDAD DE EQUIPOS
+            $sql = "SELECT count(Cod_Equipo) AS equiposInscritos FROM id17287989_torneovoleibol.equipos";
+            $consulta = mysqli_query($conexion, $sql);
+            $equiposInscritos = mysqli_fetch_assoc($consulta);
+            $equiposInscritos = $equiposInscritos['equiposInscritos'];
 
 
-        if ($equiposInscritos == 32) {
-            header("location: ronda1/menuRonda1.html");
-        } elseif ($equiposInscritos == 16) {
-            header("location: ronda2/menuRonda2.html");
-        } elseif ($equiposInscritos == 8) {
-            header("location: ronda3.php");
-        } elseif ($equiposInscritos == 4) {
-            header("location: ronda4.php");
-        } elseif ($equiposInscritos == 2) {
-            header("location: ronda5.php");
-        } else {
-            ?>
+            if ($equiposInscritos == 32) {
+                header("location: ronda1/menuRonda1.html");
+            } elseif ($equiposInscritos == 16) {
+                header("location: ronda2/menuRonda2.html");
+            } elseif ($equiposInscritos == 8) {
+                header("location: ronda3/menuRonda3.html");
+            } elseif ($equiposInscritos == 4) {
+                header("location: ronda4/menuRonda4.html");
+            } elseif ($equiposInscritos == 2) {
+                header("location: ronda5/menuRonda5.html");
+            } else {
+                ?>
     <h5>Error: La cantidad de equipos no es compatible al modelo de este tipo de torneo.</h5><br>
     <h5>La cantidad de equipos actualmente es: <?php echo $equiposInscritos; ?>
     </h5>
@@ -79,16 +82,17 @@
     <h5>La cantidad de equipos actual no es compatible con las que manejaa este torneo</h5>
     <?php
         }
+            }
+        } elseif ($rondaActual == 2) {
+            header("location: ronda2/menuRonda2.html");
+        } elseif ($rondaActual == 3) {
+            header("location: ronda3/menuRonda3.html");
+        } elseif ($rondaActual == 4) {
+            header("location: ronda4/menuRonda4.html");
+        } elseif ($rondaActual == 5) {
+            header("Access-Control-Allow-Origin: *");
+            header("location: ronda5/menuRonda5.html");
         }
-    } elseif ($rondaActual == 2) {
-        header("location: ronda2/menuRonda2.html");
-    } elseif ($rondaActual == 3) {
-        header("location: ronda3/menuRonda3.html");
-    } elseif ($rondaActual == 4) {
-        header("location: ronda4/menuRonda4.html");
-    } elseif ($rondaActual == 5) {
-        header("location: ronda5/menuRonda5.html");
-    }
     ?>
     <h5>La cantidad de equipos que puede manejar esta aplicacion actualmente es de: 32-16-8-4-2 Equipos</h5>
     <h3>Verifique la lista de los equipos inscritos en los <a

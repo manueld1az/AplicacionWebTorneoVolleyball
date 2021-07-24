@@ -88,7 +88,7 @@
 
         include("../../../conexion/conexionServer.php");
         $NumeroRegistro=$_GET["NumeroRegistro"];
-        $sql = "SELECT * FROM jugadoras where NumeroRegistro='$NumeroRegistro'";
+        $sql = "SELECT * FROM id17287989_torneovoleibol.jugadoras where NumeroRegistro='$NumeroRegistro'";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {

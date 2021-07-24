@@ -43,33 +43,25 @@
 
         // SE CONSULTAN LOS EQUIPOS CLASIFICADOS
             $sql =" SELECT Nombre_Equipo, Cod_Equipo
-                    FROM torneovoleibol.equipos 
+                    FROM equipos 
                     WHERE finales is not null ORDER BY finales;";
             $consulta = mysqli_query($conexion, $sql);
             while ($registros = mysqli_fetch_assoc($consulta)) {
                 $equipos[] = $registros['Nombre_Equipo'];
                 $codigosEquipos[] = $registros['Cod_Equipo'];
             }
-            /* echo "EQUIPOS CLASIFICADOS";
-            echo "<pre>";
-            print_r($equipos);
-            echo "</pre>"; */
 
         // SE CONSULTA EL ULTMIMO CODIGO , FECHA Y HORA DE ENCUENTRO
         // PARA ORGANIZAR LOS ENCUENTROS DE LAS SIGUIENTES RONDAS
             $sql =" SELECT  MAX(Cod_Encuentro) AS ultimoCodigo,
                             MAX(Fecha) AS ultimaFecha, 
                             MAX(Hora) AS ultimaHora
-                    FROM torneovoleibol.encuentro WHERE Cod_Encuentro < 63;";
+                    FROM encuentro WHERE Cod_Encuentro < 63;";
             $consulta = mysqli_query($conexion, $sql);
             $datosUltimoEncuentro = mysqli_fetch_assoc($consulta);
-            /* echo "ULTIMO ENCUENTRO";
-            echo "<pre>";
-            print_r($datosUltimoEncuentro);
-            echo "</pre>"; */
 
         // SE CONSULTA EL INTERVALO EN HORAS Y LA CANTIDAD DE PARTIDOS QUE SE JUEGAN DIARIAMENTE INGRESADO POR EL USUARIO AL INICIAR EL TORNEO
-            $sql ="SELECT intervaloDiario, cantidadEncuentrosDiarios FROM torneovoleibol.torneo WHERE idTorneo = 1193;"; // SE DEBE CAMBIAR EL NUMERO FIJO POR UNA VARIBLE QUECONTENGA EL ID DEL TORNEO DE CADA USUARIO
+            $sql ="SELECT intervaloDiario, cantidadEncuentrosDiarios FROM torneo WHERE idTorneo = 1193;"; // SE DEBE CAMBIAR EL NUMERO FIJO POR UNA VARIBLE QUECONTENGA EL ID DEL TORNEO DE CADA USUARIO
             $consulta = mysqli_query($conexion, $sql);
             $registro = mysqli_fetch_assoc($consulta);
             $intervalo = $registro['intervaloDiario'];
@@ -246,7 +238,7 @@
             }
     ?>
 
-<!-- Scripts de boostrap-->
+    <!-- Scripts de boostrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>

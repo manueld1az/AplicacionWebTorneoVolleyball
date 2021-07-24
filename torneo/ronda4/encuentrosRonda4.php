@@ -43,7 +43,7 @@
 
         // SE CONSULTAN LOS EQUIPOS CLASIFICADOS
             $sql =" SELECT Nombre_Equipo, Cod_Equipo
-                    FROM torneovoleibol.equipos 
+                    FROM equipos 
                     WHERE semifinales is not null ORDER BY semifinales;";
             $consulta = mysqli_query($conexion, $sql);
             while ($registros = mysqli_fetch_assoc($consulta)) {
@@ -60,7 +60,7 @@
             $sql =" SELECT  MAX(Cod_Encuentro) AS ultimoCodigo,
                             MAX(Fecha) AS ultimaFecha, 
                             MAX(Hora) AS ultimaHora
-                    FROM torneovoleibol.encuentro WHERE Cod_Encuentro < 61;";
+                    FROM encuentro WHERE Cod_Encuentro < 61;";
             $consulta = mysqli_query($conexion, $sql);
             $datosUltimoEncuentro = mysqli_fetch_assoc($consulta);
             /* echo "ULTIMO ENCUENTRO";
@@ -69,7 +69,7 @@
             echo "</pre>"; */
 
         // SE CONSULTA EL INTERVALO EN HORAS Y LA CANTIDAD DE PARTIDOS QUE SE JUEGAN DIARIAMENTE INGRESADO POR EL USUARIO AL INICIAR EL TORNEO
-            $sql ="SELECT intervaloDiario, cantidadEncuentrosDiarios FROM torneovoleibol.torneo WHERE idTorneo = 1193;"; // SE DEBE CAMBIAR EL NUMERO FIJO POR UNA VARIBLE QUECONTENGA EL ID DEL TORNEO DE CADA USUARIO
+            $sql ="SELECT intervaloDiario, cantidadEncuentrosDiarios FROM torneo WHERE idTorneo = 1193;"; // SE DEBE CAMBIAR EL NUMERO FIJO POR UNA VARIBLE QUECONTENGA EL ID DEL TORNEO DE CADA USUARIO
             $consulta = mysqli_query($conexion, $sql);
             $registro = mysqli_fetch_assoc($consulta);
             $intervalo = $registro['intervaloDiario'];
@@ -156,7 +156,7 @@
                                 </p>
                             </td>
                             <td class="columnaCabecera">
-                            <p>
+                                <p>
                                     <b>
                                         <center>Equipo Visitante</center>
                                     </b>
@@ -206,7 +206,7 @@
                     $juez[] = $jueces["idJuez"];
                 }
 
-                $sql = "SELECT COUNT(idJuez) AS cantidadJueces FROM jueces";
+                $sql = "SELECT count(idJuez) AS cantidadJueces FROM jueces";
                 $consulta = mysqli_query($conexion, $sql);
                 $jueces = mysqli_fetch_array($consulta);
                 $cantidadJueces = $jueces["cantidadJueces"];
@@ -245,33 +245,6 @@
                 }
             }
     ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Scripts de boostrap-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

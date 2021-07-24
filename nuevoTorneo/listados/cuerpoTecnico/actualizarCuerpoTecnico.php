@@ -95,7 +95,7 @@
 
         include("../../../conexion/conexionServer.php");
         $id_Cuerpotecnico=$_GET["id_Cuerpotecnico"];
-        $sql = "SELECT * FROM cuerpotecnico where id_Cuerpotecnico='$id_Cuerpotecnico'";
+        $sql = "SELECT * FROM id17287989_torneovoleibol.cuerpotecnico where id_Cuerpotecnico='$id_Cuerpotecnico'";
         $consulta = mysqli_query($conexion, $sql);
 
         while ($mostrar = mysqli_fetch_assoc($consulta)) {

@@ -51,7 +51,7 @@
         for ($i=55; $i <= 59; $i++) {
 
             // SE CONSULTAN LOS PUNTAJES DE LOS ENCUENTROS DE LOS OCTAVOS DE FINAL
-            $sql="SELECT Ptos_Equipo1, Ptos_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro = $i;";
+            $sql="SELECT Ptos_Equipo1, Ptos_Equipo2 FROM encuentro WHERE Cod_Encuentro = $i;";
             $consulta = $conexion->query($sql);
             $registro = $consulta->fetch_assoc();
             $puntosEquipo1 = $registro['Ptos_Equipo1'];
@@ -60,19 +60,19 @@
             // SE DETERMINA EL GANADOR DEL ENCUENTRO Y SE CLASIFICA A ESTA NUEVA RONDA DE CUARTOS
             // SE CONSULTA EL CODIGO DEL EQUIPO GANADOR PARA ASIGNARLE SU POSICION EN LA SEGUNDA RONDA
             if ($puntosEquipo1 > $puntosEquipo2) {
-                $sql = "SELECT Cod_Equipo1 FROM torneovoleibol.encuentro WHERE Cod_Encuentro = $i;";
+                $sql = "SELECT Cod_Equipo1 FROM encuentro WHERE Cod_Encuentro = $i;";
                 $consulta = $conexion->query($sql);
                 $registro = $consulta->fetch_assoc();
                 $codigoEquipo = $registro['Cod_Equipo1'];
             } else {
-                $sql = "SELECT Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro = $i;";
+                $sql = "SELECT Cod_Equipo2 FROM encuentro WHERE Cod_Encuentro = $i;";
                 $consulta = $conexion->query($sql);
                 $registro = $consulta->fetch_assoc();
                 $codigoEquipo = $registro['Cod_Equipo2'];
             }
 
             // SE CONSULTA EL CODIGO DEL EQUIPO GANADOR DE CADA ENCUENTRO DE LOS OCTAVOS
-            $sql = "SELECT octavos FROM torneovoleibol.equipos WHERE Cod_Equipo = $codigoEquipo;";
+            $sql = "SELECT octavos FROM equipos WHERE Cod_Equipo = $codigoEquipo;";
             $consulta = $conexion->query($sql);
             $registro = $consulta->fetch_assoc();
             $casillaOctavos = $registro['octavos'];
@@ -87,11 +87,11 @@
                 // SE ACTUALIZA EN BASE DE DATOS LA COLUMNA CUARTOS CON EL NUMERO Y LETRA CORRESPPONDIENE
                 // DE LOS EQUIPOS CLASIFICADOS A LA SIGUIENTE RONDA
                 if ($contador % 2 != 0) {
-                    $sql = "UPDATE `equipos` SET cuartos = $idEncuentros"."A WHERE Cod_Equipo = $codigoEquipo";
+                    $sql = "UPDATE id17287989_torneovoleibol.equipos SET cuartos = $idEncuentros"."A WHERE Cod_Equipo = $codigoEquipo";
                     $actualizar = $conexion->query($sql);
                 // echo "El nuevo encuentro del equipo: $codigoEquipo es el : $idEncuentros"."A de la siguiente ronda<br>";
                 } else {
-                    $sql = "UPDATE `equipos` SET cuartos = $idEncuentros"."B WHERE Cod_Equipo = $codigoEquipo";
+                    $sql = "UPDATE id17287989_torneovoleibol.equipos SET cuartos = $idEncuentros"."B WHERE Cod_Equipo = $codigoEquipo";
                     $actualizar = $conexion->query($sql);
                     // echo "El nuevo encuentro del equipo: $codigoEquipo es el : $idEncuentros"."B de la siguiente ronda<br>";
                     $idEncuentros++;

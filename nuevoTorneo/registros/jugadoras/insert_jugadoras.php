@@ -1,4 +1,5 @@
 <?php
+
     include("../../../conexion/conexionServer.php");
 
     $Id_Jugadora= $_POST["Id_Jugadora"];
@@ -15,4 +16,3 @@
         echo "Error: ";
     }
     $conexion->close();
-?>

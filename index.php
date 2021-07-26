@@ -1,3 +1,14 @@
+<?php
+  session_start();
+  /* echo $filas['usuario']; */
+  $varsesion = $_SESSION['correo'];
+  
+  if($varsesion == null || $varsesion == '') {
+    echo 'Usted no tiene autorización';
+    die();
+  }
+  ?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -27,14 +38,14 @@
           <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
         </div>
         <div class="col-auto">
-          <a href="index/login/login.html">
+          <!-- <a href="index/login/login.html">
             <button class="btn button1" type="button">
               <b>Iniciar Sesión</b>
             </button>
-          </a>
-          <a href="index/getStarted/getStarted.html">
+          </a> -->
+          <a href="cerrar_sesion.php">
             <button class="btn button2" type="button">
-              <b>Crear Cuenta</b>
+              <b>Cerrar Sesión</b>
             </button>
           </a>
         </div>
@@ -43,7 +54,7 @@
 
     <main class="row">
       <article class="col-xs-12 col-sm-6">
-        <a href="">
+        <a href="nuevoTorneo/nuevoTorneo.html">
           <center>
             <img
               src="img/icon trophy.png"
@@ -56,7 +67,7 @@
         </a>
       </article>
       <article class="col-xs-12 col-sm-6">
-        <a href="">
+        <a href="torneo/verificarEquipos.php">
           <center>
             <img
               src="img/icon trophy.png"

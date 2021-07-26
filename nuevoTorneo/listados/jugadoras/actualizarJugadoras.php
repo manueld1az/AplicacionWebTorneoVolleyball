@@ -25,7 +25,7 @@
     <header class="container">
       <div class="row">
         <div class="col-auto me-auto">
-          <a href="../../../index.html">
+          <a href="../../../index.php">
             <h1><i class="fas fa-volleyball-ball"></i> SGTV</h1>
           </a>
         </div>

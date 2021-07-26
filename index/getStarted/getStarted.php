@@ -5,7 +5,7 @@
     $Nombre= $_POST["nombre"];
     $Tipo= $_POST["tipo"];
     $Email= $_POST["correo"];
-    $Password= $_POST["contraseña"];
+    $Password= password_hash($_POST["contraseña"], PASSWORD_BCRYPT);
     $Celular= $_POST["celular"];
 
     $sql = "INSERT INTO usuarios ( usuario, nombre, tipo, correo, contraseña, celular ) 

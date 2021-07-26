@@ -10,7 +10,7 @@ include "../../conexion/conexionServer.php";
 
 // SE CONSULTAN LOS PUNTOS DE CADA EQUIPO EN LOS SETS DEL ENCUENTRO
 $sql = "SELECT Ptos_Equipo1, Ptos_Equipo2 
-        FROM torneovoleibol.zet 
+        FROM zet 
         WHERE Cod_Encuentro = $codigoEncuentro;";
 $consulta = mysqli_query($conexion, $sql);
 
@@ -38,25 +38,25 @@ for ($i=0; $i < 3 ; $i++) {
 // Y SE LE SUMAN TRES MAS AL GANADOR DEL ENCUENTRO
 if ($setsGanadosEquipo1 > $setsGanadosEquipo2) {
     $sql = "SELECT puntosPorPartido 
-        FROM torneovoleibol.equipos
+        FROM equipos
         WHERE Cod_Equipo = $codigoEquipo1;";
     $consulta = mysqli_query($conexion, $sql);
     $registro = mysqli_fetch_assoc($consulta);
     $puntosPrevios = $registro['puntosPorPartido'];
     $puntosPrevios += 3;
-    $sql = "UPDATE torneovoleibol.equipos
+    $sql = "UPDATE id17287989_torneovoleibol.equipos
             SET puntosPorPartido = $puntosPrevios  
             WHERE Cod_Equipo = $codigoEquipo1;";
     $actualizar = mysqli_query($conexion, $sql);
 } else {
     $sql = "SELECT puntosPorPartido 
-        FROM torneovoleibol.equipos
+        FROM equipos
         WHERE Cod_Equipo = $codigoEquipo2;";
     $consulta = mysqli_query($conexion, $sql);
     $registro = mysqli_fetch_assoc($consulta);
     $puntosPrevios = $registro['puntosPorPartido'];
     $puntosPrevios += 3;
-    $sql = "UPDATE torneovoleibol.equipos
+    $sql = "UPDATE id17287989_torneovoleibol.equipos
             SET puntosPorPartido = $puntosPrevios  
             WHERE Cod_Equipo = $codigoEquipo2;";
     $actualizar = mysqli_query($conexion, $sql);

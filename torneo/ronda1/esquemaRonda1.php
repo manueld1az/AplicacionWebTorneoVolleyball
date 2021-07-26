@@ -46,7 +46,7 @@
 
       // Sorteo terminado, se guarda el nuevo orden de los equipos
 
-      $sql = "SELECT Cod_Equipo FROM `torneovoleibol`.`equipos`";
+      $sql = "SELECT Cod_Equipo FROM equipos";
       $consulta = mysqli_query($conexion, $sql);
 
       while ($codigEequipos = mysqli_fetch_array($consulta)) {
@@ -77,7 +77,7 @@
               $posicion = $listaTabla[$s + 1];
           }
 
-          $sql = "UPDATE equipos 
+          $sql = "UPDATE id17287989_torneovoleibol.equipos 
                 SET posicionSorteada = " . $posicion . "
                 WHERE ( Cod_Equipo = " . $codigEequipo[$s] . " )";
           $resultado = mysqli_query($conexion, $sql);
@@ -106,28 +106,28 @@
       // SE LE DA EL ATRIBUTO CON LA LETRA DEL GRUPO AL QUE PERTENECERA
       for ($i=0; $i < count($codigosEquipo) ; $i++) {
           if ($i < 4) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'A' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'A' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           } elseif ($i < 8) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'B' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'B' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           } elseif ($i < 12) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'C' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'C' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           } elseif ($i < 16) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'D' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'D' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           } elseif ($i < 20) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'E' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'E' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           } elseif ($i < 24) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'F' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'F' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           } elseif ($i < 28) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'G' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'G' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           } elseif ($i < 32) {
-              $sql = "UPDATE `torneovoleibol`.`equipos` SET `grupo` = 'H' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
+              $sql = "UPDATE id17287989_torneovoleibol.equipos SET `grupo` = 'H' WHERE (`Cod_Equipo` = $codigosEquipo[$i]);";
               $actualizar = mysqli_query($conexion, $sql);
           }
       }

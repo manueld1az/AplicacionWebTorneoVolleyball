@@ -548,7 +548,7 @@
 
             //  Se guarda la informacion adicional del nuevo encuentro
 
-            $sql = "UPDATE encuentro SET Cod_Equipo1 = '".$equipo1[$e - 1]."', Nombre_Equipo1 = '".$nombresEquipo1[$e - 1]."', Nombre_Equipo2 = '".$nombresEquipo2[$e - 1]."',
+            $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Cod_Equipo1 = '".$equipo1[$e - 1]."', Nombre_Equipo1 = '".$nombresEquipo1[$e - 1]."', Nombre_Equipo2 = '".$nombresEquipo2[$e - 1]."',
                                         Cod_Equipo2 = '".$equipo2[$e - 1]."', idCancha = 1, Id_Juezuno = ".$juez[$numAleatorio1].",
                                         Id_Juezdos = ".$juez[$numAleatorio2].", Id_Jueztres = ".$juez[$numAleatorio3]."
                                     WHERE (Cod_Encuentro = $e)";
@@ -557,35 +557,35 @@
 
             //  Se guarda el grupo del nuevo encuentro
             if ($e <= 6) {
-                $sql = "UPDATE encuentro SET Grupo = 'A'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'A'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             } elseif ($e <= 12) {
-                $sql = "UPDATE encuentro SET Grupo = 'B'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'B'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             } elseif ($e <= 18) {
-                $sql = "UPDATE encuentro SET Grupo = 'C'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'C'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             } elseif ($e <= 24) {
-                $sql = "UPDATE encuentro SET Grupo = 'D'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'D'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             } elseif ($e <= 30) {
-                $sql = "UPDATE encuentro SET Grupo = 'E'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'E'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             } elseif ($e <= 36) {
-                $sql = "UPDATE encuentro SET Grupo = 'F'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'F'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             } elseif ($e <= 42) {
-                $sql = "UPDATE encuentro SET Grupo = 'G'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'G'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             } elseif ($e <= 48) {
-                $sql = "UPDATE encuentro SET Grupo = 'H'
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro SET Grupo = 'H'
                 WHERE (Cod_Encuentro = $e)";
                 $actualizar = mysqli_query($conexion, $sql);
             }

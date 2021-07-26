@@ -51,7 +51,7 @@
         for ($i=59; $i <= 61; $i++) {
 
             // SE CONSULTAN LOS PUNTAJES DE LOS ENCUENTROS DE LOS OCTAVOS DE FINAL
-            $sql="SELECT Ptos_Equipo1, Ptos_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro = $i;";
+            $sql="SELECT Ptos_Equipo1, Ptos_Equipo2 FROM encuentro WHERE Cod_Encuentro = $i;";
             $consulta = $conexion->query($sql);
             $registro = $consulta->fetch_assoc();
             $puntosEquipo1 = $registro['Ptos_Equipo1'];
@@ -60,19 +60,19 @@
             // SE DETERMINA EL GANADOR DEL ENCUENTRO Y SE CLASIFICA A ESTA NUEVA RONDA DE CUARTOS
             // SE CONSULTA EL CODIGO DEL EQUIPO GANADOR PARA ASIGNARLE SU POSICION EN LA SEGUNDA RONDA
             if ($puntosEquipo1 > $puntosEquipo2) {
-                $sql = "SELECT Cod_Equipo1 FROM torneovoleibol.encuentro WHERE Cod_Encuentro = $i;";
+                $sql = "SELECT Cod_Equipo1 FROM encuentro WHERE Cod_Encuentro = $i;";
                 $consulta = $conexion->query($sql);
                 $registro = $consulta->fetch_assoc();
                 $codigoEquipo = $registro['Cod_Equipo1'];
             } else {
-                $sql = "SELECT Cod_Equipo2 FROM torneovoleibol.encuentro WHERE Cod_Encuentro = $i;";
+                $sql = "SELECT Cod_Equipo2 FROM encuentro WHERE Cod_Encuentro = $i;";
                 $consulta = $conexion->query($sql);
                 $registro = $consulta->fetch_assoc();
                 $codigoEquipo = $registro['Cod_Equipo2'];
             }
 
             // SE CONSULTA EL CODIGO DEL EQUIPO GANADOR DE CADA ENCUENTRO DE LOS OCTAVOS
-            $sql = "SELECT octavos FROM torneovoleibol.equipos WHERE Cod_Equipo = $codigoEquipo;";
+            $sql = "SELECT octavos FROM equipos WHERE Cod_Equipo = $codigoEquipo;";
             $consulta = $conexion->query($sql);
             $registro = $consulta->fetch_assoc();
             $casillaOctavos = $registro['octavos'];

@@ -2,7 +2,7 @@
 include("../../../conexion/conexionServer.php");
 $id_Cuerpotecnico = $_GET['id_Cuerpotecnico'];
 
-$sql = "DELETE FROM cuerpotecnico WHERE id_Cuerpotecnico='$id_Cuerpotecnico'";
+$sql = "DELETE FROM id17287989_torneovoleibol.cuerpotecnico WHERE id_Cuerpotecnico='$id_Cuerpotecnico'";
 
 $eliminar = mysqli_query($conexion, $sql);
 

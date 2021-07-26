@@ -1,8 +1,9 @@
 <?php
+
 include("../../../../conexion/conexionServer.php");
 $NumeroRegistro = $_GET['NumeroRegistro'];
 
-$sql = "DELETE FROM zet WHERE NumeroRegistro='$NumeroRegistro'";
+$sql = "DELETE FROM id17287989_torneovoleibol.zet WHERE NumeroRegistro='$NumeroRegistro'";
 
 $eliminar = mysqli_query($conexion, $sql);
 

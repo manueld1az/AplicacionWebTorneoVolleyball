@@ -14,7 +14,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
 
     //  Se obtiene la fecha del ultimo encuentro
 
-    $sql = "SELECT MAX(Fecha) as mayorFechaEncuentro FROM encuentro";
+    $sql = "SELECT MAX(Fecha) as mayorFechaEncuentro FROM id17287989_torneovoleibol.encuentro";
     $consulta = mysqli_query($conexion, $sql);
     $mayorFechaEncuentro = mysqli_fetch_array($consulta);
     $ultimaFechaEncuentro = $mayorFechaEncuentro["mayorFechaEncuentro"];
@@ -38,7 +38,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
 
                 //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                 //  cantidad de partidos diarios ingresados por el usuario
-                $sql = "UPDATE encuentro
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro
                         SET Fecha = '$ultimaFechaTorneo'
                         WHERE ( Cod_Encuentro = $contador+$iteradorPosicion )";
                 $ingresar = mysqli_query($conexion, $sql);
@@ -54,7 +54,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
                 for ($b = 1; $b <= 2; $b++) {
                     //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                     //  cantidad de partidos diarios ingresados por el usuario
-                    $sql = "UPDATE encuentro
+                    $sql = "UPDATE id17287989_torneovoleibol.encuentro
                         SET Fecha = '$ultimaFechaTorneo'
                         WHERE ( Cod_Encuentro = $contador+$iteradorPosicion )";
                     $ingresar = mysqli_query($conexion, $sql);
@@ -75,7 +75,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
 
                 //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                 //  cantidad de partidos diarios ingresados por el usuario
-                $sql = "UPDATE encuentro
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro
                         SET Fecha = '$ultimaFechaTorneo'
                         WHERE ( Cod_Encuentro = $contador+$iteradorPosicion )";
                 $ingresar = mysqli_query($conexion, $sql);
@@ -91,7 +91,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
                 for ($d = 1; $d <= 2; $d++) {
                     //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                     //  cantidad de partidos diarios ingresados por el usuario
-                    $sql = "UPDATE encuentro
+                    $sql = "UPDATE id17287989_torneovoleibol.encuentro
                         SET Fecha = '$ultimaFechaTorneo'
                         WHERE ( Cod_Encuentro = $contador+$iteradorPosicion )";
                     $ingresar = mysqli_query($conexion, $sql);
@@ -112,7 +112,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
 
                 //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                 //  cantidad de partidos diarios ingresados por el usuario
-                $sql = "UPDATE encuentro
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro
                         SET Fecha = '$ultimaFechaTorneo'
                         WHERE ( Cod_Encuentro = $contador+$iteradorPosicion )";
                 $ingresar = mysqli_query($conexion, $sql);
@@ -128,7 +128,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
                 for ($f = 1; $f <= 2; $f++) {
                     //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                     //  cantidad de partidos diarios ingresados por el usuario
-                    $sql = "UPDATE encuentro
+                    $sql = "UPDATE id17287989_torneovoleibol.encuentro
                         SET Fecha = '$ultimaFechaTorneo'
                         WHERE ( Cod_Encuentro = $contador+$iteradorPosicion )";
                     $ingresar = mysqli_query($conexion, $sql);
@@ -147,7 +147,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
 
     //  Se obtiene la hora del ultimo encuentro
 
-    $sql = "SELECT MAX(Hora) as mayorHoraEncuentro FROM encuentro";
+    $sql = "SELECT MAX(Hora) as mayorHoraEncuentro FROM id17287989_torneovoleibol.encuentro";
     $consulta = mysqli_query($conexion, $sql);
     $mayorHoraEncuentro = mysqli_fetch_array($consulta);
     $ultimaHoraEncuentro = $mayorHoraEncuentro["mayorHoraEncuentro"];
@@ -168,7 +168,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
                 if ($contador == 0) {
                     //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                     //  cantidad de partidos diarios ingresados por el usuario
-                    $sql = "UPDATE encuentro
+                    $sql = "UPDATE id17287989_torneovoleibol.encuentro
                             SET Hora = '$horaInicioTorneo'
                             WHERE ( Cod_Encuentro = '$i' )";
                     $ingresar = mysqli_query($conexion, $sql);
@@ -178,7 +178,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
                     //  Si el contador se iguala a la cantidad de partidos diarios ingresados por el usuario
                     //  se suma un dia a la ultima fecha y hora para hacer el salto diario.
                     $ultimaHoraTorneo = date("H:i:s", strtotime("+ $intervaloEntrePartidos hour", strtotime($ultimaHoraTorneo)));
-                    $sql = "UPDATE encuentro
+                    $sql = "UPDATE id17287989_torneovoleibol.encuentro
                             SET Hora = '$ultimaHoraTorneo'
                             WHERE ( Cod_Encuentro = '$i' )";
                     $ingresar = mysqli_query($conexion, $sql);
@@ -187,7 +187,7 @@ if (isset($_POST["botonGuardarDatosAlerta"])) {
             } else {
                 //  Se ingresa la ultima fecha y hora hasta que el contador se iguale a la
                 //  cantidad de partidos diarios ingresados por el usuario
-                $sql = "UPDATE encuentro
+                $sql = "UPDATE id17287989_torneovoleibol.encuentro
                             SET Hora = '$horaInicioTorneo'
                             WHERE ( Cod_Encuentro = '$i' )";
                 $ingresar = mysqli_query($conexion, $sql);

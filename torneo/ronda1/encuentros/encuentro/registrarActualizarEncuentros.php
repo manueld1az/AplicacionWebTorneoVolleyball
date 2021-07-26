@@ -1,4 +1,5 @@
 <?php
+
     include("../../../../conexion/conexionServer.php");
     $Cod_Encuentro=$_POST["Cod_Encuentro"];
     $Fecha= $_POST["Fecha"];
@@ -8,7 +9,7 @@
     $idJuezdos= $_POST["Id_Juezdos"];
     $idJueztres= $_POST["Id_Jueztres"];
 
-    $sql = "UPDATE encuentro 
+    $sql = "UPDATE id17287989_torneovoleibol.encuentro 
             SET Fecha='".$_POST["Fecha"]."', Hora='".$_POST["Hora"]."',
             idCancha='$idCancha', Id_Juezuno='$idJuezuno', 
             Id_Juezdos='$idJuezdos', Id_Jueztres='$idJueztres'
@@ -22,5 +23,4 @@ if ($actualizar) {
     echo "Error al Ingresar datos ";
 }
 
-mysqli_close($conexion); 
-?>
+mysqli_close($conexion);

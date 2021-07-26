@@ -7,7 +7,7 @@
     $Telefono = $_POST["Telefono"];
     $Cod_equipo = $_POST["Cod_equipo"];
 
-    $sql = "UPDATE cuerpotecnico 
+    $sql = "UPDATE id17287989_torneovoleibol.cuerpotecnico 
     SET Nombre='$Nombre', Cargo='$Cargo', Telefono='$Telefono', Cod_equipo='$Cod_equipo',
         fechaNacimiento='".$_POST["fechaNacimiento"]."', id_Cuerpotecnico='$id_Cuerpotecnico'
     WHERE NumeroRegistro='$NumeroRegistro'";

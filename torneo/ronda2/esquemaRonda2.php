@@ -65,7 +65,7 @@
               $letra = 'B';
           }
 
-          $sql = "UPDATE `equipos` SET octavos = '$contador$letra' WHERE Cod_Equipo = $codEquipo[$i] ";
+          $sql = "UPDATE id17287989_torneovoleibol.equipos SET octavos = '$contador$letra' WHERE Cod_Equipo = $codEquipo[$i] ";
           $consulta = $conexion->query($sql);
       }
       //  SE CREA LA LISTA "listaTabla" DE de los puestos que ocupan los equipos,

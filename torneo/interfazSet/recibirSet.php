@@ -41,11 +41,11 @@ if (isset($_POST['guardarPuntos'])) {
             $tarjetasEquipo1['rojas']+=$rojasEquipo1[$i];
         }
         //     SE SUMAN LAS NUEVAS TARJETAS AMARILLAS AL EQUIPO 1
-        $sql = "UPDATE jugadoras SET amarillas = ".$tarjetasEquipo1['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
+        $sql = "UPDATE id17287989_torneovoleibol.jugadoras SET amarillas = ".$tarjetasEquipo1['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
         $actualizar = mysqli_query($conexion, $sql);
 
         //     SE SUMAN LAS TARJETAS ROJAS AL EQUIPO 1
-        $sql = "UPDATE jugadoras SET rojas = ".$tarjetasEquipo1['rojas']." WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
+        $sql = "UPDATE id17287989_torneovoleibol.jugadoras SET rojas = ".$tarjetasEquipo1['rojas']." WHERE Id_Jugadora = $idJugadorasEquipo1[$i]";
         $actualizar = mysqli_query($conexion, $sql);
     }
 
@@ -69,11 +69,11 @@ if (isset($_POST['guardarPuntos'])) {
             $tarjetasEquipo2['rojas']+=$rojasEquipo2[$i];
         }
         //     SE SUMAN TARJETAS AMARILLAS AL EQUIPO 2
-        $sql = "UPDATE jugadoras SET amarillas = ".$tarjetasEquipo2['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
+        $sql = "UPDATE id17287989_torneovoleibol.jugadoras SET amarillas = ".$tarjetasEquipo2['amarillas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
         $actualizar = mysqli_query($conexion, $sql);
 
         //     SE SUMAN TARJETAS ROJAS AL EQUIPO 2
-        $sql = "UPDATE jugadoras SET rojas = ".$tarjetasEquipo2['rojas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
+        $sql = "UPDATE id17287989_torneovoleibol.jugadoras SET rojas = ".$tarjetasEquipo2['rojas']." WHERE Id_Jugadora = $idJugadorasEquipo2[$i]";
         $actualizar = mysqli_query($conexion, $sql);
     }
 } else {
@@ -84,12 +84,12 @@ if (isset($_POST['guardarPuntos'])) {
 
     //  SE GUARDAN LOS PUNTOS EN LA TABLA ZET
 
-    $sql = "    UPDATE zet
+    $sql = "    UPDATE id17287989_torneovoleibol.zet
                 SET Ptos_Equipo1 = $puntosEquipo1
                 WHERE Cod_Encuentro = $codigoEncuentro
                 AND Cod_Set = $codigoSet";
     $actualizar = mysqli_query($conexion, $sql);
-    $sql = "    UPDATE zet
+    $sql = "    UPDATE id17287989_torneovoleibol.zet
                 SET Ptos_Equipo2 = $puntosEquipo2
                 WHERE Cod_Encuentro = $codigoEncuentro
                 AND Cod_Set = $codigoSet";
@@ -98,11 +98,11 @@ if (isset($_POST['guardarPuntos'])) {
     //  SE ACTUALIZAN LOS PUNTOS EN LA TABLA ENCUENTRO SUMANDO LOS PUNTOS DE CADA EQUIPO EN LOS SETS JUGADOS
     if ($codigoSet == 1) {
         //  SE SUMAN LOS PUNTOS INICIALES DEL PRIMER SET
-        $sql = "UPDATE encuentro
+        $sql = "UPDATE id17287989_torneovoleibol.encuentro
                 SET Ptos_Equipo1 = $puntosEquipo1
                 WHERE Cod_Encuentro = $codigoEncuentro";
         $actualizar = mysqli_query($conexion, $sql);
-        $sql = "UPDATE encuentro
+        $sql = "UPDATE id17287989_torneovoleibol.encuentro
                 SET Ptos_Equipo2 = $puntosEquipo2
                 WHERE Cod_Encuentro = $codigoEncuentro";
         $actualizar = mysqli_query($conexion, $sql);
@@ -120,11 +120,11 @@ if (isset($_POST['guardarPuntos'])) {
         $puntosEquipo2 += $puntosConsultados2;
 
         //  SE INGRESAN LOS NUEVOS PUNTOS
-        $sql = "UPDATE encuentro
+        $sql = "UPDATE id17287989_torneovoleibol.encuentro
                 SET Ptos_Equipo1 = " . $puntosEquipo1 . "
                 WHERE Cod_Encuentro = " . $codigoEncuentro;
         $actualizar = mysqli_query($conexion, $sql);
-        $sql = "UPDATE encuentro
+        $sql = "UPDATE id17287989_torneovoleibol.encuentro
                 SET Ptos_Equipo2 = $puntosEquipo2
                 WHERE Cod_Encuentro = $codigoEncuentro";
         $actualizar = mysqli_query($conexion, $sql);
@@ -150,11 +150,11 @@ if (isset($_POST['guardarPuntos'])) {
         $puntosEquipo2 += $puntosConsultados2;
 
         //  SE INGRESAN LOS NUEVOS PUNTOS DE CADA EQUIPO
-        $sql = "UPDATE equipos
+        $sql = "UPDATE id17287989_torneovoleibol.equipos
                 SET Ptos_Equipo = $puntosEquipo1
                 WHERE Cod_Equipo = $codigoEquipo1";
         $actualizar = mysqli_query($conexion, $sql);
-        $sql = "UPDATE equipos
+        $sql = "UPDATE id17287989_torneovoleibol.equipos
                 SET Ptos_Equipo = $puntosEquipo2
                 WHERE Cod_Equipo = $codigoEquipo2";
         $actualizar = mysqli_query($conexion, $sql);
